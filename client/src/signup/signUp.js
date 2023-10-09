@@ -1,5 +1,3 @@
-// url
-
 let userName = document.getElementById("exampleInputName");
 let userPhoneNum = document.getElementById("exampleInputPhoneNumber");
 let userEmail = document.getElementById("exampleInputEmail1");
@@ -91,21 +89,21 @@ function activeEvent() {
   }
 }
 
-fetch("http://kdt-sw-6-team09.elicecoding.com/users/join", {
+fetch("http://localhost:3000/api/v1/users/join", {
   method: "POST",
   header: {
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
     user_name: userName,
-    // email: email,
-    // password: password,
-    // phoneNumber: phoneNumber,
-    // address: address,
+    email: userEmail,
+    password: userPw,
+    phone_number: userPhoneNum,
   }),
 })
   .then((response) => response.json())
   .then((data) => {
-    alert("회원가입에 성공했습니다");
-    navigate("/");
+    console.log(data);
+    // alert("회원가입에 성공했습니다");
+    // navigate("/");
   });
