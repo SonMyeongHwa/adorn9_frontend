@@ -1,0 +1,105 @@
+@import "/client/src/common/reset.css";
+
+.my-page-wrap {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+header {
+	width: 100%;
+	background-color: #edcfc4;
+	height: 150px;
+	display: flex;
+	align-items: center;
+	padding: 50px;
+	margin-bottom: 50px;
+}
+
+header strong {
+	font-size: 28px;
+}
+
+.my-page-main {
+	width: 80%;
+	display: flex;
+	justify-content: space-between;
+}
+
+aside {
+	flex-basis: 20%;
+}
+
+aside ul {
+	margin: 0;
+	padding: 0;
+}
+
+aside a {
+	text-decoration: none;
+	color: #000;
+}
+
+aside li {
+	list-style: none;
+	margin-bottom: 20px;
+}
+
+.payment-details {
+}
+
+.payment-details {
+	flex-basis: 70%;
+}
+
+.payment-item {
+	background-color: #fff;
+	border-radius: 10px;
+	margin-bottom: 20px;
+	padding: 25px;
+	display: flex;
+	justify-content: start;
+	flex-direction: column;
+}
+
+.payment-item p {
+	margin-bottom: 15px;
+}
+
+.payment-product {
+	display: flex;
+	justify-content: space-between;
+}
+
+.product-details {
+	display: flex;
+	margin-bottom: 25px;
+}
+
+.payment-product img {
+	width: 70px;
+	height: 100%;
+}
+
+.product-desc {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	margin-left: 10px;
+}
+
+.payment-button {
+	display: flex;
+	justify-content: space-between;
+}
+
+button {
+	flex-basis: 48%;
+	padding: 8px 0;
+	border: none;
+	border-radius: 5px;
+}
+
+button:hover {
+	cursor: pointer;
+}

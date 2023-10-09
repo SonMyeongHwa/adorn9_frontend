@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,900&family=Noto+Sans+KR:wght@200;300;400;500;600&family=Noto+Sans:wght@100;400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,900&family=Noto+Sans+KR:wght@200;300;400;500;600&family=Noto+Sans:wght@100;200;300;400;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="stylesheet"
+			href="/shopping_project_9team/client/src/modal/modal.css"
+		/>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://kit.fontawesome.com/f9572620f9.js"
+			crossorigin="anonymous"
+		></script>
+
+		<!-- Swiper CSS -->
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/swiper/swiper-bundle.min.css"
+		/>
+
+		<!-- Swiper JS -->
+		<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+		<title>adorn9</title>
+	</head>
+	<body>
+		<div class="pop-layer popup-product-detail-container">
+			<div class="popup-content-header">
+				<p class="header-popup-title"></p>
+				<button class="header-popup-close-btn">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						width="24"
+						height="24"
+					>
+						<path
+							d="M5.72 5.72a.75.75 0 0 1 1.06 0L12 10.94l5.22-5.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L13.06 12l5.22 5.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L12 13.06l-5.22 5.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L10.94 12 5.72 6.78a.75.75 0 0 1 0-1.06Z"
+						></path>
+					</svg>
+				</button>
+			</div>
+			<div class="popup-content-body-layer">
+				<!-- <link rel="stylesheet" href="" />
+				<script src=""></script> -->
+				<!-- 모달에 적용해아할 스크립트 및 스타일 시트 -->
+				<div class="detail-info">
+					<div class="popup-product-detail-wrap">
+						<!-- 상단 -->
+						<div class="detail-container">
+							<div class="detail-top grid">
+								<!-- left box -->
+								<div class="detail-top-leftbox grid-5">
+									<div class="detail-image">
+										<!-- width : 558px -->
+										<img
+											src="/shopping_project_9team/client/src/assets/imgs/반지/_2e219d3b-f254-495a-961a-6d4c827dc493.jpeg"
+											alt="silver ring"
+										/>
+									</div>
+								</div>
+
+								<!-- right box -->
+								<div class="detail-top-right-box grid-7">
+									<!-- 시즌 뱃지 -->
+									<ul class="siv-badge">
+										<li class="siv-badge-item siv-badge-item--gold-line">
+											23 F/W
+										</li>
+									</ul>
+
+									<!-- 상세페이지 타이틀 -->
+									<div class="detail-top-title">
+										<p class="title">
+											<a href="">silver ring</a>
+										</p>
+									</div>
+
+									<div class="detail-top-price">
+										<p class="original"><b>3,290,000</b><span>원</span></p>
+									</div>
+
+									<table class="detail-top-info">
+										<tbody>
+											<tr>
+												<th class="padding-bottom">배송비</th>
+												<td class="padding-bottom">
+													<p class="detail-top-info-delivery-free">무료</p>
+												</td>
+											</tr>
+											<tr>
+												<th>수량</th>
+												<td class="detail-top-info-amount">
+													<div class="form-amount">
+														<button
+															class="form-amount--btn form-amount--btn--minus minus"
+														>
+															<svg
+																xmlns="http://www.w3.org/2000/svg"
+																viewBox="0 0 24 24"
+																width="24"
+																height="24"
+															>
+																<path
+																	d="M4.5 12.75a.75.75 0 0 1 .75-.75h13.5a.75.75 0 0 1 0 1.5H5.25a.75.75 0 0 1-.75-.75Z"
+																></path>
+															</svg>
+														</button>
+														<input
+															type="text"
+															class="form-amount--input orderQty"
+															name="orderQty"
+															value="1"
+															data-divi=""
+															data-sale_poss_qty="1"
+															data-ord_poss_min_qty="1"
+															data-ord_poss_max_qty="0"
+															maxlength="2"
+															title="수량입력"
+														/>
+														<button
+															class="form-amount--btn form-amount--btn--plus plus"
+														>
+															<svg
+																xmlns="http://www.w3.org/2000/svg"
+																viewBox="0 0 24 24"
+																width="24"
+																height="24"
+															>
+																<path
+																	d="M11.75 4.5a.75.75 0 0 1 .75.75V11h5.75a.75.75 0 0 1 0 1.5H12.5v5.75a.75.75 0 0 1-1.5 0V12.5H5.25a.75.75 0 0 1 0-1.5H11V5.25a.75.75 0 0 1 .75-.75Z"
+																></path>
+															</svg>
+														</button>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+
+									<!-- 판매가 -->
+									<div class="detail-top-sum">
+										<p class="detail-top-sum-title">판매가</p>
+										<p class="detail-top-sum-price">
+											<span class="priceSum" data-cust-price="3290000"
+												>3,290,000</span
+											>
+											원
+										</p>
+									</div>
+
+									<!-- 주문관리 관련 처리 -->
+									<div class="detail-buy-btn">
+										<button
+											class="btn-wide btnCart btn-mazenta"
+											onclick=""
+											style="display: block"
+											data-cart_divi_cd="10"
+										>
+											장바구니
+										</button>
+										<button
+											class="btn-wide btnImmediateOrd btn-mazenta2"
+											onclick=""
+											style="display: block"
+											data-cart_divi_cd="20"
+										>
+											바로 구매
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

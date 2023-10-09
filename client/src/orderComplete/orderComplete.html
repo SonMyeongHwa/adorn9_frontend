@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <!-- 커스텀 css -->
+  <link rel="stylesheet" href="./orderComplete.css">
+  <title>결제완료</title>
+</head>
+<body>
+  <section class="serv-list">
+    <div class="complete-wrap">
+      <div class="complete">
+        <div class="message">
+          <p class="title">결제가 완료되었습니다.</p>
+          <p class="order-number">
+            주문번호 : <span class="number">20231005423874</span>
+          </p>
+        </div>
+      </div>
+      <div class="info">
+        <!-- 배송정보 -->
+        <div class="delivery-info">
+          <div class="title"><h3>배송 정보</h3></div><hr>
+          <table class="table">
+            <tbody>
+              <tr>
+                <td class="col-md-2">받는사람</td>
+                <td>홍길동 / 010-1234-5678</td>
+              </tr>
+              <tr>
+                <td class="col-md-2">배송지</td>
+                <td>서울특별시 성동구 성수2가제3동 광나루로6길 49</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- 결제정보 -->
+        <div class="payment-info">
+          <div class="title"><h3>결제 정보</h3></div><hr>
+          <table class="table">
+            <tbody>
+              <tr>
+                <td class="col-md-2">주문자</td>
+                <td>홍길동 / 010-1234-5678</td>
+              </tr>
+              <tr>
+                <td class="col-md-2">이메일</td>
+                <td>hong123@gmail.com</td>
+              </tr>
+              <tr>
+                <td class="col-md-2">결제수단</td>
+                <td>무통장입금</td>
+              </tr>
+              <tr>
+                <td class="col-md-2">결제금액</td>
+                <td>100,000원</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="button">
+        <button class="detail btn btn-primary">주문상세보기</button>
+        <button class="shop btn btn-primary">계속 쇼핑하기</button>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
