@@ -104,6 +104,6 @@ fetch("http://localhost:3000/api/v1/users/join", {
   .then((response) => response.json())
   .then((data) => {
     console.log(data);
-    // alert("회원가입에 성공했습니다");
-    // navigate("/");
+    alert("회원가입에 성공했습니다");
+    navigate("/");
   });
