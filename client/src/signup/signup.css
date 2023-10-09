@@ -1,12 +1,7 @@
-* {
-  background: #FBF7F2;
-  box-sizing: border-box;
-  font-family: "noto sans";
-}
+@import "../common/reset.css";
 
 header {
   font-size: 24px;
-  margin-top: 30px;
   margin-bottom: 30px;
   font-weight: 400;
 }
@@ -18,7 +13,13 @@ header {
   align-items: center;
 }
 
-.form-group, .user-birth-wrap {
+.sign-up-content {
+  background-color: #fff;
+  padding: 40px;
+}
+
+.form-group,
+.user-birth-wrap {
   margin-bottom: 20px;
 }
 
@@ -51,17 +52,14 @@ input::placeholder {
   border: none;
 }
 
-.dropdown-item {
-  background-color: #fff;
-}
-
 .btn-primary {
   margin-top: 30px;
 }
 
-.btn-primary, .btn {
-  background-color: #EDCFC4;
-  border: 1px solid #EDCFC4;
+.btn-primary,
+.btn {
+  background-color: #edcfc4;
+  border: 1px solid #edcfc4;
 }
 
 .btn-primary:hover {
