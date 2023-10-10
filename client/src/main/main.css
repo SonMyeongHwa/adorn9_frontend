@@ -18,7 +18,9 @@
 	align-items: center;
 	margin-top: 25px;
 }
-
+.thumb-bnner p {
+	margin-top: 20px;
+}
 a {
 	text-decoration: none;
 	color: black;
@@ -45,8 +47,8 @@ a:hover {
 }
 
 .item-content img {
-	height: 400px;
-	width: 400px;
+	height: 450px;
+	width: 450px;
 }
 
 .btn,
@@ -56,19 +58,15 @@ a:hover {
 	border: 1px solid #edcfc4;
 	position: absolute;
 	/* left: 5px; */
-	top: 351px;
-	width: 400px;
-	border-radius: 5px;
+	top: 380px;
+	width: 450px;
+	height: 70px;
+	border-radius: 3px;
 }
 
-.btn-primary:hover {
-	background-color: #edcfc4;
-	border: 1px solid #edcfc4;
-}
-
-.btn-primary:active {
-	background-color: #edcfc4;
-	border: 1px solid #edcfc4;
+.btn.btn-primary:active {
+	background-color: #be3455;
+	border: 1px solid #be3455;
 }
 
 .image:hover .btn {
@@ -88,7 +86,7 @@ a:hover {
 
 .slide-section {
 	display: flex;
-	margin-top: 25px;
+	margin-top: 70px;
 }
 
 .high-group button {
@@ -139,7 +137,7 @@ a:hover {
 	flex-direction: column;
 	align-items: center;
 
-	margin-top: 25px;
+	margin-top: 70px;
 }
 
 .recommend-slide-section {
@@ -179,7 +177,7 @@ a:hover {
 .category-item-container {
 	border-top: solid gray 2px;
 	padding: 20px;
-	margin: 30px;
+	margin: 70px 30px;
 
 	display: flex;
 	flex-direction: column;

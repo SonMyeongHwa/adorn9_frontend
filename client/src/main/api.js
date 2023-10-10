@@ -1,3 +1,7 @@
+export default {
+	fetch,
+};
+
 fetch('http://localhost:3000/api/v1/products/main/feeds')
 	.then((response) => response.json())
 	.then((data) => {
@@ -28,6 +32,38 @@ fetch('http://localhost:3000/api/v1/products/main/feeds')
 	})
 	.catch((error) => console.log(error));
 
-export default {
-	fetch,
-};
+// main-new-edtion api
+// API에서 상품 데이터를 가져오는 함수
+function fetchProductData() {
+	return fetch('http://localhost:3000/api/v1/products/main/new-products')
+		.then((response) => response.json())
+		.then((data) => data.newProducts)
+		.catch((error) => console.error('Error:', error));
+}
+// 상품 데이터를 사용하여 HTML을 수정하는 함수
+function updateProductData() {
+	fetchProductData().then((products) => {
+		const itemContents = document.querySelectorAll('.item-content');
+
+		products.forEach((product, index) => {
+			if (itemContents[index]) {
+				const img = itemContents[index].querySelector('img');
+				const productName = itemContents[index].querySelector('.name');
+				const productPrice = itemContents[index].querySelector('.price');
+
+				img.src = product.images;
+				productName.textContent = product.name;
+				productPrice.textContent = product.price.toLocaleString() + '원';
+
+				// 이미지에 호버 이벤트 추가
+				img.addEventListener('mouseover', function () {
+					const descriptionTag = document.querySelector('.thumb-bnner p');
+					const formattedDescription = product.detail.replace(/\./g, '.<br>'); // '.'을 '.<br>'로 바꿉니다.
+					descriptionTag.innerHTML = formattedDescription; // innerHTML을 사용하여 개행을 적용합니다.
+				});
+			}
+		});
+	});
+}
+// 페이지 로드 시 상품 데이터를 업데이트
+window.onload = updateProductData;
