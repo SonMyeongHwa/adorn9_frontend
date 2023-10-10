@@ -5,7 +5,8 @@ const amount = document.querySelector(".amount");
 let basket = []; //localStorage 데이터 담는 배열
 
 //임시데이터
-/* const basket = [];
+/* 
+const basket = [];
 basket.push({"id":"651d969894add99a91a41063", "name":"엘리베이션 링", "price":"980000", "images":"https://kr.danielwellington.com/cdn/shop/products/8a9c5171ee25ab487b44fffeb940c629b636e9aa.png?v=1688635680", "quantity":1});
 basket.push({"id":"6523d10be0d3489018d06b0c", "name":"Opulent Pearl Horizon", "price":"2700000", "images":"https://i.ibb.co/YpHSvXs/956becfe-dec7-486e-9e51-182d52e94dfd.jpg", "quantity":1});
 localStorage.setItem("item", JSON.stringify(basket));
@@ -50,7 +51,7 @@ if (cartItems.length === 0) {
         </td>
         <td class="col-md-2 price"><span class="num">${price}</span>원</td>
         <td class="td-top">
-          <i class="fa-solid fa-xmark delete-btn"></i>
+          <button class="delete-btn" onclick="removeItem(this)">X</button>
         </td>
       </tr> `
     );
@@ -106,3 +107,7 @@ deleteChecked.addEventListener("click", function() {
     }
   }
 });
+
+function removeItem(ele) {
+  console.log("remove test");
+}
