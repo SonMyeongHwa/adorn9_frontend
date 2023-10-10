@@ -30,8 +30,8 @@ function handleLogin() {
 
 	fetch("http://localhost:3000/api/v1/users/login", {
 		method: "POST",
-		header: {
-			"Content-Type": "application/json",
+		headers: {
+			"Content-Type": "application/json;charset=utf-8",
 		},
 		body: JSON.stringify({
 			email: userEmail.value,
@@ -42,5 +42,6 @@ function handleLogin() {
 		.then((data) => {
 			localStorage.getItem("TOKEN", data.accessToken);
 			alert("로그인 성공");
+			location.href = "../main/main.html";
 		});
 }
