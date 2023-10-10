@@ -1,11 +1,14 @@
+const checkAllItem = document.getElementById("checkAllItem");
+const deleteChecked = document.getElementById("deleteChecked");
 const cartList = document.querySelector(".table>tbody");
-const checkAllItem = document.querySelector("#checkAllItem");
 const amount = document.querySelector(".amount");
+let basket = []; //localStorage 데이터 담는 배열
 
 //임시데이터
 /* const basket = [];
-basket.push({"name":"ring", "price":"980000", "images":"https://kr.danielwellington.com/cdn/shop/products/8a9c5171ee25ab487b44fffeb940c629b636e9aa.png?v=1688635680", "quantity":1});
-basket.push({"name":"earring", "price":"2500000", "images":"https://i.ibb.co/x3Zfgh0/57de0b9c-8ae7-4352-81c9-62d4070c5afe.jpg", "quantity":1});
+basket.push({"id":"651d969894add99a91a41063", "name":"엘리베이션 링", "price":"980000", "images":"https://kr.danielwellington.com/cdn/shop/products/8a9c5171ee25ab487b44fffeb940c629b636e9aa.png?v=1688635680", "quantity":1});
+basket.push({"id":"6523d10be0d3489018d06b0c", "name":"Opulent Pearl Horizon", "price":"2700000", "images":"https://i.ibb.co/YpHSvXs/956becfe-dec7-486e-9e51-182d52e94dfd.jpg", "quantity":1});
+localStorage.setItem("item", JSON.stringify(basket));
 */
 
 //장바구니 상품 불러오기
@@ -20,7 +23,7 @@ if (cartItems.length === 0) {
 } else {
   //상품 수 만큼 반복
   cartItems.forEach((cartItem) => {
-    const { name, price, images, quantity } = cartItem;
+    const { id, name, price, images, quantity } = cartItem;
 
     cartList.insertAdjacentHTML(
       "beforeend",
@@ -30,12 +33,11 @@ if (cartItems.length === 0) {
           <input class="form-check-input check" type="checkbox" checked>
         </td>
         <td class="col-md-1">
-          <a href="">
-            <img src="${images}" alt="">
-          </a>
+          <img src="${images}" alt="">
         </td>
         <td class="col-md-6">
-          <a href="">${name}</a>
+          ${name}
+          <input type="hidden" class="id" value="${id}"/>
         </td>
         <td class="col-md-2 count">
           <div class="cell item-count">
@@ -79,3 +81,28 @@ for (let i = 0; i < checkboxes.length; i++) {
   });
 }
 
+//선택 상품 삭제
+deleteChecked.addEventListener("click", function() {
+  const checkedCount = document.querySelectorAll(".check:checked").length;
+
+  if(checkedCount > 0) {
+    if(confirm("선택하신 상품을 삭제하시겠습니까?")) {
+      const checkedItems = document.querySelectorAll(".check:checked");
+
+      //선택한 상품 삭제(화면, localStorage)
+      checkedItems.forEach((checkedItem) => {
+        //closest : 기준 element에서 가장 가깝게 조건에 만족하는 부모 요소가 반환
+        const itemColumn = checkedItem.closest("tr");
+        const _id = itemColumn.querySelector(".id").value;
+
+        //localStorage (값 삭제 후 저장)
+        basket = JSON.parse(localStorage.getItem("item")).filter(param => param.id !== _id);
+        localStorage.clear();
+        localStorage.setItem("item", JSON.stringify(basket));
+
+        //화면
+        cartList.removeChild(itemColumn);
+      });
+    }
+  }
+});
