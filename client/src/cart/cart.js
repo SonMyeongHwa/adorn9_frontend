@@ -17,10 +17,7 @@ let cartItems = JSON.parse(localStorage.getItem("item")) || [];
 
 if (cartItems.length === 0) {
   //장바구니가 비어있는 경우
-  cartList.insertAdjacentHTML(
-    "beforeend",
-    `<tr class="empty-cart"><td colspan="6">장바구니에 담긴 상품이 없습니다.</td></tr>`
-  );
+  showEmptyCart();
 } else {
   //상품 수 만큼 반복
   cartItems.forEach((cartItem) => {
@@ -51,11 +48,52 @@ if (cartItems.length === 0) {
         </td>
         <td class="col-md-2 price"><span class="num">${price}</span>원</td>
         <td class="td-top">
-          <button class="delete-btn" onclick="removeItem(this)">X</button>
+          <i id="remove_${id}" class="fa-solid fa-xmark delete-btn"></i>
         </td>
       </tr> `
     );
+    
+    //행 삭제
+    document.getElementById(`remove_${id}`).addEventListener("click", function() {
+      removeColumn(this, `${id}`);
+    });
   });
+}
+
+//장바구니 상품 개수 확인
+function getCountItems() {
+  const itemLength = document.querySelectorAll(".table>tbody>tr").length;
+  
+  if(itemLength === 0) {
+    showEmptyCart();
+  }
+}
+
+//장바구니 비어있을 때 문구
+function showEmptyCart() {
+  cartList.insertAdjacentHTML(
+    "beforeend",
+    `<tr class="empty-cart"><td colspan="6">장바구니에 담긴 상품이 없습니다.</td></tr>`
+  );
+}
+
+//행 삭제
+function removeColumn(ele, id) {
+  const itemColumn = ele.closest("tr");
+
+  clearItemData(id, itemColumn);
+  getCountItems();
+}
+
+//상품 삭제(화면, localStorage)
+function clearItemData(id, itemColumn) {
+  //localStorage (값 삭제 후 저장)
+  basket = JSON.parse(localStorage.getItem("item")).filter(param => param.id !== id);
+  localStorage.clear();
+  localStorage.setItem("item", JSON.stringify(basket));
+
+  //화면
+  cartList.removeChild(itemColumn);
 }
 
 const checkboxes = document.querySelectorAll(".check");
@@ -96,18 +134,9 @@ deleteChecked.addEventListener("click", function() {
         const itemColumn = checkedItem.closest("tr");
         const _id = itemColumn.querySelector(".id").value;
 
-        //localStorage (값 삭제 후 저장)
-        basket = JSON.parse(localStorage.getItem("item")).filter(param => param.id !== _id);
-        localStorage.clear();
-        localStorage.setItem("item", JSON.stringify(basket));
-
-        //화면
-        cartList.removeChild(itemColumn);
+        clearItemData(_id, itemColumn);
       });
+      getCountItems();
     }
   }
 });
-
-function removeItem(ele) {
-  console.log("remove test");
-}
