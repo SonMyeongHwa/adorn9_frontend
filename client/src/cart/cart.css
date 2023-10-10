@@ -139,9 +139,8 @@ input[type=checkbox]:checked {
   font-size: 18px;
 }
 
-.item-delete {
-  width: 24px;
-  justify-content: start;
+.delete-btn {
+  cursor: pointer;
 }
 
 .payment {

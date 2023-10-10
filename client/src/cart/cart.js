@@ -50,7 +50,7 @@ if (cartItems.length === 0) {
         </td>
         <td class="col-md-2 price"><span class="num">${price}</span>원</td>
         <td class="td-top">
-          <button class="delete-btn">X</button>
+          <i class="fa-solid fa-xmark delete-btn"></i>
         </td>
       </tr> `
     );
@@ -62,14 +62,14 @@ const checkboxes = document.querySelectorAll(".check");
 checkAllItem.addEventListener("click", function () {
   const isChecked = checkAllItem.checked; //전체선택 체크여부
 
-  for (let i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].checked = isChecked;
-  }
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = isChecked;
+  });
 });
 
 //하나라도 선택해제 될 경우 전체선택 체크 해제
-for (let i = 0; i < checkboxes.length; i++) {
-  checkboxes[i].addEventListener("click", function () {
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener("click", function () {
     const totalCount = checkboxes.length; //전체 체크박스 개수
     const checkedCount = document.querySelectorAll(".check:checked").length; //체크 된 체크박스 개수
 
@@ -79,9 +79,9 @@ for (let i = 0; i < checkboxes.length; i++) {
       checkAllItem.checked = false;
     }
   });
-}
+});
 
-//선택 상품 삭제
+//선택삭제
 deleteChecked.addEventListener("click", function() {
   const checkedCount = document.querySelectorAll(".check:checked").length;
 
