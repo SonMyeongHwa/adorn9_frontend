@@ -10,6 +10,11 @@
 	},
 	"rules": {
 		"quotes": ["error", "single"],
-		"semi": ["error", "never"]
+		"semi": ["error", "always"],
+		"prefer-const": "off",
+		"no-unused-vars": "off"
+	},
+	"globals": {
+		"navigate": "writable"
 	}
 }
