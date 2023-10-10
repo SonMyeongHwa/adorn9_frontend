@@ -16,6 +16,7 @@
 			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 			crossorigin="anonymous"
 		></script>
+		<script src="./userInfo.js" defer></script>
 		<title>내 정보</title>
 	</head>
 	<body>
@@ -31,7 +32,9 @@
 						aria-describedby="emailHelp"
 						placeholder="이름을 입력해주세요"
 					/>
-					<button>변경</button>
+					<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+						변경
+					</button>
 				</div>
 			</div>
 			<div class="form-group">
@@ -44,7 +47,9 @@
 						aria-describedby="emailHelp"
 						placeholder="010-1234-5678"
 					/>
-					<button>변경</button>
+					<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+						변경
+					</button>
 				</div>
 			</div>
 			<div class="form-group">
@@ -57,7 +62,9 @@
 						aria-describedby="emailHelp"
 						placeholder="아이디를 입력해주세요"
 					/>
-					<button>변경</button>
+					<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+						변경
+					</button>
 				</div>
 			</div>
 			<div class="form-group">
@@ -69,11 +76,44 @@
 						id="exampleInputPassword1"
 						placeholder="영문, 숫자, 특수문자 조합 8-16자"
 					/>
-					<button>변경</button>
+					<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+						변경
+					</button>
 				</div>
 			</div>
 			<div class="delete-membership">
-				<button>회원 탈퇴</button>
+							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deleteMemberShipModal">
+					회원 탈퇴
+				</button>
+			</div>
+
+			<!-- 변경 Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div id="modal-dialog" class="modal-dialog 	.modal-sm" >
+					<div class="modal-content" id="modal-content">
+						<div class="modal-body">
+							변경되었습니다.
+						</div>
+						<div class="modal-footer" style="border: none">
+							<button type="button" id="btn-secondary" class="btn btn-secondary" data-bs-dismiss="modal">확인</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 탈퇴 Modal -->
+			<div class="modal fade" id="deleteMemberShipModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div id="modal-dialog" class="modal-dialog 	.modal-sm" >
+					<div class="modal-content" id="modal-content">
+						<div class="modal-body">
+							정말 탈퇴하시겠어요?
+						</div>
+						<div class="modal-footer" style="border: none">
+							<button type="button" id="btn-secondary" class="btn btn-secondary" data-bs-dismiss="modal">확인</button>
+						</div>
+					</div>
+				</div>
+			</div>
 			</div>
 		</div>
 	</body>
