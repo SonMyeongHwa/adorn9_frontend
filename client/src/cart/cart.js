@@ -1,8 +1,9 @@
 const checkAllItem = document.getElementById("checkAllItem");
 const deleteChecked = document.getElementById("deleteChecked");
 const cartList = document.querySelector(".table>tbody");
-const amount = document.querySelector(".amount");
+const amounts = document.querySelectorAll(".amount");
 let basket = []; //localStorage 데이터 담는 배열
+let totalAmount = 0; //총 상품 금액
 
 //임시데이터
 /* 
@@ -21,11 +22,12 @@ if (cartItems.length === 0) {
 } else {
   //상품 수 만큼 반복
   cartItems.forEach((cartItem) => {
-    const { id, name, price, images, quantity } = cartItem;
+    const { id, name, images, quantity } = cartItem;
+    let { price } = cartItem;
 
-    cartList.insertAdjacentHTML(
-      "beforeend",
-      `
+    price = price.toLocaleString('ko-KR'); //금액 콤마 삽입
+
+    cartList.insertAdjacentHTML("beforeend", `
       <tr>
         <td class="td-top">
           <input class="form-check-input check" type="checkbox" checked>
@@ -50,31 +52,33 @@ if (cartItems.length === 0) {
         <td class="td-top">
           <i id="remove_${id}" class="fa-solid fa-xmark delete-btn"></i>
         </td>
-      </tr> `
-    );
+      </tr>
+    `);
     
     //행 삭제
     document.getElementById(`remove_${id}`).addEventListener("click", function() {
       removeColumn(this, `${id}`);
     });
   });
+
+  calculateAmount();
 }
 
 //장바구니 상품 개수 확인
 function getCountItems() {
   const itemLength = document.querySelectorAll(".table>tbody>tr").length;
   
-  if(itemLength === 0) {
+  if(itemLength === 0) { //비어있는 경우
     showEmptyCart();
   }
+  calculateAmount();
 }
 
 //장바구니 비어있을 때 문구
 function showEmptyCart() {
-  cartList.insertAdjacentHTML(
-    "beforeend",
-    `<tr class="empty-cart"><td colspan="6">장바구니에 담긴 상품이 없습니다.</td></tr>`
-  );
+  cartList.insertAdjacentHTML("beforeend", `
+    <tr class="empty-cart"><td colspan="6">장바구니에 담긴 상품이 없습니다.</td></tr>
+  `);
 }
 
 //행 삭제
@@ -96,6 +100,24 @@ function clearItemData(id, itemColumn) {
   cartList.removeChild(itemColumn);
 }
 
+//총 상품 금액 계산
+function calculateAmount() {
+  const checkedItem = document.querySelectorAll(".check:checked");
+
+  //금액 콤마 제거 후 계산
+  checkedItem.forEach((item) => {
+    let price = item.closest("tr").querySelector(".num");
+    totalAmount += Number(price.innerText.split(',').join(""));
+  });
+
+  //금액 콤마 삽입
+  amounts.forEach((amount => {
+    amount.innerText = totalAmount.toLocaleString('ko-KR');
+  }));
+
+  totalAmount = 0; //값 초기화
+}
+
 const checkboxes = document.querySelectorAll(".check");
 //상품 전체선택
 checkAllItem.addEventListener("click", function () {
@@ -104,6 +126,8 @@ checkAllItem.addEventListener("click", function () {
   checkboxes.forEach((checkbox) => {
     checkbox.checked = isChecked;
   });
+
+  getCountItems();
 });
 
 //하나라도 선택해제 될 경우 전체선택 체크 해제
@@ -117,6 +141,8 @@ checkboxes.forEach((checkbox) => {
     } else {
       checkAllItem.checked = false;
     }
+
+    getCountItems();
   });
 });
 
