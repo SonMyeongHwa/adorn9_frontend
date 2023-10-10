@@ -34,8 +34,8 @@ function handleLogin() {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
-			email: userEmail,
-			password: userPw,
+			email: userEmail.value,
+			password: userPw.value,
 		}),
 	})
 		.then((response) => response.json())
