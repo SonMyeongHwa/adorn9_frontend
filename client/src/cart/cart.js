@@ -42,9 +42,9 @@ if (cartItems.length === 0) {
         <td class="col-md-2 count">
           <div class="cell item-count">
             <div class="count-area">
-              <button class="minus-btn">-</button>
-              <div class="quantity">${quantity}</div>
-              <button class="plus-btn">+</button>
+              <button id="minusButton_${id}">-</button>
+              <div id="quantity_${id}">${quantity}</div>
+              <button id="plusButton_${id}">+</button>
             </div>
           </div>
         </td>
@@ -55,11 +55,44 @@ if (cartItems.length === 0) {
       </tr>
     `);
     
+    const itemQuantity = document.getElementById(`quantity_${id}`);
+    //수량 마이너스
+    document.getElementById(`minusButton_${id}`).addEventListener("click", function() {
+      itemQuantity.innerText = calculateQuantity("minus", itemQuantity.innerText) || 0;
+      calculateColumn(this, `${price}`, itemQuantity.innerText);
+    });
+
+    //수량 플러스
+    document.getElementById(`plusButton_${id}`).addEventListener("click", function() {
+      itemQuantity.innerText = calculateQuantity("plus", itemQuantity.innerText);
+      calculateColumn(this, `${price}`, itemQuantity.innerText);
+    });
+
     //행 삭제
     document.getElementById(`remove_${id}`).addEventListener("click", function() {
       removeColumn(this, `${id}`);
     });
   });
+
+  calculateAmount();
+}
+
+//수량 계산
+function calculateQuantity(type, itemQuantity) {
+  if(type === "plus") { //더하기
+    return Number(itemQuantity) + 1;
+  } else { //빼기
+    if(itemQuantity > 0) {
+      return Number(itemQuantity) - 1; 
+    }
+  }
+}
+
+//행 상품 계산
+function calculateColumn(ele, price, itemQuantity) {
+  let itemPrice = ele.closest("tr").querySelector(".num");
+  let total = Number(price.split(',').join("")) * Number(itemQuantity);
+  itemPrice.innerText = total.toLocaleString('ko-KR');
 
   calculateAmount();
 }
