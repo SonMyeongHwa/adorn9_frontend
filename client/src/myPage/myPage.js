@@ -1,4 +1,4 @@
-import { loginCheck, createLoginNav, createLogoutNav } from '../nav';
+import { loginCheck, createLoginNav, createLogoutNav } from '../navbar.js';
 
 loginCheck();
 createLoginNav();
