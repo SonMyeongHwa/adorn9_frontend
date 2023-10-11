@@ -1,13 +1,11 @@
 export const loginCheck = () => {
-	const token = sessionStorage.getItem('token');
-	console.log(token);
+	const token = localStorage.getItem('TOKEN');
 	if (!token) {
-		createLogoutNav;
-		alert('로그인 시 이용 가능합니다');
-
-		location.href = './login/login.html';
+		console.log('사용자는 로그아웃 상태입니다.');
+		createLogoutNav();
 	} else {
-		createLoginNav;
+		console.log('사용자는 로그인 상태입니다.');
+		createLoginNav();
 	}
 };
 
@@ -15,49 +13,64 @@ export const loginCheck = () => {
 let navbar = document.getElementById('nav');
 
 // 로그인 상태
-export const createLoginNav = navbar.insertAdjacentHTML(
-	'beforeend',
-	`<div class="nav-wrap">
-				<ul class="categories-wrap">
-					<a href=""> <li>Necklace</li> </a
-					><a href=""> <li>Earrings</li> </a
-					><a href=""> <li>Bracelet</li> </a
-					><a href=""> <li>Ring</li> </a
-					><a href="">
-						<li>Sunglasses</li>
-					</a>
-				</ul>
-				<a class="logo-wrap" href="">
-					<img src="../assets/imgs/logo/ADORN9_LOGO.png" alt="" />
-				</a>
-				<ul class="utils">
-					<li class="login">로그아웃</li>
-					<li class="my-page">마이페이지</li>
-					<li class="cart">장바구니</li>
-				</ul>
-			</div>`,
-);
+export const createLoginNav = () => {
+	const loginHTML = `<div class="nav-wrap">
+		<ul class="categories-wrap">
+			<a href=""> <button>Necklace</button> </a
+			><a href=""> <button>Earrings</button> </a
+			><a href=""> <button>Bracelet</button> </a
+			><a href=""> <button>Ring</button> </a
+			><a href="">
+				<button>Sunglasses</button>
+			</a>
+		</ul>
+		<a class="logo-wrap" href="">
+			<img src="../assets/imgs/logo/ADORN9_LOGO.png" alt="" />
+		</a>
+		<ul class="utils">
+			<button class="logout">로그아웃</button>
+			<button class="my-page">마이페이지</button>
+			<button class="cart">장바구니</button>
+		</ul>
+	</div>`;
+
+	// 새로운 요소를 바디에 추가
+	document.body.insertAdjacentHTML('beforeend', loginHTML);
+
+	// 추가한 요소를 선택 후 클릭 이벤트 부착
+	const logoutBtn = document.querySelector('.logout');
+	logoutBtn.addEventListener('click', handleLogout);
+	// loginBtn.addEventListener('click', (e) => {
+	// 	window.location = '../src/login/login.html';
+	// });
+};
+
+// 로그아웃 로직
+export const handleLogout = () => {
+	localStorage.removeItem('TOKEN');
+	createLogoutNav();
+};
 
 // 로그아웃 상태
-export const createLogoutNav = navbar.insertAdjacentHTML(
-	'beforeend',
-	`<div class="nav-wrap">
-				<ul class="categories-wrap">
-					<a href=""> <li>Necklace</li> </a
-					><a href=""> <li>Earrings</li> </a
-					><a href=""> <li>Bracelet</li> </a
-					><a href=""> <li>Ring</li> </a
-					><a href="">
-						<li>Sunglasses</li>
-					</a>
-				</ul>
-				<a class="logo-wrap" href="">
-					<img src="../assets/imgs/logo/ADORN9_LOGO.png" alt="" />
-				</a>
-				<ul class="utils">
-					<li class="login">로그인</li>
-					// <li class="my-page">마이페이지</li>
-					<li class="cart">장바구니</li>
-				</ul>
-			</div>`,
-);
+export const createLogoutNav = () => {
+	navbar.insertAdjacentHTML = `<div class="nav-wrap">
+		<ul class="categories-wrap">
+			<a href=""> <button>Necklace</button> </a
+			><a href=""> <button>Earrings</button> </a
+			><a href=""> <button>Bracelet</button> </a
+			><a href=""> <button>Ring</button> </a
+			><a href="">
+				<button>Sunglasses</button>
+			</a>
+		</ul>
+		<a class="logo-wrap" href="">
+			<img src="../assets/imgs/logo/ADORN9_LOGO.png" alt="" />
+		</a>
+		<ul class="utils">
+			<button class="login">로그인</button>
+			<button class="cart">장바구니</button>
+		</ul>
+	</div>`;
+};
+
+loginCheck();

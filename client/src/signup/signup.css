@@ -1,73 +1,74 @@
-@import "../common/reset.css";
+@import '../common/reset.css';
+@import '../common/nav.css';
 
 header {
-  font-size: 24px;
-  margin-bottom: 30px;
-  font-weight: 400;
+	font-size: 24px;
+	margin-bottom: 30px;
+	font-weight: 400;
 }
 
 .sign-up-wrap {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .sign-up-content {
-  background-color: #fff;
-  padding: 40px;
+	background-color: #fff;
+	padding: 40px;
 }
 
 .form-group,
 .user-birth-wrap {
-  margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .form-group input {
-  width: 300px;
-  border: none;
+	width: 300px;
+	border: none;
 }
 
 label {
-  margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 input {
-  border: none;
+	border: none;
 }
 
 input::placeholder {
-  font-size: 14px;
+	font-size: 14px;
 }
 
 .user-birth {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .user-birth-wrap input {
-  width: 100px;
-  border: none;
+	width: 100px;
+	border: none;
 }
 
 .btn-primary {
-  margin-top: 30px;
+	margin-top: 30px;
 }
 
 .btn-primary,
 .btn {
-  background-color: #edcfc4;
-  border: 1px solid #edcfc4;
+	background-color: #edcfc4;
+	border: 1px solid #edcfc4;
 }
 
 .btn-primary:hover {
-  background-color: #be3455;
-  border: 1px solid #be3455;
+	background-color: #be3455;
+	border: 1px solid #be3455;
 }
 
 .btn-primary:active {
-  background-color: #be3455;
-  border: 1px solid #be3455;
+	background-color: #be3455;
+	border: 1px solid #be3455;
 }
