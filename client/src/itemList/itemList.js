@@ -34,14 +34,14 @@ fetch("http://localhost:3000/api/v1/products/categories/necklace")
 function pushCart(id) {
   try {
     const storage = JSON.parse(localStorage.getItem("item")) || [];
-    const filterStorage = storage.filter(param => param.id === id); //장바구니에 지금 담은 상품이 있는지
+    const filterStorage = storage.filter(param => param.item_id === id); //장바구니에 지금 담은 상품이 있는지
     let quantity = 1; //상품 수량
     let basket = [];
 
     //장바구니가 비어있지 않은 경우(=localStorage에 값이 있음)
     if(storage.length !== 0 && filterStorage.length > 0) {
       //해당 상품의 수량을 변경하여 basket에 저장
-      basket = storage.map((item) => item.id === id ? { ...item, quantity: filterStorage[0].quantity + 1} : item);
+      basket = storage.map((item) => item.item_id === id ? { ...item, item_quantity: filterStorage[0].item_quantity + 1} : item);
 
       localStorage.removeItem("item"); //기존 장바구니 localStorage 삭제
     } else {
@@ -49,8 +49,8 @@ function pushCart(id) {
       basket = storage;
       //해당 상품 객체 생성
       let itemObject = {
-        id: id,
-        quantity: quantity,
+        item_id: id,
+        item_quantity: quantity,
       };
       
       basket.push(itemObject); //생성한 객체를 basket 배열에 push
