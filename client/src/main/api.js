@@ -50,10 +50,16 @@ function updateProductData() {
 				const img = itemContents[index].querySelector('img');
 				const productName = itemContents[index].querySelector('.name');
 				const productPrice = itemContents[index].querySelector('.price');
+				// const cartButton = itemContents[index].querySelector('.show-modal-btn'); // 각 item-content 내부의 장바구니 버튼을 선택합니다.
 
 				img.src = product.images;
 				productName.textContent = product.name;
 				productPrice.textContent = product.price.toLocaleString() + '원';
+
+				// 여기서 data-* 속성을 설정합니다.
+				img.setAttribute('data-image', product.images);
+				img.setAttribute('data-title', product.name);
+				img.setAttribute('data-price', product.price.toLocaleString());
 
 				// 이미지에 호버 이벤트 추가
 				img.addEventListener('mouseover', function () {
@@ -67,3 +73,8 @@ function updateProductData() {
 }
 // 페이지 로드 시 상품 데이터를 업데이트
 window.onload = updateProductData;
+
+// 카테고리 상품 api
+fetch('http://localhost:3000/api/v1/categories')
+	.then((response) => response.json())
+	.then((date) => console.log(date.categories));
