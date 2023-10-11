@@ -1,5 +1,6 @@
 @import '../../src/common/reset.css';
 @import '../nav/nav.css';
+@import '../modal/modal.css';
 
 .slides {
 	list-style: none;
@@ -178,6 +179,11 @@ a:hover {
 
 	display: flex;
 	flex-direction: column;
+}
+
+.category-content {
+	margin-bottom: 20px;
+	position: relative;
 }
 .category-item-list {
 	display: flex;

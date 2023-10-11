@@ -1,4 +1,16 @@
+.overlay {
+	display: none;
+	position: fixed; /* 고정 위치 */
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5); /* 흑백 배경에 50% 투명도 */
+	z-index: 999; /* 다른 요소보다 상위에 위치하기 위한 z-index 값 */
+}
+
 .pop-layer {
+	display: none;
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -8,13 +20,13 @@
 	max-height: 90vh;
 	background: #fff;
 	box-sizing: border-box;
-	z-index: 150;
 	overflow-x: hidden;
 	overflow-y: auto;
+
+	z-index: 1000;
 }
 
 .popup-product-detail-container {
-	/* display: none; */
 	position: fixed;
 	width: 100%;
 	height: 100vh;
@@ -27,12 +39,12 @@
 }
 
 .popup-product-detail-container > .popup-content-header {
-	width: 1440px;
+	width: 100%;
 	margin: 0 auto;
 }
 
 .header-popup-title {
-	width: calc(100% - 108px);
+	width: calc(100%);
 	padding: 15px 0;
 	font-size: 18px;
 	font-weight: 500;
@@ -40,12 +52,13 @@
 	color: #131922;
 	text-align: center;
 	box-sizing: border-box;
+	background-color: #fff;
 }
 
 .header-popup-close-btn {
 	right: 16px;
 	position: absolute;
-	top: 32px;
+	top: 35px;
 	overflow: hidden;
 }
 
@@ -91,7 +104,7 @@ button {
 	width: 100%;
 	background-color: #fff;
 	overflow: hidden;
-	z-index: 99;
+	z-index: 1000;
 	padding-bottom: 50px;
 }
 .detail-container {

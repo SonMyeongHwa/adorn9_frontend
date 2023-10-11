@@ -7,7 +7,7 @@ let slides = document.querySelector('.silde-items-wrapper'),
 	slideWidth = 356,
 	slideMargin = 10;
 
-console.log(slideCount);
+// console.log(slideCount);
 makeClone();
 
 function makeClone() {
@@ -44,7 +44,7 @@ function updateWidth() {
 	let newWidth =
 		(slideWidth + slideMargin) * newSlideCount - slideMargin + 'px';
 
-	console.log(newWidth);
+	// console.log(newWidth);
 	slides.style.width = newWidth;
 }
 function setInitialPosition() {
@@ -64,7 +64,7 @@ btnNext.addEventListener('click', function () {
 function moveSlide(number) {
 	slides.style.left = -number * (slideWidth + slideMargin) + 'px';
 	currentIndex = number;
-	console.log(currentIndex, slideCount);
+	// console.log(currentIndex, slideCount);
 
 	if (currentIndex === slideCount || currentIndex === -slideCount) {
 		setTimeout(function () {
