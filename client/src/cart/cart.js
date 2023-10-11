@@ -2,16 +2,7 @@ const checkAllItem = document.getElementById("checkAllItem");
 const deleteChecked = document.getElementById("deleteChecked");
 const cartList = document.querySelector(".table>tbody");
 const amounts = document.querySelectorAll(".amount");
-let basket = []; //localStorage 데이터 담는 배열
 let totalAmount = 0; //총 상품 금액
-
-//임시데이터
-/* 
-const basket = [];
-basket.push({"id":"651d969894add99a91a41063", "name":"엘리베이션 링", "price":"980000", "images":"https://kr.danielwellington.com/cdn/shop/products/8a9c5171ee25ab487b44fffeb940c629b636e9aa.png?v=1688635680", "quantity":1});
-basket.push({"id":"6523d10be0d3489018d06b0c", "name":"Opulent Pearl Horizon", "price":"2700000", "images":"https://i.ibb.co/YpHSvXs/956becfe-dec7-486e-9e51-182d52e94dfd.jpg", "quantity":1});
-localStorage.setItem("item", JSON.stringify(basket));
-*/
 
 //장바구니 상품 불러오기
 let cartItems = JSON.parse(localStorage.getItem("item")) || [];
@@ -24,8 +15,9 @@ if (cartItems.length === 0) {
   cartItems.forEach((cartItem) => {
     const { id, name, images, quantity } = cartItem;
     let { price } = cartItem;
+    let onePrice = price; //개 당 가격
 
-    price = price.toLocaleString('ko-KR'); //금액 콤마 삽입
+    price = (Number(price) * Number(quantity)).toLocaleString('ko-KR'); //금액 콤마 삽입
 
     cartList.insertAdjacentHTML("beforeend", `
       <tr>
@@ -48,7 +40,10 @@ if (cartItems.length === 0) {
             </div>
           </div>
         </td>
-        <td class="col-md-2 price"><span class="num">${price}</span>원</td>
+        <td class="col-md-2 price">
+          <span class="num">${price}</span>원
+          <input type="hidden" value="${onePrice}" />
+        </td>
         <td class="td-top">
           <i id="remove_${id}" class="fa-solid fa-xmark delete-btn"></i>
         </td>
@@ -57,15 +52,17 @@ if (cartItems.length === 0) {
     
     const itemQuantity = document.getElementById(`quantity_${id}`);
     //수량 마이너스
-    document.getElementById(`minusButton_${id}`).addEventListener("click", function() {
-      itemQuantity.innerText = calculateQuantity("minus", itemQuantity.innerText) || 0;
-      calculateColumn(this, `${price}`, itemQuantity.innerText);
+    document.getElementById(`minusButton_${id}`).addEventListener("click", function(e) {
+      e.preventDefault();
+      getQuantitiy(this, "minus", itemQuantity, `${onePrice}`);
+      pushLocalStorage(`${id}`, itemQuantity.innerText);
     });
 
     //수량 플러스
-    document.getElementById(`plusButton_${id}`).addEventListener("click", function() {
-      itemQuantity.innerText = calculateQuantity("plus", itemQuantity.innerText);
-      calculateColumn(this, `${price}`, itemQuantity.innerText);
+    document.getElementById(`plusButton_${id}`).addEventListener("click", function(e) {
+      e.preventDefault();
+      getQuantitiy(this, "plus", itemQuantity, `${onePrice}`);
+      pushLocalStorage(`${id}`, itemQuantity.innerText);
     });
 
     //행 삭제
@@ -77,21 +74,38 @@ if (cartItems.length === 0) {
   calculateAmount();
 }
 
+//수량 변경 이벤트
+function getQuantitiy(ele, type, itemQuantity, onePrice) {
+  //return값이 없으면 수량은 1 (최소 수량은 1이기 때문)
+  itemQuantity.innerText = calculateQuantity(type, itemQuantity.innerText) || 1;
+  calculateColumn(ele, onePrice, itemQuantity.innerText);
+}
+
 //수량 계산
 function calculateQuantity(type, itemQuantity) {
   if(type === "plus") { //더하기
     return Number(itemQuantity) + 1;
   } else { //빼기
-    if(itemQuantity > 0) {
+    if(itemQuantity > 1) {
       return Number(itemQuantity) - 1; 
     }
   }
 }
 
+//수량 변경 시 localStorage
+function pushLocalStorage(id, quantity) {
+  let storage = JSON.parse(localStorage.getItem("item"));
+  //해당 상품의 수량을 변경하여 basket에 저장
+  let basket = storage.map((item) => item.id === id ? { ...item, quantity: quantity} : item);
+  
+  localStorage.removeItem("item"); //key가 item인 값 삭제
+  localStorage.setItem("item", JSON.stringify(basket)); //수정 한 상품 넣기
+}
+
 //행 상품 계산
-function calculateColumn(ele, price, itemQuantity) {
+function calculateColumn(ele, onePrice, itemQuantity) {
   let itemPrice = ele.closest("tr").querySelector(".num");
-  let total = Number(price.split(',').join("")) * Number(itemQuantity);
+  let total = Number(onePrice.split(',').join("")) * Number(itemQuantity);
   itemPrice.innerText = total.toLocaleString('ko-KR');
 
   calculateAmount();
@@ -125,8 +139,8 @@ function removeColumn(ele, id) {
 //상품 삭제(화면, localStorage)
 function clearItemData(id, itemColumn) {
   //localStorage (값 삭제 후 저장)
-  basket = JSON.parse(localStorage.getItem("item")).filter(param => param.id !== id);
-  localStorage.clear();
+  let basket = JSON.parse(localStorage.getItem("item")).filter(param => param.id !== id);
+  localStorage.removeItem("item");
   localStorage.setItem("item", JSON.stringify(basket));
 
   //화면

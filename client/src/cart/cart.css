@@ -151,6 +151,8 @@ button[id^="plusButton"] {
   padding: 40px 30px 34px 30px;
   background-color: #d4cacd;
   box-sizing: border-box;
+  position: sticky;
+  top: 20px;
 }
 
 .payment-list {
