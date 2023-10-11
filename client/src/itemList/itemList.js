@@ -25,13 +25,13 @@ fetch("http://localhost:3000/api/v1/products/categories/necklace")
 
       //장바구니 담기
       document.getElementById(`cart_${ele._id}`).addEventListener("click", function() {
-        pushCart(`${ele._id}`, `${ele.name}`, `${ele.price}`, `${ele.images}`);
+        pushCart(`${ele._id}`);
       });
   })})
   .catch((error) => console.log(error));
 
 //장바구니 담기(localStorage)
-function pushCart(id, name, price, images) {
+function pushCart(id) {
   try {
     const storage = JSON.parse(localStorage.getItem("item")) || [];
     const filterStorage = storage.filter(param => param.id === id); //장바구니에 지금 담은 상품이 있는지
@@ -50,11 +50,7 @@ function pushCart(id, name, price, images) {
       //해당 상품 객체 생성
       let itemObject = {
         id: id,
-        name: name,
-        price: price,
-        images: images,
         quantity: quantity,
-        checked: "checked",
       };
       
       basket.push(itemObject); //생성한 객체를 basket 배열에 push
