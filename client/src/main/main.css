@@ -141,17 +141,14 @@ a:hover {
 }
 
 .recommend-slide-section {
-	position: relative;
+	/* position: relative; */
 	margin-bottom: 50px;
 }
 .recommend-slide-section .slide-control {
-	width: 95%;
+	width: 100%;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
-
-	position: absolute;
-	top: 1910px;
 }
 
 .recommend-silde-items-wrapper {
