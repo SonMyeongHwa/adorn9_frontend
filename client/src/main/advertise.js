@@ -17,9 +17,9 @@ function advertise() {
 
 	// 일정 시간마다 슬라이드 변경
 	setInterval(function () {
-		currentSlide = (currentSlide + 1) % (slideCount + 1); // +1을 해서 복사한 슬라이드까지 포함
-		let moveX = -(currentSlide + 1) * 100; // +1을 해서 첫 번째 복사한 슬라이드의 위치로 이동
 		slides.style.transition = 'transform 1s'; // 부드럽게 넘어가게 transition 추가
+		currentSlide = (currentSlide + 1) % (slideCount + 1);
+		let moveX = -(currentSlide + 1) * 100;
 		slides.style.transform = `translateX(${moveX}%)`;
 
 		// 마지막 복사 슬라이드에서 첫 번째 슬라이드로 바로 이동
@@ -28,9 +28,9 @@ function advertise() {
 				slides.style.transition = 'none';
 				slides.style.transform = `translateX(-100%)`;
 				currentSlide = 0;
-			}, 500); // transition 시간과 동일하게 설정
+			}, 1000); // transition 시간과 동일하게 설정
 		}
-	}, 3000); // 3초마다 변경
+	}, 3000);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
