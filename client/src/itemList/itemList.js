@@ -54,6 +54,7 @@ function pushCart(id, name, price, images) {
         price: price,
         images: images,
         quantity: quantity,
+        checked: "checked",
       };
       
       basket.push(itemObject); //생성한 객체를 basket 배열에 push
