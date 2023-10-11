@@ -1,305 +1,227 @@
-@import "../../src/common/reset.css";
-
-nav {
-  width: 100%;
-  background-color: #fff;
-  border-bottom: 1px solid #d9d8d7;
-  display: flex;
-  justify-content: center;
-}
-
-.nav-wrap {
-  display: flex;
-  width: 80%;
-  justify-content: space-between;
-}
-
-.categories-wrap {
-  display: flex;
-  align-items: flex-end;
-  flex-basis: 25%;
-}
-
-.categories-wrap li {
-  margin: 0 10px;
-  font-size: 22px;
-  font-weight: 300;
-  padding-bottom: 10px;
-  box-sizing: border-box;
-  border-bottom: 1px solid transparent;
-}
-
-.categories-wrap li:hover {
-  border-bottom: 1px solid #be3455;
-  color: #be3455;
-}
-
-.logo-wrap {
-  display: flex;
-  justify-content: center;
-  flex-basis: 25%;
-}
-
-.logo-wrap img {
-  width: 80px;
-}
-
-.utils {
-  display: flex;
-  flex-basis: 25%;
-  margin-top: 10px;
-}
-
-.utils li {
-  padding: 0 10px;
-  font-weight: 300;
-  font-size: 13px;
-}
-
-.utils li:hover,
-.utils li:active {
-  color: #000;
-  cursor: pointer;
-  font-weight: 400;
-}
+@import '../../src/common/reset.css';
+@import '../nav/nav.css';
 
 .slides {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+	list-style: none;
+	padding: 0;
+	margin: 0;
 }
 
 .slides img {
-  width: 100%;
-  height: 450px;
+	width: 100%;
+	height: 450px;
 }
 
 .thumb-bnner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 25px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 25px;
 }
-
+.thumb-bnner p {
+	margin-top: 20px;
+}
 a {
-  text-decoration: none;
-  color: black;
+	text-decoration: none;
+	color: black;
 }
 
 a:hover {
-  color: black;
+	color: black;
 }
 
 .thumb-bnner-list {
-  margin-top: 20px;
+	margin-top: 20px;
 }
 
 .item-list {
-  margin: 0 25px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+	margin: 0 25px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 .item-content {
-  margin-bottom: 20px;
-  position: relative;
+	margin-bottom: 20px;
+	position: relative;
 }
 
 .item-content img {
-  height: 400px;
-  width: 400px;
+	height: 450px;
+	width: 450px;
 }
 
 .btn,
 .btn-primary {
-  display: none;
-  background-color: #edcfc4;
-  border: 1px solid #edcfc4;
-  position: absolute;
-  /* left: 5px; */
-  top: 351px;
-  width: 400px;
-  border-radius: 5px;
+	display: none;
+	background-color: #edcfc4;
+	border: 1px solid #edcfc4;
+	position: absolute;
+	/* left: 5px; */
+	top: 380px;
+	width: 450px;
+	height: 70px;
+	border-radius: 3px;
 }
 
-.btn-primary:hover {
-  background-color: #edcfc4;
-  border: 1px solid #edcfc4;
-}
-
-.btn-primary:active {
-  background-color: #edcfc4;
-  border: 1px solid #edcfc4;
+.btn.btn-primary:active {
+	background-color: #be3455;
+	border: 1px solid #be3455;
 }
 
 .image:hover .btn {
-  display: block;
-  background-color: #edcfc4;
-  border: 1px solid #edcfc4;
+	display: block;
+	background-color: #edcfc4;
+	border: 1px solid #edcfc4;
 }
 
 .description {
-  padding: 10px 0px;
-  text-align: center;
+	padding: 10px 0px;
+	text-align: center;
 }
 
 .name {
-  color: #555555;
+	color: #555555;
 }
 
 .slide-section {
-  display: flex;
-  margin-top: 25px;
+	display: flex;
+	margin-top: 70px;
 }
 
 .high-group button {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  transition: all 0.3s; /* 부드러운 효과를 위한 전환(transition) */
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	transition: all 0.3s; /* 부드러운 효과를 위한 전환(transition) */
 }
 
 .silde-section-text {
-  flex-direction: row;
-  margin-left: 20px;
+	flex-direction: row;
+	margin-left: 20px;
 }
 .slide-control {
-  flex-direction: row;
-  margin-left: 30px;
+	flex-direction: row;
+	margin-left: 30px;
 }
 
 .silde-section-text button:hover {
-  color: #be3455;
+	color: #be3455;
 }
 .silde-item-container {
-  width: 1280px;
-  margin: 0 10px;
-
-  position: relative;
+	position: relative;
+	width: 1500px;
+	margin: 0 auto;
+	height: 500px;
+	overflow: hidden;
 }
 .silde-items-wrapper {
-  width: 1200px;
-  display: flex;
-  align-items: flex-start;
-  overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.silde-items-wrapper.active {
+	transition: 0.5s ease-out;
+}
+.silde-items-wrapper li {
+	float: left;
 }
 .silde-items-wrapper img {
-  width: 354px;
-  height: 474px;
-
-  margin: 10px 10px;
+	width: 340px;
+	height: 475px;
+	margin: 10px 14px 10px 13.88px;
 }
-
-/* 
-슬라이드 기능 구현 시 생성해야 할 클래스
-
-.slide-itmes-prev{
-}
-	.slide-itmes-active{
-
-	}
-	.slide-itmes-next{
-
-	}
-*/
 
 .recommend-slide-section .silde-section-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
-  margin-top: 25px;
+	margin-top: 70px;
 }
 
-/* 
-.recommend-slide-section 슬라이드 기능 구현 시 생성해야 할 클래스
-	
-.recommend-slide-section .slide-itmes-prev{
-
-}	
-.recommend-slide-section .slide-itmes-active{
-
-	}	
-.recommend-slide-section .slide-itmes-next{
-
-	}
-*/
-.recommend-slide-section .out-container {
-  position: relative;
-  margin-bottom: 50px;
+.recommend-slide-section {
+	position: relative;
+	margin-bottom: 50px;
 }
 .recommend-slide-section .slide-control {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	width: 95%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 
-  position: absolute;
-  top: 180px;
+	position: absolute;
+	top: 1910px;
 }
-.recommend-slide-section .silde-items-wrapper img {
-  width: 350px;
-  height: 350px;
 
-  margin: 20px;
+.recommend-silde-items-wrapper {
+	width: 1200px;
+	display: flex;
+	align-items: flex-start;
+	overflow: hidden;
+}
+.recommend-silde-items-wrapper img {
+	width: 350px;
+	height: 350px;
+
+	margin: 20px;
 }
 
 .recommend-slide-section .slide-control button {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  transition: all 0.3s; /* 부드러운 효과를 위한 전환(transition) */
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	transition: all 0.3s; /* 부드러운 효과를 위한 전환(transition) */
 }
 
 .category-item-container {
-  border-top: solid gray 2px;
-  padding: 20px;
-  margin: 30px;
+	border-top: solid gray 2px;
+	padding: 20px;
+	margin: 70px 30px;
 
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 .category-item-list {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 .category-item-list img {
-  width: 300px;
-  height: 300px;
+	width: 300px;
+	height: 300px;
 
-  position: relative;
+	position: relative;
 }
 .category-item-list .item-content:nth-of-type(1) .category-name {
-  font-size: 34px;
-  top: 125px;
-  left: 80px;
-  position: absolute;
+	font-size: 34px;
+	top: 125px;
+	left: 80px;
+	position: absolute;
 }
 .category-item-list .item-content:nth-of-type(2) .category-name {
-  font-size: 34px;
-  top: 125px;
-  left: 92px;
-  position: absolute;
+	font-size: 34px;
+	top: 125px;
+	left: 92px;
+	position: absolute;
 }
 .category-item-list .item-content:nth-of-type(3) .category-name {
-  font-size: 34px;
-  top: 125px;
-  left: 87px;
-  position: absolute;
+	font-size: 34px;
+	top: 125px;
+	left: 87px;
+	position: absolute;
 }
 .category-item-list .item-content:nth-of-type(4) .category-name {
-  font-size: 34px;
-  top: 125px;
-  left: 117px;
-  position: absolute;
+	font-size: 34px;
+	top: 125px;
+	left: 117px;
+	position: absolute;
 }
 .category-item-list .item-content:nth-of-type(5) .category-name {
-  font-size: 34px;
-  top: 125px;
-  left: 70px;
-  position: absolute;
+	font-size: 34px;
+	top: 125px;
+	left: 70px;
+	position: absolute;
 }
 .category-item-list img:hover {
-  transform: scale(1.025);
+	transform: scale(1.025);
 }
