@@ -30,11 +30,13 @@ function handleLogin() {
 		return false;
 	}
 
+	const token = localStorage.getItem("TOKEN"); // "TOKEN"으로 수정
+
 	fetch("http://localhost:3000/api/v1/users/login", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json;charset=utf-8",
-			Authorization: token,
+			Authorization: "Bearer " + token, // "token" 대신 "TOKEN"으로 수정
 		},
 		body: JSON.stringify({
 			email: userEmail.value,
@@ -50,6 +52,7 @@ function handleLogin() {
 		.catch((error) => console.log(error))
 		.then((data) => {
 			console.log(data);
+			console.log(Authorization);
 			if (data.message === "로그인 성공") {
 				localStorage.setItem("TOKEN", data.token);
 				alert("로그인 성공");
