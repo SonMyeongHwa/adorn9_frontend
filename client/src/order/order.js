@@ -1,6 +1,10 @@
+//const form = document.getElementById("orderForm");
+const orderButton = document.getElementById("orderButton");
+
+const totalPrice = document.querySelectorAll(".total_price");
 const ordererInfo = document.querySelector(".orderer-info");
 const itemInfo = document.querySelector(".item-info tbody");
-const totalAmount = document.querySelectorAll(".total_amount");
+
 const zipcodeButton = document.getElementById("zipcode-button");
 const zipcode = document.getElementById("zipcode");
 const address1 = document.getElementById("address1");
@@ -12,13 +16,12 @@ let total = 0;
 
 //주문자 정보 API 연동
 //fetch(http://localhost:3000/api/v1/users/profile/?email=이메일) 임시
-fetch("http://localhost:3000/api/v1/users/profile?email=ta@sushi.com")
+fetch("http://localhost:3000/api/v1/users/profile?email=test11@test.com")
   .then((response) => response.json())
   .then((data) => {
     const { email, name } = data;
+    // let { phone_number } = data; //나중에 이걸로 바꾸기
     let phone_number = "01012345678"; //임시!!!!!!!!!!
-
-    phone_number = phone_number.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
     
     ordererInfo.insertAdjacentHTML("beforeend", `
       <div>
@@ -29,7 +32,7 @@ fetch("http://localhost:3000/api/v1/users/profile?email=ta@sushi.com")
         </div>
         <div class="form-group">
           <label for="phoneNumber" class="form-label">전화번호 <span class="required">*</span></label>
-          <input type="text" class="form-control" id="phoneNumber" placeholder="전화번호" value=${phone_number} />
+          <input type="text" class="form-control" id="phoneNumber" placeholder="전화번호" value=${phone_number} maxlength="11" />
         </div>
         <div class="form-group">
           <label for="email" class="form-label">이메일 <span class="required">*</span></label>
@@ -37,11 +40,17 @@ fetch("http://localhost:3000/api/v1/users/profile?email=ta@sushi.com")
         </div>
       </div>`);
   })
-  .catch((error) => console.log(error));
+  .catch((error) => console.error(error));
 
-//API요청 할 id 배열
-let idList = Array.from(cartItems.keys());
-  
+//장바구니에서 체크 된 상품만 가져옴
+let idList = []; //API요청 할 id 배열
+let items = []; //POST 값 보낼 배열
+for(const [key, value] of cartItems) {
+  if(value.item_checked) {
+    idList.push(key);
+  }
+}
+
 //상품 데이터 API 연동
 fetch("http://localhost:3000/api/v1/products/array", {
   method: "POST",
@@ -66,6 +75,7 @@ fetch("http://localhost:3000/api/v1/products/array", {
       let itemPrice = Number(price) * Number(quantity); //상품별 가격
       total += itemPrice;
       itemPrice = itemPrice.toLocaleString('ko-KR');
+      items.push({"item": name, "quantity": quantity});
       
       itemInfo.insertAdjacentHTML("beforeend", `
         <tr>
@@ -77,11 +87,10 @@ fetch("http://localhost:3000/api/v1/products/array", {
           <td class="col-md-2 price"><span class="num">${itemPrice}</span>원</td>
         </tr>
       `);
-      pushTotalAmount(); //총 상품금액 값 넣기
+      pushTotalPrice(); //총 상품금액 값 넣기
     });
   })
-  .catch((error) => console.log(error));
-
+  .catch((error) => console.error(error));
 
 //localStorage 가져오기
 function loadCartItems() {
@@ -96,13 +105,14 @@ function loadStorage(itemKey) {
   if(storage) {
     return new Map(Object.entries(JSON.parse(storage))); //localStorage값으로 Map 생성
   } else {
-    return alert("장바구니가 비어있습니다.\n상품을 담은 후 다시 시도해주세요");
+    // alert("장바구니가 비어있습니다.\n상품을 담은 후 다시 시도해주세요");
+    // return window.location.href = "../main/main.html"
   }
 }
 
 //총 상품금액 값 넣기
-function pushTotalAmount() {
-  totalAmount.forEach(value => {
+function pushTotalPrice() {
+  totalPrice.forEach(value => {
     value.innerText = total.toLocaleString('ko-KR');
   })
 }
@@ -132,3 +142,54 @@ function postCode(e) {
 }
 
 zipcodeButton.addEventListener("click", postCode);
+
+orderButton.addEventListener("click", function(e) {
+  //조건은 나중에 적용 예정!
+  e.preventDefault();
+  const name = document.getElementById("name");
+  const phoneNumber = document.getElementById("phoneNumber");
+  const email = document.getElementById("email");
+  const receiverName = document.getElementById("receiverName");
+  const receiverPhoneNumber = document.getElementById("receiverPhoneNumber");
+  const payment = document.querySelector("input[name='payment']:checked").value;
+  let address = `${zipcode.value}||${address1.value}||${address2.value}`;
+
+  fetch("http://localhost:3000/api/v1/orders", {
+  method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+    body: JSON.stringify({
+      name: name.value,
+      phoneNumber: phoneNumber.value,
+      email: email.value,
+      receiverName: receiverName.value,
+      address: address,
+      receiverPhoneNumber: receiverPhoneNumber.value,
+      items: items,
+      payment: payment,
+      totalPrice: total
+    })
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+      if(data.status === 201) {
+        //결제 완료 한 상품 localStorage에서 삭제
+        idList.forEach(id => {
+          if(cartItems.has(id)) {
+            cartItems.delete(id);
+          }
+        });
+        localStorage.removeItem("item");
+        localStorage.setItem("item", JSON.stringify(Object.fromEntries(cartItems)));
+
+        //주문번호 localStorage에 담기
+        localStorage.setItem("orderId", data.orderId);
+
+        window.location.href = "../orderComplete/orderComplete.html";
+      }
+    })
+    .catch((error) => console.error(error));
+});
+
