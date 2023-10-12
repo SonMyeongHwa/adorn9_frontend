@@ -33,9 +33,9 @@ function advertise() {
 	}, 3000);
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-	advertise();
-});
+// document.addEventListener('DOMContentLoaded', function () {
+// });
+advertise();
 
 export default {
 	advertise,
