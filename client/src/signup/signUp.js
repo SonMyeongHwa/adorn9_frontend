@@ -1,14 +1,16 @@
-import {
-	loginCheck,
-	createLoginNav,
-	createLogoutNav,
-	handleLogout,
-} from '../navbar.js';
+// import {
+// 	loginCheck,
+// 	createLoginNav,
+// 	createLogoutNav,
+// 	handleLogout,
+// } from '../navbar.js';
 
-loginCheck();
-createLoginNav();
-createLogoutNav();
-handleLogout();
+// loginCheck();
+// createLoginNav();
+// createLogoutNav();
+// handleLogout();
+import { loginBtn } from '../navtest';
+loginBtn();
 
 let userName = document.getElementById('exampleInputName');
 let userPhoneNum = document.getElementById('exampleInputPhoneNumber');

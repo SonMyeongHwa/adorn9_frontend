@@ -1,9 +1,3 @@
-// nav
-import { loginCheck, createLoginNav, createLogoutNav } from '../navbar.js';
-loginCheck();
-createLoginNav();
-createLogoutNav();
-
 document.addEventListener('DOMContentLoaded', function () {
 	let emailReg =
 		/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;

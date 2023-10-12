@@ -118,4 +118,21 @@
 			</div>
 		</div>
 	</body>
+	<script>
+		function userInfoEdit() {
+			fetch('http://localhost:3000/api/v1/users/profile?email=ta@sushi.com', {
+				method: 'GET',
+				headers: {
+					Authorization: localStorage.getItem('TOKEN'),
+				},
+			})
+			.then((response) => {
+				response.json();
+				console.log(response);
+			})
+				.then((data) => console.log(data));
+		}
+
+		userInfoEdit();
+	</script>
 </html>
