@@ -5,6 +5,9 @@ const itemList = document.querySelector(".item-list");
 fetch("http://localhost:3000/api/v1/products/categories/necklace")
   .then((response) => response.json())
   .then((data) => {
+    //장바구니 상품 Map에 담아서 불러오기
+    const cartItems = loadCartItems();
+
     //카테고리 별 상품 리스트
     data.categoryProducts.forEach(ele => {
       const price = ele.price.toLocaleString('ko-KR'); //상품 금액 콤마 삽입
@@ -25,41 +28,74 @@ fetch("http://localhost:3000/api/v1/products/categories/necklace")
 
       //장바구니 담기
       document.getElementById(`cart_${ele._id}`).addEventListener("click", function() {
-        pushCart(`${ele._id}`);
+        pushCart(`${ele._id}`, cartItems);
       });
   })})
   .catch((error) => console.log(error));
 
 //장바구니 담기(localStorage)
-function pushCart(id) {
+function pushCart(id, cartItemMap) {
   try {
-    const storage = JSON.parse(localStorage.getItem("item")) || [];
-    const filterStorage = storage.filter(param => param.item_id === id); //장바구니에 지금 담은 상품이 있는지
     let quantity = 1; //상품 수량
-    let basket = [];
+    let pushText = "";
 
-    //장바구니가 비어있지 않은 경우(=localStorage에 값이 있음)
-    if(storage.length !== 0 && filterStorage.length > 0) {
-      //해당 상품의 수량을 변경하여 basket에 저장
-      basket = storage.map((item) => item.item_id === id ? { ...item, item_quantity: filterStorage[0].item_quantity + 1} : item);
-
-      localStorage.removeItem("item"); //기존 장바구니 localStorage 삭제
-    } else {
-      //basket에 기존 localStorage 넣기
-      basket = storage;
-      //해당 상품 객체 생성
-      let itemObject = {
-        item_id: id,
-        item_quantity: quantity,
-      };
-      
-      basket.push(itemObject); //생성한 객체를 basket 배열에 push
+    //장바구니에 지금 담은 상품이 있는지
+    if(cartItemMap.has(id)) {
+      quantity += cartItemMap.get(id).item_quantity; //수량 저장
+      pushText = "\n이미 담은 상품의 수량을 추가했습니다."
     }
 
-    localStorage.setItem("item", JSON.stringify(basket)); //localStorage에 basket 넣기
+    //해당 상품의 수량을 변경하여 저장
+    addCartItemById(cartItemMap, id, quantity);
 
-    alert("장바구니에 상품을 담았습니다!");
+    alert("장바구니에 상품을 담았습니다!"+pushText);
   } catch (error) {
     alert("장바구니 담기에 실패했습니다.");
+    console.log(error)
   }
+}
+
+//localStorage 가져오기
+function loadCartItems() {
+  return loadStorage("item"); //localStorage의 key값
+}
+
+//localStorage 로드하기
+function loadStorage(itemKey) {
+  const storage = localStorage.getItem(itemKey);
+
+  //localStorage에 값 여부 확인
+  if(storage) {
+    return new Map(Object.entries(JSON.parse(storage))); //localStorage값으로 Map 생성
+  } else {
+    return new Map(); //빈 Map 생성
+  }
+}
+
+//장바구니에 상품 담기(정보)
+function addCartItemById(cartItemMap, id, quantity) {
+  addCartItem(cartItemMap, id, quantity, true);
+}
+
+//장바구니에 상품 담기(localStorag 값)
+function addCartItem(cartItemMap, id, quantity, checked) {
+  addCartItemByObject(cartItemMap, { item_id: id, item_quantity: quantity, item_checked: checked });
+}
+
+//장바구니에 상품 담기(Map, localStorage)
+function addCartItemByObject(cartItemMap, cartItem) {
+  cartItemMap.set(cartItem.item_id, cartItem);
+
+  saveCartItems(cartItemMap);
+}
+
+//장바구니 상품 넣기 (localStorage)
+function saveCartItems(cartItemMap) {
+  saveStorage("item", cartItemMap);
+}
+
+//장바구니 상품 localStorage에 삭제 후 넣기
+function saveStorage(itemKey, itemMap) {
+  localStorage.removeItem(itemKey);
+  localStorage.setItem(itemKey, JSON.stringify(Object.fromEntries(itemMap)));
 }
