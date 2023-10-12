@@ -1,6 +1,6 @@
 export const loginCheck = () => {
 	const token = localStorage.getItem('TOKEN');
-	if (!token) {
+	if (!token || token === undefined || token === null) {
 		console.log('사용자는 로그아웃 상태입니다.');
 		createLogoutNav();
 	} else {
@@ -14,7 +14,9 @@ let navbar = document.getElementById('nav');
 
 // 로그인 상태
 export const createLoginNav = () => {
-	const loginHTML = `<div class="nav-wrap">
+	navbar.insertAdjacentHTML(
+		'beforeend',
+		`<div class="nav-wrap">
 		<ul class="categories-wrap">
 			<a href=""> <button>Necklace</button> </a
 			><a href=""> <button>Earrings</button> </a
@@ -32,17 +34,15 @@ export const createLoginNav = () => {
 			<button class="my-page">마이페이지</button>
 			<button class="cart">장바구니</button>
 		</ul>
-	</div>`;
+	</div>`,
+	);
 
-	// 새로운 요소를 바디에 추가
-	document.body.insertAdjacentHTML('beforeend', loginHTML);
-
-	// 추가한 요소를 선택 후 클릭 이벤트 부착
-	const logoutBtn = document.querySelector('.logout');
-	logoutBtn.addEventListener('click', handleLogout);
-	// loginBtn.addEventListener('click', (e) => {
-	// 	window.location = '../src/login/login.html';
-	// });
+	// // 추가한 요소를 선택 후 클릭 이벤트 부착
+	// const logoutBtn = document.querySelector('.logout');
+	// logoutBtn.addEventListener('click', handleLogout);
+	// // loginBtn.addEventListener('click', (e) => {
+	// // 	window.location = '../src/login/login.html';
+	// // });
 };
 
 // 로그아웃 로직
@@ -53,7 +53,9 @@ export const handleLogout = () => {
 
 // 로그아웃 상태
 export const createLogoutNav = () => {
-	navbar.insertAdjacentHTML = `<div class="nav-wrap">
+	navbar.insertAdjacentHTML(
+		'beforeend',
+		`<div class="nav-wrap">
 		<ul class="categories-wrap">
 			<a href=""> <button>Necklace</button> </a
 			><a href=""> <button>Earrings</button> </a
@@ -70,7 +72,8 @@ export const createLogoutNav = () => {
 			<button class="login">로그인</button>
 			<button class="cart">장바구니</button>
 		</ul>
-	</div>`;
+	</div>`,
+	);
 };
 
 loginCheck();
