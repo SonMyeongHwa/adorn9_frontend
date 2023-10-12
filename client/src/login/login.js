@@ -1,3 +1,19 @@
+const loginCheck = () => {
+	const token = localStorage.getItem('TOKEN');
+	if (!token) {
+		console.log('사용자는 로그아웃 상태입니다.');
+		document.querySelector('.my-page').onclick = function () {
+			alert('회원 전용 페이지입니다');
+			window.location.href = '../main/main.html';
+		};
+	} else {
+		console.log('사용자는 로그인 상태입니다.');
+		document.querySelector('.login').innerHTML =
+			'<li class=logout>로그아웃</li>';
+	}
+};
+loginCheck();
+
 document.addEventListener('DOMContentLoaded', function () {
 	let emailReg =
 		/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
@@ -32,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8',
-				Authorization: localStorage.getItem('TOKEN'),
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
 			},
 			body: JSON.stringify({
 				email: userEmail.value,
@@ -40,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			}),
 		})
 			.then((response) => {
+				console.log(response.body);
 				if (response.ok) {
 					return response.json();
 				} else {
@@ -47,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				}
 			})
 			.then((data) => {
+				console.log(data);
 				if (data.message === '로그인 성공') {
 					localStorage.setItem('TOKEN', data.token);
 					alert('로그인 성공');
