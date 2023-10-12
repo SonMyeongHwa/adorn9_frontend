@@ -311,6 +311,6 @@ orderButton.addEventListener("click", function() {
     alert("상품을 선택해주세요");
   } else {
     //결제하기 페이지로 이동
-    location.href = "../order/order.html";
+    window.location.href = "../order/order.html";
   }
 });
