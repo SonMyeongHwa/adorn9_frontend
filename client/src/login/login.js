@@ -7,6 +7,8 @@ const passwordReg =
 let userEmail = document.getElementById("exampleInputEmail1");
 let userPw = document.getElementById("exampleInputPassword1");
 
+const token = localStorage.getItem("token");
+
 function handleLogin() {
 	if (userEmail.value == "") {
 		alert("이메일을 입력해주세요");
@@ -23,7 +25,7 @@ function handleLogin() {
 		userPw.focus();
 		return;
 	} else if (!passwordReg.test(userPw.value)) {
-		alert("비밀번호를 확인해주세요");
+		// alert("비밀번호를 확인해주세요");
 		userPw.focus();
 		return false;
 	}
@@ -32,16 +34,27 @@ function handleLogin() {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json;charset=utf-8",
+			Authorization: token,
 		},
 		body: JSON.stringify({
 			email: userEmail.value,
 			password: userPw.value,
 		}),
 	})
-		.then((response) => response.json())
+		.then((response) => {
+			if (response.ok === true) {
+				return response.json();
+			}
+			throw new Error("에러 발생!");
+		})
+		.catch((error) => console.log(error))
 		.then((data) => {
-			localStorage.getItem("TOKEN", data.accessToken);
-			alert("로그인 성공");
-			location.href = "../main/main.html";
+			console.log(data);
+			if (data.message === "로그인 성공") {
+				localStorage.setItem("TOKEN", data.token);
+				alert("로그인 성공");
+			} else {
+				alert("로그인 실패");
+			}
 		});
 }
