@@ -13,6 +13,55 @@
 		<title>Document</title>
 	</head>
 	<body>
-		<nav id="nav"></nav>
+		<nav>
+			<div class="nav-wrap">
+				<ul class="categories-wrap">
+					<a href=""> <li>Necklace</li> </a
+					><a href=""> <li>Earrings</li> </a
+					><a href=""> <li>Bracelet</li> </a
+					><a href=""> <li>Ring</li> </a
+					><a href="">
+						<li>Sunglasses</li>
+					</a>
+				</ul>
+				<a class="logo-wrap" href="">
+					<img src="../assets/imgs/logo/ADORN9_LOGO.png" alt="" />
+				</a>
+				<ul class="utils">
+					<li
+						class="login"
+						onclick="location.href='/client/src/login/login.html'"
+					>
+						로그인
+					</li>
+					<li
+						class="my-page"
+						onclick="location.href='/client/src/myPage/myPage.html'"
+					>
+						마이페이지
+					</li>
+					<li class="cart" onclick="location.href='/client/src/cart/cart.html'">
+						장바구니
+					</li>
+				</ul>
+			</div>
+		</nav>
 	</body>
+	<script>
+		const loginCheck = () => {
+			const token = localStorage.getItem('TOKEN');
+			if (!token) {
+				console.log('사용자는 로그아웃 상태입니다.');
+				document.querySelector('.my-page').onclick = function () {
+					alert('회원 전용 페이지입니다');
+					window.location.href = '../main/main.html';
+				};
+			} else {
+				console.log('사용자는 로그인 상태입니다.');
+				document.querySelector('.login').innerHTML =
+					'<li class=logout>로그아웃</li>';
+			}
+		};
+		loginCheck();
+	</script>
 </html>

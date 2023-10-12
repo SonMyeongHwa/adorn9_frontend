@@ -1,18 +1,18 @@
-const loginCheck = () => {
-	const token = localStorage.getItem('TOKEN');
-	if (!token) {
-		console.log('사용자는 로그아웃 상태입니다.');
-		document.querySelector('.my-page').onclick = function () {
-			alert('회원 전용 페이지입니다');
-			window.location.href = '../main/main.html';
-		};
-	} else {
-		console.log('사용자는 로그인 상태입니다.');
-		document.querySelector('.login').innerHTML =
-			'<li class=logout>로그아웃</li>';
-	}
-};
-loginCheck();
+// const loginCheck = () => {
+// 	const token = localStorage.getItem('TOKEN');
+// 	if (!token) {
+// 		console.log('사용자는 로그아웃 상태입니다.');
+// 		document.querySelector('.my-page').onclick = function () {
+// 			alert('회원 전용 페이지입니다');
+// 			window.location.href = '../main/main.html';
+// 		};
+// 	} else {
+// 		console.log('사용자는 로그인 상태입니다.');
+// 		document.querySelector('.login').innerHTML =
+// 			'<li class=logout>로그아웃</li>';
+// 	}
+// };
+// loginCheck();
 
 document.addEventListener('DOMContentLoaded', function () {
 	let emailReg =
@@ -65,10 +65,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			})
 			.then((data) => {
 				console.log(data);
+				console.log(data.token);
 				if (data.message === '로그인 성공') {
 					localStorage.setItem('TOKEN', data.token);
-					alert('로그인 성공');
-					window.location.href = '../main/main.html';
+					// alert('로그인 성공');
+					// window.location.href = '../main/main.html';
 				} else if (data.message === '비밀번호 작성 양식을 준수해주세요.') {
 					alert('비밀번호 작성 양식을 준수해주세요.');
 				} else if (data.message === '회원을 찾을 수 없습니다.') {

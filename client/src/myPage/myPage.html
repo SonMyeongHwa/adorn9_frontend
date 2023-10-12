@@ -50,10 +50,9 @@
 		<div class="my-page-wrap">
 			<header>
 				<div class="user-desc">
-					<strong>임가림</strong>님
+					<span>님</span>
 					<p>다시 만나 반가워요</p>
 				</div>
-				<i class="fa-solid fa-chevron-right"></i>
 			</header>
 
 			<div class="my-page-main">
@@ -115,22 +114,46 @@
 					alert('회원 전용 페이지입니다');
 					window.location.href = '../main/main.html';
 				};
-				// createLogoutNav();
 			} else {
 				console.log('사용자는 로그인 상태입니다.');
-				// console.log(token);
-				// createLoginNav();
+
 				document.querySelector('.login').innerHTML =
 					'<li class=logout>로그아웃</li>';
 			}
 		};
 		loginCheck();
 
+		const token = localStorage.getItem('TOKEN');
+		// console.log(token);
+		function userName() {
+			const token = localStorage.getItem('TOKEN');
+			console.log(token);
+
+			if (!token) {
+				console.error('토큰이 없습니다');
+				return;
+			}
+
+			fetch('http://localhost:3000/api/v1/users/profile?email=test@test.com', {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					let name = document.createElement('strong');
+					name.textContent = data.name;
+					const userName = document.querySelector('.user-desc');
+					userName.prepend(name);
+				});
+		}
+		userName();
+
 		function orderList() {
 			fetch('http://localhost:3000/api/v1/orders/', {
 				method: 'GET',
 				headers: {
-					Authorization: localStorage.getItem('TOKEN'),
+					Authorization: `Bearer ${token}`,
 				},
 			})
 				.then((response) => response.json())

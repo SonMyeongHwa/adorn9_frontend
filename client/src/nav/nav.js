@@ -1,5 +1,5 @@
-import { loginCheck, createLoginNav, createLogoutNav } from '../navbar.js';
+// import { loginCheck, createLoginNav, createLogoutNav } from '../navbar.js';
 
-loginCheck();
-createLoginNav();
-createLogoutNav();
+// loginCheck();
+// createLoginNav();
+// createLogoutNav();

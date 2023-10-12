@@ -1,4 +1,14 @@
-@import "../common/reset.css";
+@import '../common/reset.css';
+
+body {
+	margin: 0;
+	padding: 0;
+}
+/* nav {
+	width: 100%;
+	background-size: cover;
+
+} */
 
 nav {
 	width: 100%;
@@ -6,6 +16,12 @@ nav {
 	border-bottom: 1px solid #d9d8d7;
 	display: flex;
 	justify-content: center;
+	height: 75px;
+	align-items: center;
+	/* position: fixed;
+	top: 0;
+	left: 0;
+	right: 0; */
 }
 
 .nav-wrap {
