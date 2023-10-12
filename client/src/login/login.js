@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8',
+				Authorization: `Bearer ${localStorage.getItem('TOKEN')}`,
 			},
 			body: JSON.stringify({
 				email: userEmail.value,
@@ -53,8 +54,9 @@ document.addEventListener('DOMContentLoaded', function () {
 			})
 			.then((data) => {
 				if (data.message === '로그인 성공') {
-					localStorage.setItem('TOKEN', data.token); // 'token'을 'TOKEN'으로 수정
+					localStorage.setItem('TOKEN', data.token);
 					alert('로그인 성공');
+					window.location.href = '../main/main.html';
 				} else if (data.message === '비밀번호 작성 양식을 준수해주세요.') {
 					alert('비밀번호 작성 양식을 준수해주세요.');
 				} else if (data.message === '회원을 찾을 수 없습니다.') {
