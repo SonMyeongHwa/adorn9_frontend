@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8',
-				Authorization: `Bearer ${localStorage.getItem('TOKEN')}`,
+				Authorization: localStorage.getItem('TOKEN'),
 			},
 			body: JSON.stringify({
 				email: userEmail.value,
@@ -80,3 +80,16 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	});
 });
+
+// 로그아웃
+
+function logoutHandler() {
+	fetch('http://localhost:3000/api/v1/users/logout', {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	}).then((res) => {
+		return res;
+	});
+}
