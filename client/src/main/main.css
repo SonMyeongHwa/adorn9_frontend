@@ -2,6 +2,11 @@
 @import '../nav/nav.css';
 @import '../modal/modal.css';
 
+#slider {
+	overflow: hidden;
+	height: 500px;
+}
+
 .slides {
 	display: flex;
 	transform: translateX(0);
@@ -9,7 +14,6 @@
 
 .slide {
 	flex: 1 0 100%;
-	overflow: hidden;
 }
 
 .slides img {
@@ -142,7 +146,6 @@ a:hover {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-
 	margin-top: 70px;
 }
 
@@ -161,6 +164,7 @@ a:hover {
 	width: 1200px;
 	display: flex;
 	align-items: flex-start;
+	overflow: hidden;
 }
 .recommend-silde-items-wrapper img {
 	width: 350px;

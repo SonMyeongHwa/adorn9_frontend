@@ -1,15 +1,14 @@
 // nav
-import { loginCheck, createLoginNav, createLogoutNav } from '../navbar.js';
+// import { loginCheck, createLoginNav, createLogoutNav } from '../navbar.js';
+import apiModule from './api.js';
+import advertising from './advertise.js';
+import mainSlideModule from './main-slide.js';
+import createTheModal from '../modal/modal.js';
+
 loginCheck();
 createLoginNav();
 createLogoutNav();
-
-import apiMoudle from './api.js';
-import advertise from './advertise.js';
-import mainSlideMoudle from './main-slide.js';
-import createModal from '../modal/modal.js';
-
-apiMoudle;
-advertise;
-mainSlideMoudle;
-createModal;
+apiModule.fetch();
+advertising.advertise();
+mainSlideModule.makeClone();
+createTheModal.createModal();
