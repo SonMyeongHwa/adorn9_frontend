@@ -1,42 +1,33 @@
 @import "../common/reset.css";
+@import '../common/nav.css';
 
-h1 {
+.serv-list h1 {
   font-size: 24px;
   margin-top: 30px;
   margin-bottom: 30px;
   font-weight: 400;
 }
 
-button {
+.serv-list button {
   border: 0;
   background-color: transparent;
 }
 
-a {
-  text-decoration: none;
-  color: black;
-}
-
-a:hover {
-  color: black;
-}
-
-input[type=checkbox]:checked {
+.serv-list input[type=checkbox]:checked {
   background-color:#be3455;
   border-color: #be3455;
 }
 
 .serv-list {
-  padding-top: 70px;
   padding-bottom: 70px;
 }
 
-.cart-wrap {
+.serv-list .cart-wrap {
   max-width: 1200px;
   margin: auto;
 }
 
-.contents {
+.serv-list .contents {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -45,66 +36,66 @@ input[type=checkbox]:checked {
   gap: 20px;
 }
 
-.cart {
+.serv-list .cart {
   position: relative;
   width: 800px;
 }
 
-.all-item-check {
+.serv-list .all-item-check {
   line-height: 20px;
   cursor: pointer;
 }
 
-.btn-right {
+.serv-list .btn-right {
   text-align: right;
 }
 
-.item-check {
+.serv-list .item-check {
   margin-right: 15px;
   justify-content: flex-start;
 }
 
-.table {
+.serv-list .table {
   margin: 0px;
 }
 
-.table tr:not(.empty-cart) {
+.serv-list .table tr:not(.empty-cart) {
   border-bottom: 1px solid #e4e4e4;
 }
 
-.table thead tr {
+.serv-list .table thead tr {
   border-bottom: 1px solid #000;
 }
 
-.table td {
+.serv-list .table td {
   vertical-align: middle;
 }
 
-.table .td-top {
+.serv-list .table .td-top {
   vertical-align: top;
 }
 
-.table img {
+.serv-list .table img {
   height: 130px;
   width: 130px;
 }
 
-.empty-cart {
+.serv-list .empty-cart {
   text-align: center;
 }
 
-.empty-cart td {
+.serv-list .empty-cart td {
   padding: 120px 0px;
   font-weight: bold;
   font-size: 18px;
 }
 
-.item-count {
+.serv-list .item-count {
   justify-content: center;
   align-items: center;
 }
 
-.count-area {
+.serv-list .count-area {
   display: flex;
   align-items: center;
   width: 95px;
@@ -113,40 +104,40 @@ input[type=checkbox]:checked {
   box-sizing: border-box;
 }
 
-button[id*="Button_"]:hover {
+.serv-list button[id*="Button_"]:hover {
   background-color: #f5f5f5;
 }
 
-button[id^="minusButton"] {
+.serv-list button[id^="minusButton"] {
   border-right: 1px solid #e0e0e0;
   width: 25px;
 }
 
-div[id^="quantity"] {
+.serv-list div[id^="quantity"] {
   width: 45px;
   text-align: center;
 }
 
-button[id^="plusButton"] {
+.serv-list button[id^="plusButton"] {
   border-left: 1px solid #e0e0e0;
   width: 25px;
 }
 
-.price {
+.serv-list .price {
   font-weight: 500;
   font-size: 14px;
   text-align: right;
 }
 
-.num {
+.serv-list .num {
   font-weight: 700;
 }
 
-.delete-btn {
+.serv-list .delete-btn {
   cursor: pointer;
 }
 
-.payment {
+.serv-list .payment {
   width: 336px;
   padding: 40px 30px 34px 30px;
   background-color: #d4cacd;
@@ -155,53 +146,53 @@ button[id^="plusButton"] {
   top: 20px;
 }
 
-.payment-list {
+.serv-list .payment-list {
   display: flex;
   flex-flow: column wrap;
   gap: 9px;
 }
 
-.payment-item {
+.serv-list .payment-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.payment- * {
+.serv-list .payment- * {
   line-height: 24px;
 }
 
-.total {
+.serv-list .total {
   font-weight: bold;
 }
 
-.total .payment-price {
+.serv-list .total .payment-price {
   text-align: right;
 }
 
-.total .amount {
+.serv-list .total .amount {
   font-weight: bold;
   font-size: 26px;
   line-height: 30px;
 }
 
-#orderButton {
+.serv-list #orderButton {
   width: 276px;
   height: 50px;
   margin-top: 30px;
 }
 
-.btn-primary {
+.serv-list .btn-primary {
   background-color: #be3455 !important;
   border: 1px solid #be3455;
 }
 
-.btn-primary:hover {
+.serv-list .btn-primary:hover {
   background-color: #be3455;
   border: 1px solid #be3455;
 }
 
-.btn-primary:active {
+.serv-list .btn-primary:active {
   background-color: #be3455;
   border: 1px solid #be3455;
 }

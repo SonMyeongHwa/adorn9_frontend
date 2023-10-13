@@ -23,15 +23,15 @@
 		<nav>
 			<div class="nav-wrap">
 				<ul class="categories-wrap">
-					<a href="../itemList/itemList.html"> <li>Necklace</li> </a
-					><a href=""> <li>Earrings</li> </a
-					><a href=""> <li>Bracelet</li> </a
-					><a href=""> <li>Ring</li> </a
-					><a href="">
-						<li>Sunglasses</li>
-					</a>
+					<a href="/client/src/itemList/itemList.html?necklace"> <li>Necklace</li> </a
+				><a href="/client/src/itemList/itemList.html?earring"> <li>Earrings</li> </a
+				><a href="/client/src/itemList/itemList.html?bracelet"> <li>Bracelet</li> </a
+				><a href="/client/src/itemList/itemList.html?ring"> <li>Ring</li> </a
+				><a href="/client/src/itemList/itemList.html?sunglasses">
+					<li>Sunglasses</li>
+				</a>
 				</ul>
-				<a class="logo-wrap" href="../main//main.html">
+				<a class="logo-wrap" href="../main/main.html">
 					<img src="../assets/imgs/logo/ADORN9_LOGO.png" alt="" />
 				</a>
 				<ul class="utils">
@@ -47,7 +47,7 @@
 					>
 						로그인
 					</li>
-
+	
 					<li class="cart" onclick="location.href='../cart/cart.html'">
 						장바구니
 					</li>
@@ -82,40 +82,35 @@
 	</body>
 <script>
 
-	const token = localStorage.getItem('TOKEN');
-		const loginCheck = () => {
-			if (!token) {
-				console.log('사용자는 로그아웃 상태입니다.');
-				window.location.href = '../login/login.html';
-			}
-			if (token) {
-				console.log('사용자는 로그인 상태입니다.');
+const token = localStorage.getItem('TOKEN');
+const loginCheck = () => {
+	if (token) {
+		console.log('사용자는 로그인 상태입니다.');
 
-				document.querySelector(
-					'.signup',
-				).innerHTML = `<li class='logout'>로그아웃</li>`;
-				document.querySelector('.logout').onclick = function () {
-					localStorage.clear();
-					alert('로그아웃 되었습니다.');
-					window.location.href = '../main/main.html';
-				};
-
-				document.querySelector(
-					'.login',
-				).innerHTML = `<li class='mypage'>마이페이지</li>`;
-				document.querySelector('.login').onclick = function () 
-				{
-					window.location.href = '../mypage/mypage.html';
-					console.log('마이페이지로 이동');
-				};
-
-				document.querySelector('.cart').onclick = function () {
-					localStorage.clear();
-					window.location.href = '../cart/cart.html';
-				};
-			}
+		document.querySelector(
+			'.signup',
+		).innerHTML = `<li class='logout'>로그아웃</li>`;
+		document.querySelector('.logout').onclick = function () {
+			localStorage.clear();
+			alert('로그아웃 되었습니다.');
+			window.location.href = '../main/main.html';
 		};
-		loginCheck();
+
+		document.querySelector(
+			'.login',
+		).innerHTML = `<li class='mypage'>마이페이지</li>`;
+		document.querySelector('.login').onclick = function () 
+		{
+			window.location.href = '../mypage/mypage.html';
+			console.log('마이페이지로 이동');
+		};
+
+		document.querySelector('.cart').onclick = function () {
+			window.location.href = '../cart/cart.html';
+		};
+	}
+};
+loginCheck();
 
 	document.addEventListener('DOMContentLoaded', function () {
 	let emailReg =

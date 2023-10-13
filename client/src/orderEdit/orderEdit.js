@@ -1,15 +1,9 @@
-import apiModule from './api.js';
-import advertising from './advertise.js';
-import mainSlideModule from './main-slide.js';
-import createTheModal from '../modal/modal.js';
-
-apiModule.fetch;
-advertising.advertise();
-mainSlideModule.makeClone();
-createTheModal.createModal();
-
 const token = localStorage.getItem('TOKEN');
 const loginCheck = () => {
+	if (!token) {
+		console.log('사용자는 로그아웃 상태입니다.');
+		window.location.href = '../login/login.html';
+	}
 	if (token) {
 		console.log('사용자는 로그인 상태입니다.');
 

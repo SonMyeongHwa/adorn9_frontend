@@ -1,5 +1,5 @@
-@import '../../src/common/reset.css';
-@import '../nav/nav.css';
+@import '../common/reset.css';
+@import '../common/nav.css';
 @import '../modal/modal.css';
 
 #slider {
