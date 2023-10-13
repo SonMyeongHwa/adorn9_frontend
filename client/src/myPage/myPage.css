@@ -1,6 +1,7 @@
 @import '../common/reset.css';
 @import '../common/nav.css';
 
+
 .my-page-wrap {
 	display: flex;
 	justify-content: center;

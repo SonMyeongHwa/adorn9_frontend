@@ -17,7 +17,7 @@
 		<nav>
 			<div class="nav-wrap">
 				<ul class="categories-wrap">
-					<a href=""> <li>Necklace</li> </a
+					<a href="../itemList/itemList.html"> <li>Necklace</li> </a
 					><a href=""> <li>Earrings</li> </a
 					><a href=""> <li>Bracelet</li> </a
 					><a href=""> <li>Ring</li> </a
@@ -25,23 +25,23 @@
 						<li>Sunglasses</li>
 					</a>
 				</ul>
-				<a class="logo-wrap" href="">
+				<a class="logo-wrap" href="../main//main.html">
 					<img src="../assets/imgs/logo/ADORN9_LOGO.png" alt="" />
 				</a>
 				<ul class="utils">
 					<li
 						class="login"
-						onclick="location.href='/client/src/login/login.html'"
+						onclick="location.href='../login/login.html'"
 					>
 						로그인
 					</li>
 					<li
 						class="my-page"
-						onclick="location.href='/client/src/myPage/myPage.html'"
+						onclick="location.href='../myPage/myPage.html'"
 					>
 						마이페이지
 					</li>
-					<li class="cart" onclick="location.href='/client/src/cart/cart.html'">
+					<li class="cart" onclick="location.href='../cart/cart.html'">
 						장바구니
 					</li>
 				</ul>
@@ -109,10 +109,12 @@
 		const loginCheck = () => {
 			if (!token) {
 				console.log('사용자는 로그아웃 상태입니다.');
+				window.location.href = '../login/login.html';
+
 				// console.log(token);
 				document.querySelector('.my-page').onclick = function () {
 					alert('회원 전용 페이지입니다');
-					window.location.href = '../main/main.html';
+					window.location.href = '../login/login.html';
 				};
 			}
 			if (token) {
@@ -144,7 +146,9 @@
 				return;
 			}
 
-			fetch('http://localhost:3000/api/v1/users/profile?email=test@test.com', {
+			// `http://localhost:3000/api/v1/users/profile?email=${email}`
+
+			fetch('http://localhost:3000/api/v1/users/profile?email=test1234@test.com', {
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},
@@ -188,6 +192,9 @@
 				.then((data) => {
 					console.log(data);
 					if (data.message === '로그인 성공') {
+
+					localStorage.clear();
+
 						alert('로그아웃 성공');
 					}
 				});
