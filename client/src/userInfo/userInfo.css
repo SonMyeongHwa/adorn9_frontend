@@ -1,4 +1,5 @@
 @import '../common/reset.css';
+@import '../common/nav.css';
 
 .user-info-wrap {
 	display: flex;

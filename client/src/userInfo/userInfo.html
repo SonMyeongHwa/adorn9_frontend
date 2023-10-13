@@ -20,7 +20,39 @@
 		<title>내 정보</title>
 	</head>
 	<body>
-		<nav id="nav"></nav>
+		<nav>
+			<div class="nav-wrap">
+				<ul class="categories-wrap">
+					<a href=""> <li>Necklace</li> </a
+					><a href=""> <li>Earrings</li> </a
+					><a href=""> <li>Bracelet</li> </a
+					><a href=""> <li>Ring</li> </a
+					><a href="">
+						<li>Sunglasses</li>
+					</a>
+				</ul>
+				<a class="logo-wrap" href="">
+					<img src="../assets/imgs/logo/ADORN9_LOGO.png" alt="" />
+				</a>
+				<ul class="utils">
+					<li
+						class="login"
+						onclick="location.href='../login/login.html'"
+					>
+						로그인
+					</li>
+					<li
+						class="my-page"
+						onclick="location.href='../myPage/myPage.html'"
+					>
+						마이페이지
+					</li>
+					<li class="cart" onclick="location.href='../cart/cart.html'">
+						장바구니
+					</li>
+				</ul>
+			</div>
+		</nav>
 		<div class="user-info-wrap">
 			<h2>내 정보</h2>
 			<div class="form-group">
@@ -125,10 +157,12 @@
 
       if (!token) {
         console.error('토큰이 없습니다');
+		alert('로그인 후 이용해주세요')
+		window.location.href = '../main/main.html';
         return;
       }
 
-      fetch('http://localhost:3000/api/v1/users/profile?email=test@test.com', {
+      fetch('http://localhost:3000/api/v1/users/profile?email=test1234@test.com', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -174,8 +208,8 @@
         }),
       })
         .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
+        .then((req) => {
+          console.log(req);
           // 여기에서 성공 메시지를 표시하거나 다른 작업을 수행할 수 있습니다.
         });
     }
@@ -209,8 +243,8 @@
 			})
         .then((data) => {
 					console.log(data);
-					alert('탈퇴되었습니다.');
-					window.location.href = '../main/main.html';
+					// alert('탈퇴되었습니다.');
+					// window.location.href = '../main/main.html';
 
         });
 		}
