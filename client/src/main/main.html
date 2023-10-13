@@ -64,9 +64,21 @@
 					<img src="../assets/imgs/logo/ADORN9_LOGO.png" alt="" />
 				</a>
 				<ul class="utils">
-					<li class="login">로그인</li>
-					<li class="my-page">마이페이지</li>
-					<li class="cart">장바구니</li>
+					<li
+						class="login"
+						onclick="location.href='/client/src/login/login.html'"
+					>
+						로그인
+					</li>
+					<li
+						class="my-page"
+						onclick="location.href='/client/src/myPage/myPage.html'"
+					>
+						마이페이지
+					</li>
+					<li class="cart" onclick="location.href='/client/src/cart/cart.html'">
+						장바구니
+					</li>
 				</ul>
 			</div>
 		</nav>
@@ -425,4 +437,23 @@
 
 		<div id="app"></div>
 	</body>
+	<script>
+		const loginCheck = () => {
+			const token = localStorage.getItem('TOKEN');
+			if (!token) {
+				console.log('사용자는 로그아웃 상태입니다.');
+				document.querySelector('.my-page').onclick = function () {
+					alert('회원 전용 페이지입니다');
+					window.location.href = '../main/main.html';
+				};
+				// createLogoutNav();
+			} else {
+				console.log('사용자는 로그인 상태입니다.');
+				// createLoginNav();
+				document.querySelector('.login').innerHTML =
+					'<li class=logout>로그아웃</li>';
+			}
+		};
+		loginCheck();
+	</script>
 </html>
