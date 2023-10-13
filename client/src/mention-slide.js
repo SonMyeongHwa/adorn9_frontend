@@ -8,14 +8,14 @@ let slideWrapper = document.querySelector('.recommend-silde-items-wrapper'),
 
 // 이미지 불러오는 함수
 function loadImages() {
-	return fetch('http://localhost:3000/api/v1/categories')
+	return fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/categories')
 		.then((response) => response.json())
 		.then((data) => {
 			const randomIndex = Math.floor(Math.random() * data.categories.length);
 			const randomCategory = data.categories[randomIndex];
 
 			return fetch(
-				`http://localhost:3000/api/v1/products/categories/${randomCategory.name}`,
+				`http://kdt-sw-6-team09.elicecoding.com/api/v1/products/categories/${randomCategory.name}`,
 			);
 		})
 		.then((response) => response.json())

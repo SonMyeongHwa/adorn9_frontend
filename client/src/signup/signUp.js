@@ -114,7 +114,7 @@ function signUpHandler() {
 		return;
 	}
 
-	fetch('http://localhost:3000/api/v1/users/joining', {
+	fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/users/joining', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8',

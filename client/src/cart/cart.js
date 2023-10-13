@@ -16,7 +16,7 @@ if (cartItems.size === 0) {
 	let idList = Array.from(cartItems.keys());
 
 	//상품 데이터 API 연동
-	fetch('http://localhost:3000/api/v1/products/array', {
+	fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/products/array', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',

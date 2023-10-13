@@ -2,7 +2,7 @@ const categoryTitle = document.querySelector('.categoryTitle');
 const itemList = document.querySelector('.item-list');
 const receivedData = location.href.split('?category=')[1]; //카테고리명 받아오기
 
-fetch(`http://localhost:3000/api/v1/products/categories/${receivedData}`)
+fetch(`http://kdt-sw-6-team09.elicecoding.com/api/v1/products/categories/${receivedData}`)
 	.then((response) => response.json())
 	.then((data) => {
 		//장바구니 상품 Map에 담아서 불러오기

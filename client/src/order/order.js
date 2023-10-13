@@ -16,7 +16,7 @@ let total = 0;
 const token = localStorage.getItem('TOKEN');
 //주문자 정보 API 연동
 //fetch(http://localhost:3000/api/v1/users/profile/?email=이메일) 임시
-fetch('http://localhost:3000/api/v1/users/profile?email=test90@test.com', {
+fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/users/profile?email=test90@test.com', {
 	headers: {
 		Authorization: `Bearer ${token}`,
 	},
@@ -58,7 +58,7 @@ for (const [key, value] of cartItems) {
 }
 
 //상품 데이터 API 연동
-fetch('http://localhost:3000/api/v1/products/array', {
+fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/products/array', {
 	method: 'POST',
 	headers: {
 		'Content-Type': 'application/json',
@@ -165,7 +165,7 @@ orderButton.addEventListener('click', function (e) {
 	const payment = document.querySelector("input[name='payment']:checked").value;
 	let address = `${zipcode.value}||${address1.value}||${address2.value}`;
 
-	fetch('http://localhost:3000/api/v1/orders', {
+	fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/orders', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8',

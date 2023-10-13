@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			return false;
 		}
 
-		fetch('http://localhost:3000/api/v1/users/login', {
+		fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/users/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8',
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // 로그아웃
 
 function logoutHandler() {
-	fetch('http://localhost:3000/api/v1/users/logout', {
+	fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/users/logout', {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',

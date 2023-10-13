@@ -6,7 +6,7 @@ const shopButton = document.getElementById('shop');
 const orderId = localStorage.getItem('orderId');
 
 if (orderId) {
-	fetch(`http://localhost:3000/api/v1/orders/${orderId}`)
+	fetch(`http://kdt-sw-6-team09.elicecoding.com/api/v1/orders/${orderId}`)
 		.then((response) => response.json())
 		.then((data) => {
 			let {

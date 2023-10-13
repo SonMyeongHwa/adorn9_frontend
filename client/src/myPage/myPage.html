@@ -151,7 +151,7 @@
 			// `http://localhost:3000/api/v1/users/profile?email=${email}`
 
 			fetch(
-				'http://localhost:3000/api/v1/users/profile?email=test90@test.com',
+				'http://kdt-sw-6-team09.elicecoding.com/api/v1/users/profile?email=test90@test.com',
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -169,7 +169,7 @@
 		userName();
 
 		function orderList() {
-			fetch('http://localhost:3000/api/v1/orders/', {
+			fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/orders/', {
 				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${token}`,
@@ -187,7 +187,7 @@
 				return;
 			}
 
-			fetch('http://localhost:3000/api/v1/users/logout', {
+			fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/users/logout', {
 				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${token}`,
