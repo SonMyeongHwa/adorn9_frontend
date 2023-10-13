@@ -16,7 +16,7 @@ let total = 0;
 const token = localStorage.getItem('TOKEN');
 //주문자 정보 API 연동
 //fetch(http://localhost:3000/api/v1/users/profile/?email=이메일) 임시
-fetch("http://localhost:3000/api/v1/users/profile?email=test9@test.com", {
+fetch("http://localhost:3000/api/v1/users/profile?email=test90@test.com", {
   headers: {
     Authorization: `Bearer ${token}`,
   },
