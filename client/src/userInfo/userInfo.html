@@ -161,7 +161,7 @@
         return;
       }
 
-      fetch(`http://localhost:3000/api/v1/users/profile?email=${email}`, {
+      fetch(`http://kdt-sw-6-team09.elicecoding.com/api/v1/users/profile?email=${email}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -189,7 +189,7 @@
       const newEmail = document.getElementById('exampleInputEmail').value;
       const newPassword = document.getElementById('exampleInputPassword').value;
 
-      fetch('http://localhost:3000/api/v1/users/modify', {
+      fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/users/modify', {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,
