@@ -72,12 +72,11 @@ input[type=radio] {
 
 .table .price {
   text-align: right;
+  padding-right: 20px;
 }
 
 .table .num {
   font-weight: 700;
-  font-size: 18px;
-  line-height: 1.33;
 }
 
 .total-wrap {
@@ -90,7 +89,7 @@ input[type=radio] {
   justify-content: space-between;
 }
 
-.total {
+.fee .total {
   font-weight: bold;
 }
 
