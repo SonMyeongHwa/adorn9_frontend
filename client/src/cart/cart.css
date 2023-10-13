@@ -1,198 +1,198 @@
-@import "../common/reset.css";
-@import '../common/nav.css';
+@import '/common/reset.css';
+@import '/common/nav.css';
 
 .serv-list h1 {
-  font-size: 24px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  font-weight: 400;
+	font-size: 24px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	font-weight: 400;
 }
 
 .serv-list button {
-  border: 0;
-  background-color: transparent;
+	border: 0;
+	background-color: transparent;
 }
 
-.serv-list input[type=checkbox]:checked {
-  background-color:#be3455;
-  border-color: #be3455;
+.serv-list input[type='checkbox']:checked {
+	background-color: #be3455;
+	border-color: #be3455;
 }
 
 .serv-list {
-  padding-bottom: 70px;
+	padding-bottom: 70px;
 }
 
 .serv-list .cart-wrap {
-  max-width: 1200px;
-  margin: auto;
+	max-width: 1200px;
+	margin: auto;
 }
 
 .serv-list .contents {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  position: relative;
-  margin-top: 30px;
-  gap: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	position: relative;
+	margin-top: 30px;
+	gap: 20px;
 }
 
 .serv-list .cart {
-  position: relative;
-  width: 800px;
+	position: relative;
+	width: 800px;
 }
 
 .serv-list .all-item-check {
-  line-height: 20px;
-  cursor: pointer;
+	line-height: 20px;
+	cursor: pointer;
 }
 
 .serv-list .btn-right {
-  text-align: right;
+	text-align: right;
 }
 
 .serv-list .item-check {
-  margin-right: 15px;
-  justify-content: flex-start;
+	margin-right: 15px;
+	justify-content: flex-start;
 }
 
 .serv-list .table {
-  margin: 0px;
+	margin: 0px;
 }
 
 .serv-list .table tr:not(.empty-cart) {
-  border-bottom: 1px solid #e4e4e4;
+	border-bottom: 1px solid #e4e4e4;
 }
 
 .serv-list .table thead tr {
-  border-bottom: 1px solid #000;
+	border-bottom: 1px solid #000;
 }
 
 .serv-list .table td {
-  vertical-align: middle;
+	vertical-align: middle;
 }
 
 .serv-list .table .td-top {
-  vertical-align: top;
+	vertical-align: top;
 }
 
 .serv-list .table img {
-  height: 130px;
-  width: 130px;
+	height: 130px;
+	width: 130px;
 }
 
 .serv-list .empty-cart {
-  text-align: center;
+	text-align: center;
 }
 
 .serv-list .empty-cart td {
-  padding: 120px 0px;
-  font-weight: bold;
-  font-size: 18px;
+	padding: 120px 0px;
+	font-weight: bold;
+	font-size: 18px;
 }
 
 .serv-list .item-count {
-  justify-content: center;
-  align-items: center;
+	justify-content: center;
+	align-items: center;
 }
 
 .serv-list .count-area {
-  display: flex;
-  align-items: center;
-  width: 95px;
-  border: 1px solid #eee;
-  background-color: white;
-  box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	width: 95px;
+	border: 1px solid #eee;
+	background-color: white;
+	box-sizing: border-box;
 }
 
-.serv-list button[id*="Button_"]:hover {
-  background-color: #f5f5f5;
+.serv-list button[id*='Button_']:hover {
+	background-color: #f5f5f5;
 }
 
-.serv-list button[id^="minusButton"] {
-  border-right: 1px solid #e0e0e0;
-  width: 25px;
+.serv-list button[id^='minusButton'] {
+	border-right: 1px solid #e0e0e0;
+	width: 25px;
 }
 
-.serv-list div[id^="quantity"] {
-  width: 45px;
-  text-align: center;
+.serv-list div[id^='quantity'] {
+	width: 45px;
+	text-align: center;
 }
 
-.serv-list button[id^="plusButton"] {
-  border-left: 1px solid #e0e0e0;
-  width: 25px;
+.serv-list button[id^='plusButton'] {
+	border-left: 1px solid #e0e0e0;
+	width: 25px;
 }
 
 .serv-list .price {
-  font-weight: 500;
-  font-size: 14px;
-  text-align: right;
+	font-weight: 500;
+	font-size: 14px;
+	text-align: right;
 }
 
 .serv-list .num {
-  font-weight: 700;
+	font-weight: 700;
 }
 
 .serv-list .delete-btn {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .serv-list .payment {
-  width: 336px;
-  padding: 40px 30px 34px 30px;
-  background-color: #d4cacd;
-  box-sizing: border-box;
-  position: sticky;
-  top: 20px;
+	width: 336px;
+	padding: 40px 30px 34px 30px;
+	background-color: #d4cacd;
+	box-sizing: border-box;
+	position: sticky;
+	top: 20px;
 }
 
 .serv-list .payment-list {
-  display: flex;
-  flex-flow: column wrap;
-  gap: 9px;
+	display: flex;
+	flex-flow: column wrap;
+	gap: 9px;
 }
 
 .serv-list .payment-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .serv-list .payment- * {
-  line-height: 24px;
+	line-height: 24px;
 }
 
 .serv-list .total {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 .serv-list .total .payment-price {
-  text-align: right;
+	text-align: right;
 }
 
 .serv-list .total .amount {
-  font-weight: bold;
-  font-size: 26px;
-  line-height: 30px;
+	font-weight: bold;
+	font-size: 26px;
+	line-height: 30px;
 }
 
 .serv-list #orderButton {
-  width: 276px;
-  height: 50px;
-  margin-top: 30px;
+	width: 276px;
+	height: 50px;
+	margin-top: 30px;
 }
 
 .serv-list .btn-primary {
-  background-color: #be3455 !important;
-  border: 1px solid #be3455;
+	background-color: #be3455 !important;
+	border: 1px solid #be3455;
 }
 
 .serv-list .btn-primary:hover {
-  background-color: #be3455;
-  border: 1px solid #be3455;
+	background-color: #be3455;
+	border: 1px solid #be3455;
 }
 
 .serv-list .btn-primary:active {
-  background-color: #be3455;
-  border: 1px solid #be3455;
+	background-color: #be3455;
+	border: 1px solid #be3455;
 }

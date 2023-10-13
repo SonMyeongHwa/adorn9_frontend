@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				if (data.message === '로그인 성공') {
 					localStorage.setItem('TOKEN', data.token);
 					alert('로그인 성공');
-					// window.location.href = '../main/main.html';
+					// window.location.href = '/main/main.html';
 				} else if (data.message === '비밀번호 작성 양식을 준수해주세요.') {
 					alert('비밀번호 작성 양식을 준수해주세요.');
 				} else if (data.message === '회원을 찾을 수 없습니다.') {

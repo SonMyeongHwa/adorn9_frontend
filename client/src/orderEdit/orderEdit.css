@@ -1,5 +1,5 @@
-@import '../common/reset.css';
-@import '../common/nav.css';
+@import '/common/reset.css';
+@import '/common/nav.css';
 
 h1 {
 	font-size: 24px;
@@ -18,61 +18,63 @@ h1 {
 }
 
 .info {
-  background-color: white;
-  padding: 30px;
-  margin-bottom: 40px;
+	background-color: white;
+	padding: 30px;
+	margin-bottom: 40px;
 }
 
-.delivery-info, .payment-info {
-  margin-bottom: 70px;
+.delivery-info,
+.payment-info {
+	margin-bottom: 70px;
 }
 
 .row-item {
 	display: inline-block;
 }
 
-.address input, .address .btn {
+.address input,
+.address .btn {
 	margin-bottom: 5px;
 }
 
 .table img {
-  width: 110px;
-  height: 110px;
+	width: 110px;
+	height: 110px;
 }
 
 .item-info .table td {
-  vertical-align: middle;
+	vertical-align: middle;
 }
 
 .table .count {
-  text-align: center;
+	text-align: center;
 }
 
 .table .price {
-  text-align: right;
+	text-align: right;
 }
 
 .button {
-  text-align: center;
+	text-align: center;
 }
 
 .btn-primary {
-  width: 170px;
-  height: 50px
+	width: 170px;
+	height: 50px;
 }
 
 .edit {
-  background-color: #EDCFC4;
-  border: 1px solid #EDCFC4;
-  margin-right: 10px;
+	background-color: #edcfc4;
+	border: 1px solid #edcfc4;
+	margin-right: 10px;
 }
 
 .edit:hover {
-  background-color: #be3455;
-  border: 1px solid #be3455;
+	background-color: #be3455;
+	border: 1px solid #be3455;
 }
 
 .edit:active {
-  background-color: #be3455;
-  border: 1px solid #be3455;
+	background-color: #be3455;
+	border: 1px solid #be3455;
 }

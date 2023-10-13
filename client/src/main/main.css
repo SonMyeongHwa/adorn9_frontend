@@ -1,6 +1,6 @@
-@import '../common/reset.css';
-@import '../common/nav.css';
-@import '../modal/modal.css';
+@import '/common/reset.css';
+@import '/common/nav.css';
+@import '/modal/modal.css';
 
 #slider {
 	overflow: hidden;

@@ -17,32 +17,32 @@
 		<nav>
 			<div class="nav-wrap">
 				<ul class="categories-wrap">
-					<a href="/client/src/itemList/itemList.html?necklace"> <li>Necklace</li> </a
-				><a href="/client/src/itemList/itemList.html?earring"> <li>Earrings</li> </a
-				><a href="/client/src/itemList/itemList.html?bracelet"> <li>Bracelet</li> </a
-				><a href="/client/src/itemList/itemList.html?ring"> <li>Ring</li> </a
-				><a href="/client/src/itemList/itemList.html?sunglasses">
-					<li>Sunglasses</li>
-				</a>
+					<a href="/itemList/itemList.html?category=necklace"
+						><li>Necklace</li></a
+					>
+					<a href="/itemList/itemList.html?category=earring"
+						><li>Earrings</li></a
+					>
+					<a href="/itemList/itemList.html?category=bracelet"
+						><li>Bracelet</li></a
+					>
+					<a href="/itemList/itemList.html?category=ring"> <li>Ring</li> </a>
+					<a href="/itemList/itemList.html?category=sunglasses"
+						><li>Sunglasses</li></a
+					>
 				</ul>
-				<a class="logo-wrap" href="../main/main.html">
-					<img src="../assets/imgs/logo/ADORN9_LOGO.png" alt="" />
+				<a class="logo-wrap" href="/main/main.html">
+					<img src="/assets/imgs/logo/ADORN9_LOGO.png" alt="" />
 				</a>
 				<ul class="utils">
-					<li
-						class="signup"
-						onclick="location.href='../signup/signup.html'"
-					>
+					<li class="signup" onclick="location.href='/signup/signup.html'">
 						회원가입
 					</li>
-					<li
-						class="login"
-						onclick="location.href='../login/login.html'"
-					>
+					<li class="login" onclick="location.href='/login/login.html'">
 						로그인
 					</li>
-	
-					<li class="cart" onclick="location.href='../cart/cart.html'">
+
+					<li class="cart" onclick="location.href='/cart/cart.html'">
 						장바구니
 					</li>
 				</ul>
@@ -63,10 +63,10 @@
 						<a href="">
 							<li>구매내역</li>
 						</a>
-						<a href="../cart/cart.html">
+						<a href="/cart/cart.html">
 							<li>장바구니</li>
 						</a>
-						<a href="../userInfo/userInfo.html">
+						<a href="/userInfo/userInfo.html">
 							<li>내 정보</li>
 						</a>
 						<a href="">
@@ -94,7 +94,7 @@
 						<div class="payment-button">
 							<button
 								class="edit-order"
-								onclick="location.href='/client/src/orderEdit/orderEdit.html'"
+								onclick="location.href='/orderEdit/orderEdit.html'"
 							>
 								주문 수정
 							</button>
@@ -106,39 +106,38 @@
 		</div>
 	</body>
 	<script>
-	const token = localStorage.getItem('TOKEN');
-	const loginCheck = () => {
-		if (!token) {
-			console.log('사용자는 로그아웃 상태입니다.');
-			window.location.href = '../login/login.html';
-		}
-		if (token) {
-			console.log('사용자는 로그인 상태입니다.');
+		const token = localStorage.getItem('TOKEN');
+		const loginCheck = () => {
+			if (!token) {
+				console.log('사용자는 로그아웃 상태입니다.');
+				window.location.href = '/login/login.html';
+			}
+			if (token) {
+				console.log('사용자는 로그인 상태입니다.');
 
-			document.querySelector(
-				'.signup',
-			).innerHTML = `<li class='logout'>로그아웃</li>`;
-			document.querySelector('.logout').onclick = function () {
-				localStorage.clear();
-				alert('로그아웃 되었습니다.');
-				window.location.href = '../main/main.html';
-			};
+				document.querySelector(
+					'.signup',
+				).innerHTML = `<li class='logout'>로그아웃</li>`;
+				document.querySelector('.logout').onclick = function () {
+					localStorage.clear();
+					alert('로그아웃 되었습니다.');
+					window.location.href = '/main/main.html';
+				};
 
-			document.querySelector(
-				'.login',
-			).innerHTML = `<li class='mypage'>마이페이지</li>`;
-			document.querySelector('.login').onclick = function () 
-			{
-				window.location.href = '../mypage/mypage.html';
-				console.log('마이페이지로 이동');
-			};
+				document.querySelector(
+					'.login',
+				).innerHTML = `<li class='mypage'>마이페이지</li>`;
+				document.querySelector('.login').onclick = function () {
+					window.location.href = '/mypage/mypage.html';
+					console.log('마이페이지로 이동');
+				};
 
-			document.querySelector('.cart').onclick = function () {
-				window.location.href = '../cart/cart.html';
-			};
-		}
-	};
-	loginCheck();
+				document.querySelector('.cart').onclick = function () {
+					window.location.href = '/cart/cart.html';
+				};
+			}
+		};
+		loginCheck();
 
 		function userName() {
 			const token = localStorage.getItem('TOKEN');
@@ -151,11 +150,14 @@
 
 			// `http://localhost:3000/api/v1/users/profile?email=${email}`
 
-			fetch('http://localhost:3000/api/v1/users/profile?email=test90@test.com', {
-				headers: {
-					Authorization: `Bearer ${token}`,
+			fetch(
+				'http://localhost:3000/api/v1/users/profile?email=test90@test.com',
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
 				},
-			})
+			)
 				.then((res) => res.json())
 				.then((data) => {
 					let name = document.createElement('strong');
@@ -195,11 +197,10 @@
 				.then((data) => {
 					console.log(data);
 					if (data.message === '로그인 성공') {
-
-					localStorage.clear();
+						localStorage.clear();
 
 						alert('로그아웃 성공');
-						window.location.href='../main/main.html'
+						window.location.href = '/main/main.html';
 					}
 				});
 		}

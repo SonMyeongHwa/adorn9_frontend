@@ -3,13 +3,13 @@
 // 	createLoginNav,
 // 	createLogoutNav,
 // 	handleLogout,
-// } from '../navbar.js';
+// } from '/navbar.js';
 
 // loginCheck();
 // createLoginNav();
 // createLogoutNav();
 // handleLogout();
-import { loginBtn } from '../navtest';
+import { loginBtn } from '/navtest';
 loginBtn();
 
 let userName = document.getElementById('exampleInputName');

@@ -25,32 +25,32 @@
 		<nav>
 			<div class="nav-wrap">
 				<ul class="categories-wrap">
-					<a href="/client/src/itemList/itemList.html?necklace"> <li>Necklace</li> </a
-				><a href="/client/src/itemList/itemList.html?earring"> <li>Earrings</li> </a
-				><a href="/client/src/itemList/itemList.html?bracelet"> <li>Bracelet</li> </a
-				><a href="/client/src/itemList/itemList.html?ring"> <li>Ring</li> </a
-				><a href="/client/src/itemList/itemList.html?sunglasses">
-					<li>Sunglasses</li>
-				</a>
+					<a href="/itemList/itemList.html?category=necklace"
+						><li>Necklace</li></a
+					>
+					<a href="/itemList/itemList.html?category=earring"
+						><li>Earrings</li></a
+					>
+					<a href="/itemList/itemList.html?category=bracelet"
+						><li>Bracelet</li></a
+					>
+					<a href="/itemList/itemList.html?category=ring"> <li>Ring</li> </a>
+					<a href="/itemList/itemList.html?category=sunglasses"
+						><li>Sunglasses</li></a
+					>
 				</ul>
-				<a class="logo-wrap" href="../main/main.html">
-					<img src="../assets/imgs/logo/ADORN9_LOGO.png" alt="" />
+				<a class="logo-wrap" href="/main/main.html">
+					<img src="/assets/imgs/logo/ADORN9_LOGO.png" alt="" />
 				</a>
 				<ul class="utils">
-					<li
-						class="signup"
-						onclick="location.href='../signup/signup.html'"
-					>
+					<li class="signup" onclick="location.href='/signup/signup.html'">
 						회원가입
 					</li>
-					<li
-						class="login"
-						onclick="location.href='../login/login.html'"
-					>
+					<li class="login" onclick="location.href='/login/login.html'">
 						로그인
 					</li>
-	
-					<li class="cart" onclick="location.href='../cart/cart.html'">
+
+					<li class="cart" onclick="location.href='/cart/cart.html'">
 						장바구니
 					</li>
 				</ul>
@@ -136,20 +136,19 @@
 				document.querySelector('.logout').onclick = function () {
 					localStorage.clear();
 					alert('로그아웃 되었습니다.');
-					window.location.href = '../main/main.html';
+					window.location.href = '/main/main.html';
 				};
 
 				document.querySelector(
 					'.login',
 				).innerHTML = `<li class='mypage'>마이페이지</li>`;
-				document.querySelector('.login').onclick = function () 
-				{
-					window.location.href = '../mypage/mypage.html';
+				document.querySelector('.login').onclick = function () {
+					window.location.href = '/mypage/mypage.html';
 					console.log('마이페이지로 이동');
 				};
 
 				document.querySelector('.cart').onclick = function () {
-					window.location.href = '../cart/cart.html';
+					window.location.href = '/cart/cart.html';
 				};
 			}
 		};
@@ -286,7 +285,7 @@
 						alert('비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.');
 					} else {
 						alert('adorn9의 회원이 되신걸 환영합니다');
-						window.location.href = '/client/src/main/main.html';
+						window.location.href = '/main/main.html';
 					}
 				})
 				.catch((error) => {

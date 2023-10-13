@@ -1,5 +1,5 @@
-@import "../common/reset.css";
-@import '../common/nav.css';
+@import '/common/reset.css';
+@import '/common/nav.css';
 
 .serv-list h1 {
 	font-size: 24px;
@@ -18,73 +18,74 @@
 }
 
 .serv-list .complete {
-  text-align: center;
-  padding: 30px 50px;
+	text-align: center;
+	padding: 30px 50px;
 }
 
 .serv-list .message {
-  margin-bottom: 15px;
+	margin-bottom: 15px;
 }
 
 .serv-list .complete .title {
-  font-size: 35px;
-  font-weight: bold;
+	font-size: 35px;
+	font-weight: bold;
 }
 
-.serv-list .order-number, .serv-list .number {
-  font-size: 20px;
+.serv-list .order-number,
+.serv-list .number {
+	font-size: 20px;
 }
 
 .serv-list .number {
-  color: #be3455;
+	color: #be3455;
 }
 
 .serv-list .info {
-  background-color: white;
-  padding: 30px;
-  margin-bottom: 40px;
+	background-color: white;
+	padding: 30px;
+	margin-bottom: 40px;
 }
 
 .serv-list .delivery-info {
-  margin-bottom: 70px;
+	margin-bottom: 70px;
 }
 
 .serv-list .button {
-  text-align: center;
+	text-align: center;
 }
 
 .serv-list .btn-primary {
-  width: 170px;
-  height: 50px
+	width: 170px;
+	height: 50px;
 }
 
 .serv-list #detail {
-  background-color: #EDCFC4;
-  border: 1px solid #EDCFC4;
-  margin-right: 10px;
+	background-color: #edcfc4;
+	border: 1px solid #edcfc4;
+	margin-right: 10px;
 }
 
 .serv-list #detail:hover {
-  background-color: #EDCFC4;
-  border: 1px solid #EDCFC4;
+	background-color: #edcfc4;
+	border: 1px solid #edcfc4;
 }
 
 .serv-list #detail:active {
-  background-color: #EDCFC4;
-  border: 1px solid #EDCFC4;
+	background-color: #edcfc4;
+	border: 1px solid #edcfc4;
 }
 
 .serv-list #shop {
-  background-color: #be3455;
-  border: 1px solid #be3455;
+	background-color: #be3455;
+	border: 1px solid #be3455;
 }
 
 .serv-list #shop:hover {
-  background-color: #be3455;
-  border: 1px solid #be3455;
+	background-color: #be3455;
+	border: 1px solid #be3455;
 }
 
 .serv-list #shop:active {
-  background-color: #be3455;
-  border: 1px solid #be3455;
+	background-color: #be3455;
+	border: 1px solid #be3455;
 }

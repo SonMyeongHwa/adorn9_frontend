@@ -1,86 +1,87 @@
-@import "../common/reset.css";
-@import '../common/nav.css';
+@import '/common/reset.css';
+@import '/common/nav.css';
 
 .serv-list h1 {
-  font-size: 24px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  font-weight: 400;
+	font-size: 24px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	font-weight: 400;
 }
 
 .serv-list a {
-  text-decoration: none;
-  color: black;
+	text-decoration: none;
+	color: black;
 }
 
 .serv-list a:hover {
-  color: black;
+	color: black;
 }
 
 .serv-list {
-  padding-bottom: 70px;
+	padding-bottom: 70px;
 }
 
 .serv-list .item-wrap {
-  max-width: 1200px;
-  margin: auto;
+	max-width: 1200px;
+	margin: auto;
 }
 
 .serv-list .item-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 .serv-list .item-content {
-  height: 330px;
-  width: 260px;
-  padding: 5px;
-  margin-bottom: 50px;
-  position: relative;
+	height: 330px;
+	width: 260px;
+	padding: 5px;
+	margin-bottom: 50px;
+	position: relative;
 }
 
 .serv-list .item-content img {
-  height: 250px;
-  width: 250px;
+	height: 250px;
+	width: 250px;
 }
 
 .serv-list .item-content img:hover {
-  cursor: pointer;
+	cursor: pointer;
 }
 
-.serv-list .btn, .serv-list .btn-primary {
-  display: none;
-  background-color: #EDCFC4;
-  border: 1px solid #EDCFC4;
-  position: absolute;
-  left: 5px;
-  top: 209px;
-  width: 250px;
-  border-radius: 0;
+.serv-list .btn,
+.serv-list .btn-primary {
+	display: none;
+	background-color: #edcfc4;
+	border: 1px solid #edcfc4;
+	position: absolute;
+	left: 5px;
+	top: 209px;
+	width: 250px;
+	border-radius: 0;
 }
 
 .serv-list .btn-primary:hover {
-  background-color: #EDCFC4;
-  border: 1px solid #EDCFC4;
+	background-color: #edcfc4;
+	border: 1px solid #edcfc4;
 }
 
 .serv-list .btn-primary:active {
-  background-color: #EDCFC4;
-  border: 1px solid #EDCFC4;
+	background-color: #edcfc4;
+	border: 1px solid #edcfc4;
 }
 
-.serv-list .image:hover .btn{
-  display: block;
-  background-color: #EDCFC4;
-  border: 1px solid #EDCFC4;
+.serv-list .image:hover .btn {
+	display: block;
+	background-color: #edcfc4;
+	border: 1px solid #edcfc4;
 }
 
 .serv-list .description {
-  padding: 10px 0px;
-  text-align: center;
+	padding: 10px 0px;
+	text-align: center;
 }
 
 .serv-list .name {
-  color: #555555
+	color: #555555;
 }

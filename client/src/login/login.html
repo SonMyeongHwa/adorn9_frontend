@@ -23,32 +23,32 @@
 		<nav>
 			<div class="nav-wrap">
 				<ul class="categories-wrap">
-					<a href="/client/src/itemList/itemList.html?necklace"> <li>Necklace</li> </a
-				><a href="/client/src/itemList/itemList.html?earring"> <li>Earrings</li> </a
-				><a href="/client/src/itemList/itemList.html?bracelet"> <li>Bracelet</li> </a
-				><a href="/client/src/itemList/itemList.html?ring"> <li>Ring</li> </a
-				><a href="/client/src/itemList/itemList.html?sunglasses">
-					<li>Sunglasses</li>
-				</a>
+					<a href="/itemList/itemList.html?category=necklace"
+						><li>Necklace</li></a
+					>
+					<a href="/itemList/itemList.html?category=earring"
+						><li>Earrings</li></a
+					>
+					<a href="/itemList/itemList.html?category=bracelet"
+						><li>Bracelet</li></a
+					>
+					<a href="/itemList/itemList.html?category=ring"> <li>Ring</li> </a>
+					<a href="/itemList/itemList.html?category=sunglasses"
+						><li>Sunglasses</li></a
+					>
 				</ul>
-				<a class="logo-wrap" href="../main/main.html">
-					<img src="../assets/imgs/logo/ADORN9_LOGO.png" alt="" />
+				<a class="logo-wrap" href="/main/main.html">
+					<img src="/assets/imgs/logo/ADORN9_LOGO.png" alt="" />
 				</a>
 				<ul class="utils">
-					<li
-						class="signup"
-						onclick="location.href='../signup/signup.html'"
-					>
+					<li class="signup" onclick="location.href='/signup/signup.html'">
 						회원가입
 					</li>
-					<li
-						class="login"
-						onclick="location.href='../login/login.html'"
-					>
+					<li class="login" onclick="location.href='/login/login.html'">
 						로그인
 					</li>
-	
-					<li class="cart" onclick="location.href='../cart/cart.html'">
+
+					<li class="cart" onclick="location.href='/cart/cart.html'">
 						장바구니
 					</li>
 				</ul>
@@ -80,134 +80,131 @@
 			</div>
 		</div>
 	</body>
-<script>
+	<script>
+		const token = localStorage.getItem('TOKEN');
+		const loginCheck = () => {
+			if (token) {
+				console.log('사용자는 로그인 상태입니다.');
 
-const token = localStorage.getItem('TOKEN');
-const loginCheck = () => {
-	if (token) {
-		console.log('사용자는 로그인 상태입니다.');
+				document.querySelector(
+					'.signup',
+				).innerHTML = `<li class='logout'>로그아웃</li>`;
+				document.querySelector('.logout').onclick = function () {
+					localStorage.clear();
+					alert('로그아웃 되었습니다.');
+					window.location.href = '/main/main.html';
+				};
 
-		document.querySelector(
-			'.signup',
-		).innerHTML = `<li class='logout'>로그아웃</li>`;
-		document.querySelector('.logout').onclick = function () {
-			localStorage.clear();
-			alert('로그아웃 되었습니다.');
-			window.location.href = '../main/main.html';
+				document.querySelector(
+					'.login',
+				).innerHTML = `<li class='mypage'>마이페이지</li>`;
+				document.querySelector('.login').onclick = function () {
+					window.location.href = '/mypage/mypage.html';
+					console.log('마이페이지로 이동');
+				};
+
+				document.querySelector('.cart').onclick = function () {
+					window.location.href = '/cart/cart.html';
+				};
+			}
 		};
+		loginCheck();
 
-		document.querySelector(
-			'.login',
-		).innerHTML = `<li class='mypage'>마이페이지</li>`;
-		document.querySelector('.login').onclick = function () 
-		{
-			window.location.href = '../mypage/mypage.html';
-			console.log('마이페이지로 이동');
-		};
+		document.addEventListener('DOMContentLoaded', function () {
+			let emailReg =
+				/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+			const passwordReg =
+				/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
 
-		document.querySelector('.cart').onclick = function () {
-			window.location.href = '../cart/cart.html';
-		};
-	}
-};
-loginCheck();
+			let userEmail = document.getElementById('exampleInputEmail1');
+			let userPw = document.getElementById('exampleInputPassword1');
 
-	document.addEventListener('DOMContentLoaded', function () {
-	let emailReg =
-		/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-	const passwordReg =
-		/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+			let emailData;
 
-	let userEmail = document.getElementById('exampleInputEmail1');
-	let userPw = document.getElementById('exampleInputPassword1');
-
-	let emailData;
-
-	function handleLogin() {
-		if (userEmail.value === '') {
-			alert('이메일을 입력해주세요');
-			userEmail.focus();
-			return;
-		} else if (!emailReg.test(userEmail.value)) {
-			alert('이메일 형식이 올바르지 않습니다'); 
-			userEmail.focus();
-			return false;
-		}
-
-		if (userPw.value === '') {
-			alert('비밀번호를 입력해주세요');
-			userPw.focus();
-			return;
-		} else if (!passwordReg.test(userPw.value)) {
-			alert('비밀번호를 확인해주세요');
-			userPw.focus();
-			return false;
-		}
-
-		fetch('http://localhost:3000/api/v1/users/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json;charset=utf-8',
-				Authorization: localStorage.getItem('TOKEN'),
-				Authorization: localStorage.getItem('email'),
-
-			},
-			body: JSON.stringify({
-				email: userEmail.value,
-				password: userPw.value,
-			}),
-		})
-			.then((response) => {
-				if (response.ok) {
-					return response.json();
-				} else {
-					throw new Error('통신 실패!');
+			function handleLogin() {
+				if (userEmail.value === '') {
+					alert('이메일을 입력해주세요');
+					userEmail.focus();
+					return;
+				} else if (!emailReg.test(userEmail.value)) {
+					alert('이메일 형식이 올바르지 않습니다');
+					userEmail.focus();
+					return false;
 				}
-			})
-			.then((data) => {s
-				console.log(data);
-				// emailData = data.email;
-				if (data.message === '로그인 성공') {
-					localStorage.setItem('TOKEN', data.token);
-					// localStorage.setItem('TOKEN', data.email);
-					alert('로그인 성공');
-					window.location.href = '../main/main.html';
-				} else if (data.message === '비밀번호 작성 양식을 준수해주세요.') {
-					alert('비밀번호 작성 양식을 준수해주세요.');
-				} else if (data.message === '회원을 찾을 수 없습니다.') {
-					alert('회원을 찾을 수 없습니다.');
+
+				if (userPw.value === '') {
+					alert('비밀번호를 입력해주세요');
+					userPw.focus();
+					return;
+				} else if (!passwordReg.test(userPw.value)) {
+					alert('비밀번호를 확인해주세요');
+					userPw.focus();
+					return false;
 				}
-			})
-			.catch((error) => {
-				console.error('로그인 요청 실패:', error);
-				// alert('로그인 요청 실패');
+
+				fetch('http://localhost:3000/api/v1/users/login', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json;charset=utf-8',
+						Authorization: localStorage.getItem('TOKEN'),
+						Authorization: localStorage.getItem('email'),
+					},
+					body: JSON.stringify({
+						email: userEmail.value,
+						password: userPw.value,
+					}),
+				})
+					.then((response) => {
+						if (response.ok) {
+							return response.json();
+						} else {
+							throw new Error('통신 실패!');
+						}
+					})
+					.then((data) => {
+						s;
+						console.log(data);
+						// emailData = data.email;
+						if (data.message === '로그인 성공') {
+							localStorage.setItem('TOKEN', data.token);
+							// localStorage.setItem('TOKEN', data.email);
+							alert('로그인 성공');
+							window.location.href = '/main/main.html';
+						} else if (data.message === '비밀번호 작성 양식을 준수해주세요.') {
+							alert('비밀번호 작성 양식을 준수해주세요.');
+						} else if (data.message === '회원을 찾을 수 없습니다.') {
+							alert('회원을 찾을 수 없습니다.');
+						}
+					})
+					.catch((error) => {
+						console.error('로그인 요청 실패:', error);
+						// alert('로그인 요청 실패');
+					});
+			}
+
+			const loginButton = document.querySelector('button');
+			if (loginButton) {
+				loginButton.addEventListener('click', handleLogin);
+			}
+
+			document.addEventListener('keydown', function (e) {
+				if (e.key === 'Enter') {
+					handleLogin();
+				}
 			});
-	}
+		});
 
-	const loginButton = document.querySelector('button');
-	if (loginButton) {
-		loginButton.addEventListener('click', handleLogin);
-	}
+		// 로그아웃
 
-	document.addEventListener('keydown', function (e) {
-		if (e.key === 'Enter') {
-			handleLogin();
+		function logoutHandler() {
+			fetch('http://localhost:3000/api/v1/users/logout', {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			}).then((res) => {
+				return res;
+			});
 		}
-	});
-});
-
-// 로그아웃
-
-function logoutHandler() {
-	fetch('http://localhost:3000/api/v1/users/logout', {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	}).then((res) => {
-		return res;
-	});
-}
-
-</script>
+	</script>
 </html>
