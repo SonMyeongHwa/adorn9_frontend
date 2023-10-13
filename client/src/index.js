@@ -28,12 +28,12 @@ const loginCheck = () => {
 			'.login',
 		).innerHTML = `<li class='mypage'>마이페이지</li>`;
 		document.querySelector('.login').onclick = function () {
-			window.location.href = '../mypage/mypage.html';
+			window.location.href = '/myPage/myPage.html';
 			console.log('마이페이지로 이동');
 		};
 
 		document.querySelector('.cart').onclick = function () {
-			window.location.href = '../cart/cart.html';
+			window.location.href = '/cart/cart.html';
 		};
 	}
 };
