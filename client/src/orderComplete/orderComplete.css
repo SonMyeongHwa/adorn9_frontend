@@ -1,4 +1,4 @@
-@import "../../../client/src/common/reset.css";
+@import "../common/reset.css";
 
 h1 {
 	font-size: 24px;
@@ -58,33 +58,33 @@ h1 {
   height: 50px
 }
 
-.detail {
+#detail {
   background-color: #EDCFC4;
   border: 1px solid #EDCFC4;
   margin-right: 10px;
 }
 
-.detail:hover {
+#detail:hover {
   background-color: #EDCFC4;
   border: 1px solid #EDCFC4;
 }
 
-.detail:active {
+#detail:active {
   background-color: #EDCFC4;
   border: 1px solid #EDCFC4;
 }
 
-.shop {
+#shop {
   background-color: #be3455;
   border: 1px solid #be3455;
 }
 
-.shop:hover {
+#shop:hover {
   background-color: #be3455;
   border: 1px solid #be3455;
 }
 
-.shop:active {
+#shop:active {
   background-color: #be3455;
   border: 1px solid #be3455;
 }
