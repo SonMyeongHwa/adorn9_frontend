@@ -115,7 +115,7 @@ function loadStorage(itemKey) {
 		return new Map(Object.entries(JSON.parse(storage))); //localStorage값으로 Map 생성
 	} else {
 		alert('장바구니가 비어있습니다.\n상품을 담은 후 다시 시도해주세요');
-		return (window.location.href = '/main/main.html');
+		return (window.location.href = '../main.html');
 	}
 }
 
@@ -223,7 +223,7 @@ const loginCheck = () => {
 		document.querySelector('.logout').onclick = function () {
 			localStorage.clear();
 			alert('로그아웃 되었습니다.');
-			window.location.href = '/main/main.html';
+			window.location.href = '../main.html';
 		};
 
 		document.querySelector(

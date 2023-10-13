@@ -94,7 +94,7 @@ if (orderId) {
 		.then((error) => console.log(error));
 } else {
 	alert('비정상 접근입니다.\n메인페이지로 이동합니다.');
-	window.location.href = '/main/main.html';
+	window.location.href = '../main.html';
 }
 
 function phoneNumberHyphen(phoneNumber) {
@@ -106,7 +106,7 @@ detailButton.addEventListener('click', function () {
 });
 
 shopButton.addEventListener('click', function () {
-	window.location.href = '/main/main.html';
+	window.location.href = '../main.html';
 });
 
 const token = localStorage.getItem('TOKEN');
@@ -124,7 +124,7 @@ const loginCheck = () => {
 		document.querySelector('.logout').onclick = function () {
 			localStorage.clear();
 			alert('로그아웃 되었습니다.');
-			window.location.href = '/main/main.html';
+			window.location.href = '../main.html';
 		};
 
 		document.querySelector(

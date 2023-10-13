@@ -136,7 +136,7 @@
 				document.querySelector('.logout').onclick = function () {
 					localStorage.clear();
 					alert('로그아웃 되었습니다.');
-					window.location.href = '/main/main.html';
+					window.location.href = '../main.html';
 				};
 
 				document.querySelector(
@@ -285,7 +285,7 @@
 						alert('비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.');
 					} else {
 						alert('adorn9의 회원이 되신걸 환영합니다');
-						window.location.href = '/main/main.html';
+						window.location.href = '../main.html';
 					}
 				})
 				.catch((error) => {

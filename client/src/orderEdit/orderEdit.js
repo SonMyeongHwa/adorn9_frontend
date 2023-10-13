@@ -13,7 +13,7 @@ const loginCheck = () => {
 		document.querySelector('.logout').onclick = function () {
 			localStorage.clear();
 			alert('로그아웃 되었습니다.');
-			window.location.href = '/main/main.html';
+			window.location.href = '../main.html';
 		};
 
 		document.querySelector(
