@@ -16,7 +16,7 @@ let total = 0;
 const token = localStorage.getItem('TOKEN');
 //주문자 정보 API 연동
 //fetch(http://localhost:3000/api/v1/users/profile/?email=이메일) 임시
-fetch("http://localhost:3000/api/v1/users/profile?email=test1234@test.com", {
+fetch("http://localhost:3000/api/v1/users/profile?email=test9@test.com", {
   headers: {
     Authorization: `Bearer ${token}`,
   },
@@ -35,7 +35,7 @@ fetch("http://localhost:3000/api/v1/users/profile?email=test1234@test.com", {
         </div>
         <div class="form-group">
           <label for="phoneNumber" class="form-label">전화번호 <span class="required">*</span></label>
-          <input type="text" class="form-control" id="phoneNumber" placeholder="전화번호" value=${phone_number} maxlength="11" />
+          <input type="text" class="form-control" id="phoneNumber" placeholder="전화번호" value=${phone_number} disabled />
         </div>
         <div class="form-group">
           <label for="email" class="form-label">이메일 <span class="required">*</span></label>
@@ -185,7 +185,9 @@ orderButton.addEventListener("click", function(e) {
           }
         });
         localStorage.removeItem("item");
-        localStorage.setItem("item", JSON.stringify(Object.fromEntries(cartItems)));
+        if(cartItems.size !== 0) {
+          localStorage.setItem("item", JSON.stringify(Object.fromEntries(cartItems)));
+        }
 
         //주문번호 localStorage에 담기
         localStorage.setItem("orderId", data.orderId);
