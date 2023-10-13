@@ -30,7 +30,7 @@
 					<li>Sunglasses</li>
 				</a>
 				</ul>
-				<a class="logo-wrap" href="../main.html">
+				<a class="logo-wrap" href="../main/main.html">
 					<img src="../assets/imgs/logo/ADORN9_LOGO.png" alt="" />
 				</a>
 				<ul class="utils">
@@ -66,9 +66,7 @@
 						placeholder="이름을 입력해주세요"
 						value=""
 					/>
-					<button onclick="updateInfo()" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-						변경
-					</button>
+
 				</div>
 			</div>
 			<div class="form-group">
@@ -81,9 +79,7 @@
 						aria-describedby="emailHelp"
 						placeholder="010-1234-5678"
 					/>
-					<button onclick="updateInfo()" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-						변경
-					</button>
+
 				</div>
 			</div>
 			<div class="form-group">
@@ -96,9 +92,7 @@
 						aria-describedby="emailHelp"
 						placeholder="아이디를 입력해주세요"
 					/>
-					<button onclick="updateInfo()" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-						변경
-					</button>
+
 				</div>
 			</div>
 			<div class="form-group">
@@ -108,46 +102,14 @@
 						type="password"
 						class="form-control"
 						id="exampleInputPassword"
-						placeholder="영문, 숫자, 특수문자 조합 8-16자"
+						placeholder="비밀번호는 필수 입력값입니다."
 					/>
-					<button onclick="updateInfo()" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-						변경
-					</button>
+					
 				</div>
 			</div>
-			<div class="delete-membership" type="button" onclick="">
-							<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deleteMemberShipModal">
-					회원 탈퇴
-				</button>
-			</div>
-
-			<!-- 변경 Modal -->
-			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div id="modal-dialog" class="modal-dialog 	.modal-sm" >
-					<div class="modal-content" id="modal-content">
-						<div class="modal-body">
-							변경되었습니다.
-						</div>
-						<div class="modal-footer" style="border: none">
-							<button type="button" id="btn-secondary" class="btn btn-secondary" data-bs-dismiss="modal">확인</button>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- 탈퇴 Modal -->
-			<div class="modal fade" id="deleteMemberShipModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div id="modal-dialog" class="modal-dialog 	.modal-sm" >
-					<div class="modal-content" id="modal-content">
-						<div class="modal-body">
-							정말 탈퇴하시겠어요?
-						</div>
-						<div class="modal-footer" style="border: none">
-							<button type="button" id="btn-secondary" class="btn btn-secondary" data-bs-dismiss="modal">확인</button>
-						</div>
-					</div>
-				</div>
-			</div>
+			<button onclick="updateInfo()" type="button" class="btn update-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+				변경
+			</button>
 			</div>
 		</div>
 	</body>
@@ -167,7 +129,7 @@
 				document.querySelector('.logout').onclick = function () {
 					localStorage.clear();
 					alert('로그아웃 되었습니다.');
-					window.location.href = '../main.html';
+					window.location.href = '../main/main.html';
 				};
 
 				document.querySelector(
@@ -195,11 +157,11 @@
       if (!token) {
         console.error('토큰이 없습니다');
 		alert('로그인 후 이용해주세요')
-		window.location.href = '../main.html';
+		window.location.href = '../main/main.html';
         return;
       }
 
-      fetch(`http://kdt-sw-6-team09.elicecoding.com/api/v1/users/profile?email=${email}`, {
+      fetch(`http://localhost:3000/api/v1/users/profile?email=${email}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -214,11 +176,7 @@
     userInfo();
 
 
-		const newName = document.getElementById('exampleInputName').value;
-      const newPhoneNum = document.getElementById('exampleInputPhoneNumber').value;
-      const newEmail = document.getElementById('exampleInputEmail').value;
-      const newPassword = document.getElementById('exampleInputPassword').value;
-			
+
     // 사용자 정보 수정 함수
     function userInfoEdit() {
       if (!token) {
@@ -231,7 +189,7 @@
       const newEmail = document.getElementById('exampleInputEmail').value;
       const newPassword = document.getElementById('exampleInputPassword').value;
 
-      fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/users/modify', {
+      fetch('http://localhost:3000/api/v1/users/modify', {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -244,10 +202,19 @@
           phone_number: newPhoneNum,
         }),
       })
-        .then((response) => response.json())
-        .then((req) => {
-          console.log(req);
-          // 여기에서 성공 메시지를 표시하거나 다른 작업을 수행할 수 있습니다.
+        .then((response) => {
+					response.json()
+					console.log(response.ok);
+					if(response.ok === false) {
+						alert('비밀번호를 입력해주세요');
+
+					} else {
+						alert('정보가 변경되었습니다.')
+					}
+				})
+        .then((data) => {
+					console.log(data);
+
         });
     }
 
@@ -255,39 +222,5 @@
     function updateInfo() {
       userInfoEdit();
     }
-
-		function deleteUser() {
-			const token = localStorage.getItem('TOKEN');
-      if (!token) {
-        console.error('토큰이 없습니다');
-        return;
-      }
-			fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/users/withdraw', {
-				method: "DELETE",
-				headers: {
-          Authorization: `Bearer ${token}`,
-        },
-				body: JSON.stringify({
-          email: newEmail,
-          password: newPassword,
-          user_name: newName,
-          phone_number: newPhoneNum,
-        }),
-			})
-			.then((response) => {
-				response.json();
-				console.log(response);
-			})
-        .then((data) => {
-					console.log(data);
-					// alert('탈퇴되었습니다.');
-					// window.location.href = '../main/main.html';
-
-        });
-		}
-
-		deleteUser();
-
-
 	</script>
 </html>
