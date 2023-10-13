@@ -1,6 +1,6 @@
 const categoryTitle = document.querySelector('.categoryTitle');
 const itemList = document.querySelector('.item-list');
-const receivedData = location.href.split('?')[1]; //카테고리명 받아오기
+const receivedData = location.href.split('?category=')[1]; //카테고리명 받아오기
 
 fetch(`http://localhost:3000/api/v1/products/categories/${receivedData}`)
 	.then((response) => response.json())
