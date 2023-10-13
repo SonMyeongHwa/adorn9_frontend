@@ -1,5 +1,5 @@
-@import '/common/reset.css';
-@import '/common/nav.css';
+@import '../common/reset.css';
+@import '../common/nav.css';
 
 .my-page-wrap {
 	display: flex;
