@@ -2,7 +2,7 @@ export default {
 	fetch,
 };
 
-fetch('http://localhost:3000/api/v1/products/main/feeds')
+fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/products/main/feeds')
 	.then((response) => response.json())
 	.then((data) => {
 		const imgElements = document.querySelectorAll(
@@ -35,7 +35,7 @@ fetch('http://localhost:3000/api/v1/products/main/feeds')
 // main-new-edtion api
 // API에서 상품 데이터를 가져오는 함수
 function fetchProductData() {
-	return fetch('http://localhost:3000/api/v1/products/main/new-products')
+	return fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/products/main/new-products')
 		.then((response) => response.json())
 		.then((data) => data.newProducts)
 		.catch((error) => console.error('Error:', error));
