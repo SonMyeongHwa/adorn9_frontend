@@ -2,47 +2,46 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="X-UA-Compatible" content="IE edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="myPage.css" />
-
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
 		/>
-		<script src="./myPage.js" defer></script>
 		<title>마이페이지</title>
 	</head>
 	<body>
 		<nav>
 			<div class="nav-wrap">
 				<ul class="categories-wrap">
-					<a href="/itemList/itemList.html?category=necklace"
-						><li>Necklace</li></a
-					>
-					<a href="/itemList/itemList.html?category=earring"
-						><li>Earrings</li></a
-					>
-					<a href="/itemList/itemList.html?category=bracelet"
-						><li>Bracelet</li></a
-					>
-					<a href="/itemList/itemList.html?category=ring"> <li>Ring</li> </a>
-					<a href="/itemList/itemList.html?category=sunglasses"
-						><li>Sunglasses</li></a
-					>
+					<a href="/client/src/itemList/itemList.html?necklace">
+						<li>Necklace</li>
+					</a>
+					<a href="/client/src/itemList/itemList.html?earring">
+						<li>Earrings</li>
+					</a>
+					<a href="/client/src/itemList/itemList.html?bracelet">
+						<li>Bracelet</li>
+					</a>
+					<a href="/client/src/itemList/itemList.html?ring">
+						<li>Ring</li>
+					</a>
+					<a href="/client/src/itemList/itemList.html?sunglasses">
+						<li>Sunglasses</li>
+					</a>
 				</ul>
-				<a class="logo-wrap" href="../main.html">
-					<img src="/assets/imgs/logo/ADORN9_LOGO.png" alt="" />
+				<a class="logo-wrap" href="../main/main.html">
+					<img src="../assets/imgs/logo/ADORN9_LOGO.png" alt="" />
 				</a>
 				<ul class="utils">
-					<li class="signup" onclick="location.href='/signup/signup.html'">
+					<li class="signup" onclick="location.href='../signup/signup.html'">
 						회원가입
 					</li>
-					<li class="login" onclick="location.href='/login/login.html'">
+					<li class="login" onclick="location.href='../login/login.html'">
 						로그인
 					</li>
-
-					<li class="cart" onclick="location.href='/cart/cart.html'">
+					<li class="cart" onclick="location.href='../cart/cart.html'">
 						장바구니
 					</li>
 				</ul>
@@ -55,7 +54,6 @@
 					<p>다시 만나 반가워요</p>
 				</div>
 			</header>
-
 			<div class="my-page-main">
 				<aside>
 					<h2>마이페이지</h2>
@@ -63,44 +61,21 @@
 						<a href="">
 							<li>구매내역</li>
 						</a>
-						<a href="/cart/cart.html">
+						<a href="../cart/cart.html">
 							<li>장바구니</li>
 						</a>
-						<a href="/userInfo/userInfo.html">
+						<a href="../userInfo/userInfo.html">
 							<li>내 정보</li>
 						</a>
 						<a href="">
-							<li id="logoutBtn">로그아웃</li>
+							<li id="logoutBtn" onclick="logout()">로그아웃</li>
 						</a>
 					</ul>
 				</aside>
 				<section class="payment-details">
 					<h3>구매내역</h3>
-					<div class="payment-item">
-						<p>배송상태</p>
-						<div class="payment-product">
-							<div class="product-details">
-								<img
-									src="/client//src/assets/imgs/귀걸이/_00e48719-eba8-419a-8ddb-08e52d0b9908.jpeg"
-									alt=""
-								/>
-								<div class="product-desc">
-									<p class="product-title">상품명</p>
-									<p class="product-price">금액</p>
-								</div>
-							</div>
-							<p class="payment-date">날짜</p>
-						</div>
-						<div class="payment-button">
-							<button
-								class="edit-order"
-								onclick="location.href='/orderEdit/orderEdit.html'"
-							>
-								주문 수정
-							</button>
-							<button class="delete-order">주문 삭제</button>
-						</div>
-					</div>
+					<div id="orderList"></div>
+					<!-- 주문 내역을 여기에 표시할 것입니다 -->
 				</section>
 			</div>
 		</div>
@@ -110,7 +85,7 @@
 		const loginCheck = () => {
 			if (!token) {
 				console.log('사용자는 로그아웃 상태입니다.');
-				window.location.href = '/login/login.html';
+				window.location.href = '../login/login.html';
 			}
 			if (token) {
 				console.log('사용자는 로그인 상태입니다.');
@@ -121,23 +96,25 @@
 				document.querySelector('.logout').onclick = function () {
 					localStorage.clear();
 					alert('로그아웃 되었습니다.');
-					window.location.href = '../main.html';
+					window.location.href = '../main/main.html';
 				};
 
 				document.querySelector(
 					'.login',
 				).innerHTML = `<li class='mypage'>마이페이지</li>`;
 				document.querySelector('.login').onclick = function () {
-					window.location.href = '/mypage/mypage.html';
+					window.location.href = '../mypage/mypage.html';
 					console.log('마이페이지로 이동');
 				};
 
 				document.querySelector('.cart').onclick = function () {
-					window.location.href = '/cart/cart.html';
+					window.location.href = '../cart/cart.html';
 				};
 			}
 		};
 		loginCheck();
+
+		const email = localStorage.getItem('EMAIL');
 
 		function userName() {
 			const token = localStorage.getItem('TOKEN');
@@ -148,16 +125,11 @@
 				return;
 			}
 
-			// `http://localhost:3000/api/v1/users/profile?email=${email}`
-
-			fetch(
-				'http://kdt-sw-6-team09.elicecoding.com/api/v1/users/profile?email=test90@test.com',
-				{
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
+			fetch(`http://localhost:3000/api/v1/users/profile?email=${email}`, {
+				headers: {
+					Authorization: `Bearer ${token}`,
 				},
-			)
+			})
 				.then((res) => res.json())
 				.then((data) => {
 					let name = document.createElement('strong');
@@ -168,15 +140,121 @@
 		}
 		userName();
 
+		// 날짜 가공
+		function formatDateTime(dateTime) {
+			const date = new Date(dateTime);
+			const year = date.getFullYear();
+			const month = date.getMonth() + 1;
+			const day = date.getDate();
+			const hours = date.getHours();
+			const minutes = date.getMinutes();
+			const seconds = date.getSeconds();
+
+			const formattedMonth = month < 10 ? `0${month}` : month;
+			const formattedDay = day < 10 ? `0${day}` : day;
+			const formattedHours = hours < 10 ? `0${hours}` : hours;
+			const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+			const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+
+			const formattedDateTime = `${year}-${formattedMonth}-${formattedDay} ${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+
+			return formattedDateTime;
+		}
+
 		function orderList() {
-			fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/orders/', {
+			fetch('http://localhost:3000/api/v1/orders/', {
 				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},
 			})
 				.then((response) => response.json())
-				.then((data) => console.log(data));
+				.then((data) => {
+					console.log(data);
+					if (data.msg === '주문 목록 조회 성공') {
+						const orders = data.orders;
+
+						const paymentDetails = document.querySelector('.payment-details');
+
+						orders.forEach((order) => {
+							const paymentItem = document.createElement('div');
+							paymentItem.classList.add('payment-item');
+
+							const productStatus = document.createElement('p');
+							productStatus.id = 'productStatus';
+							productStatus.textContent = order.status;
+
+							const paymentProduct = document.createElement('div');
+							paymentProduct.classList.add('payment-product');
+
+							const productDetails = document.createElement('div');
+
+							productDetails.classList.add('product-details');
+
+							const itemsCount = order.items.length;
+							let productNameString = '';
+
+							order.items.forEach((item, index) => {
+								if (itemsCount > 1) {
+									if (index === 0) {
+										productNameString = `${item.item} 외 ${itemsCount - 1}개`;
+									}
+								} else {
+									productNameString = item.item;
+								}
+
+								const productDesc = document.createElement('div');
+								productDesc.classList.add('product-desc');
+
+								if (index === 0) {
+									const productName = document.createElement('p');
+									productName.classList.add('product-title');
+									productName.textContent = productNameString;
+
+									productDesc.appendChild(productName);
+								}
+
+								productDetails.appendChild(productDesc);
+							});
+
+							const paymentDate = document.createElement('p');
+							paymentDate.classList.add('payment-date');
+							const formattedDate = formatDateTime(order.updatedAt);
+							paymentDate.textContent = formattedDate;
+
+							const paymentButton = document.createElement('div');
+							paymentButton.classList.add('payment-button');
+
+							const editOrderButton = document.createElement('button');
+							editOrderButton.classList.add('edit-order');
+							editOrderButton.textContent = '주문 수정';
+
+							const deleteOrderButton = document.createElement('button');
+							deleteOrderButton.classList.add('delete-order');
+							deleteOrderButton.textContent = '주문 삭제';
+
+							paymentButton.appendChild(editOrderButton);
+							paymentButton.appendChild(deleteOrderButton);
+
+							paymentProduct.appendChild(productDetails);
+							paymentProduct.appendChild(paymentDate);
+
+							paymentItem.appendChild(productStatus);
+							paymentItem.appendChild(paymentProduct);
+							paymentItem.appendChild(paymentButton);
+
+							paymentDetails.appendChild(paymentItem);
+
+							editOrderButton.addEventListener('click', function () {
+								window.location.href = `../orderEdit/orderEdit.html?orderId=${order._id}`;
+							});
+
+							deleteOrderButton.addEventListener('click', function () {
+								deleteOrder(order._id);
+							});
+						});
+					}
+				});
 		}
 
 		orderList();
@@ -187,7 +265,7 @@
 				return;
 			}
 
-			fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/users/logout', {
+			fetch('http://localhost:3000/api/v1/users/logout', {
 				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${token}`,
@@ -196,15 +274,36 @@
 				.then((response) => response.json())
 				.then((data) => {
 					console.log(data);
-					if (data.message === '로그인 성공') {
+					if (data.message === '로그아웃 성공') {
 						localStorage.clear();
 
 						alert('로그아웃 성공');
-						window.location.href = '../main.html';
 					}
 				});
 		}
 
-		logout();
+		// 주문 삭제
+		function deleteOrder(orderId, item) {
+			if (!token) {
+				console.error('토큰이 없습니다');
+				return;
+			}
+
+			fetch(`http://localhost:3000/api/v1/orders/${orderId}`, {
+				method: 'DELETE',
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					console.log(data);
+					if (data.msg === '주문이 취소되었습니다.') {
+						alert('주문이 삭제되었습니다');
+						window.location.href = '../myPage/myPage.html';
+						item.remove();
+					}
+				});
+		}
 	</script>
 </html>

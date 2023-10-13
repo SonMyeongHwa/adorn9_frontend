@@ -15,7 +15,6 @@
 			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 			crossorigin="anonymous"
 		></script>
-		<!-- <script src="./login.js" defer type="module"></script> -->
 		<link rel="stylesheet" href="login.css" />
 		<title>login</title>
 	</head>
@@ -23,32 +22,29 @@
 		<nav>
 			<div class="nav-wrap">
 				<ul class="categories-wrap">
-					<a href="/itemList/itemList.html?category=necklace"
-						><li>Necklace</li></a
-					>
-					<a href="/itemList/itemList.html?category=earring"
-						><li>Earrings</li></a
-					>
-					<a href="/itemList/itemList.html?category=bracelet"
-						><li>Bracelet</li></a
-					>
-					<a href="/itemList/itemList.html?category=ring"> <li>Ring</li> </a>
-					<a href="/itemList/itemList.html?category=sunglasses"
-						><li>Sunglasses</li></a
-					>
+					<a href="/client/src/itemList/itemList.html?necklace">
+						<li>Necklace</li> </a
+					><a href="/client/src/itemList/itemList.html?earring">
+						<li>Earrings</li> </a
+					><a href="/client/src/itemList/itemList.html?bracelet">
+						<li>Bracelet</li> </a
+					><a href="/client/src/itemList/itemList.html?ring"> <li>Ring</li> </a
+					><a href="/client/src/itemList/itemList.html?sunglasses">
+						<li>Sunglasses</li>
+					</a>
 				</ul>
-				<a class="logo-wrap" href="../main.html">
-					<img src="/assets/imgs/logo/ADORN9_LOGO.png" alt="" />
+				<a class="logo-wrap" href="../main/main.html">
+					<img src="../assets/imgs/logo/ADORN9_LOGO.png" alt="" />
 				</a>
 				<ul class="utils">
-					<li class="signup" onclick="location.href='/signup/signup.html'">
+					<li class="signup" onclick="location.href='../signup/signup.html'">
 						회원가입
 					</li>
-					<li class="login" onclick="location.href='/login/login.html'">
+					<li class="login" onclick="location.href='../login/login.html'">
 						로그인
 					</li>
 
-					<li class="cart" onclick="location.href='/cart/cart.html'">
+					<li class="cart" onclick="location.href='../cart/cart.html'">
 						장바구니
 					</li>
 				</ul>
@@ -82,6 +78,8 @@
 	</body>
 	<script>
 		const token = localStorage.getItem('TOKEN');
+		const email = localStorage.getItem('EMAIL');
+
 		const loginCheck = () => {
 			if (token) {
 				console.log('사용자는 로그인 상태입니다.');
@@ -92,19 +90,19 @@
 				document.querySelector('.logout').onclick = function () {
 					localStorage.clear();
 					alert('로그아웃 되었습니다.');
-					window.location.href = '../main.html';
+					window.location.href = '../main/main.html';
 				};
 
 				document.querySelector(
 					'.login',
 				).innerHTML = `<li class='mypage'>마이페이지</li>`;
 				document.querySelector('.login').onclick = function () {
-					window.location.href = '/mypage/mypage.html';
+					window.location.href = '../mypage/mypage.html';
 					console.log('마이페이지로 이동');
 				};
 
 				document.querySelector('.cart').onclick = function () {
-					window.location.href = '/cart/cart.html';
+					window.location.href = '../cart/cart.html';
 				};
 			}
 		};
@@ -142,7 +140,7 @@
 					return false;
 				}
 
-				fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/users/login', {
+				fetch('http://localhost:3000/api/v1/users/login', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json;charset=utf-8',
@@ -162,14 +160,12 @@
 						}
 					})
 					.then((data) => {
-						s;
 						console.log(data);
-						// emailData = data.email;
 						if (data.message === '로그인 성공') {
 							localStorage.setItem('TOKEN', data.token);
-							// localStorage.setItem('TOKEN', data.email);
+							localStorage.setItem('EMAIL', data.email);
 							alert('로그인 성공');
-							window.location.href = '../main.html';
+							window.location.href = '../main/main.html';
 						} else if (data.message === '비밀번호 작성 양식을 준수해주세요.') {
 							alert('비밀번호 작성 양식을 준수해주세요.');
 						} else if (data.message === '회원을 찾을 수 없습니다.') {
@@ -197,7 +193,7 @@
 		// 로그아웃
 
 		function logoutHandler() {
-			fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/users/logout', {
+			fetch('http://localhost:3000/api/v1/users/logout', {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',

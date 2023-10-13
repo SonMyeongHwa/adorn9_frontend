@@ -13,10 +13,11 @@ const address2 = document.getElementById('address2');
 //장바구니 상품 Map에 담아서 불러오기
 const cartItems = loadCartItems();
 let total = 0;
+const email = localStorage.getItem('EMAIL');
+
 const token = localStorage.getItem('TOKEN');
 //주문자 정보 API 연동
-//fetch(http://localhost:3000/api/v1/users/profile/?email=이메일) 임시
-fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/users/profile?email=test90@test.com', {
+fetch(`http://localhost:3000/api/v1/users/profile?email=${email}`, {
 	headers: {
 		Authorization: `Bearer ${token}`,
 	},
@@ -58,7 +59,7 @@ for (const [key, value] of cartItems) {
 }
 
 //상품 데이터 API 연동
-fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/products/array', {
+fetch('http://localhost:3000/api/v1/products/array', {
 	method: 'POST',
 	headers: {
 		'Content-Type': 'application/json',
@@ -115,7 +116,7 @@ function loadStorage(itemKey) {
 		return new Map(Object.entries(JSON.parse(storage))); //localStorage값으로 Map 생성
 	} else {
 		alert('장바구니가 비어있습니다.\n상품을 담은 후 다시 시도해주세요');
-		return (window.location.href = '../main.html');
+		return (window.location.href = '../main/main.html');
 	}
 }
 
@@ -165,7 +166,7 @@ orderButton.addEventListener('click', function (e) {
 	const payment = document.querySelector("input[name='payment']:checked").value;
 	let address = `${zipcode.value}||${address1.value}||${address2.value}`;
 
-	fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/orders', {
+	fetch('http://localhost:3000/api/v1/orders', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8',
@@ -203,7 +204,7 @@ orderButton.addEventListener('click', function (e) {
 				//주문번호 localStorage에 담기
 				localStorage.setItem('orderId', data.orderId);
 
-				window.location.href = '/orderComplete/orderComplete.html';
+				window.location.href = '../orderComplete/orderComplete.html';
 			}
 		})
 		.catch((error) => console.error(error));
@@ -212,7 +213,7 @@ orderButton.addEventListener('click', function (e) {
 const loginCheck = () => {
 	if (!token) {
 		console.log('사용자는 로그아웃 상태입니다.');
-		window.location.href = '/login/login.html';
+		window.location.href = '../login/login.html';
 	}
 	if (token) {
 		console.log('사용자는 로그인 상태입니다.');
@@ -223,19 +224,19 @@ const loginCheck = () => {
 		document.querySelector('.logout').onclick = function () {
 			localStorage.clear();
 			alert('로그아웃 되었습니다.');
-			window.location.href = '../main.html';
+			window.location.href = '../main/main.html';
 		};
 
 		document.querySelector(
 			'.login',
 		).innerHTML = `<li class='mypage'>마이페이지</li>`;
 		document.querySelector('.login').onclick = function () {
-			window.location.href = '/mypage/mypage.html';
+			window.location.href = '../mypage/mypage.html';
 			console.log('마이페이지로 이동');
 		};
 
 		document.querySelector('.cart').onclick = function () {
-			window.location.href = '/cart/cart.html';
+			window.location.href = '../cart/cart.html';
 		};
 	}
 };
