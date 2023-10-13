@@ -1,6 +1,7 @@
 @import "../../../client/src/common/reset.css";
+@import '../common/nav.css';
 
-h1 {
+.serv-list h1 {
 	font-size: 24px;
 	margin-top: 30px;
 	margin-bottom: 30px;
@@ -8,104 +9,103 @@ h1 {
 }
 
 .serv-list {
-	padding-top: 70px;
 	padding-bottom: 70px;
 }
 
-.order-wrap {
+.serv-list .order-wrap {
 	max-width: 1100px;
 	margin: auto;
 }
 
-div[class$="-info"] {
+.serv-list div[class$="-info"] {
   background-color: white;
   padding: 30px;
   margin-bottom: 40px;
 }
 
-.form-group {
+.serv-list .form-group {
 	margin-bottom: 20px;
 }
 
-.form-group input {
+.serv-list .form-group input {
 	border: none;
   border-bottom: 1px solid #e9ecef;
   border-radius: 0;
 }
 
-.required {
+.serv-list .required {
   color: red;
 }
 
-.address input, .btn {
+.serv-list .address input, .serv-list .btn {
 	margin-bottom: 5px;
 }
 
-.row-item {
+.serv-list .row-item {
 	display: inline-block;
 }
 
-input[type=radio] {
+.serv-list input[type=radio] {
   accent-color:#be3455;
 }
 
-.table {
+.serv-list .table {
   margin: 0px;
 }
 
-.table tr {
+.serv-list .table tr {
   border-bottom: 1px solid #f7f7f7;
 }
 
-.table td {
+.serv-list .table td {
   vertical-align: middle;
 }
 
-.table img {
+.serv-list .table img {
   width: 110px;
   height: 110px;
 }
 
-.table .count {
+.serv-list .table .count {
   text-align: center;
 }
 
-.table .price {
+.serv-list .table .price {
   text-align: right;
   padding-right: 20px;
 }
 
-.table .num {
+.serv-list .table .num {
   font-weight: 700;
 }
 
-.total-wrap {
+.serv-list .total-wrap {
   background-color: #f7f7f7;
   padding: 20px 20px;
 }
 
-.fee {
+.serv-list .fee {
   display: flex;
   justify-content: space-between;
 }
 
-.fee .total {
+.serv-list .fee .total {
   font-weight: bold;
 }
 
-.btn-primary {
+.serv-list .btn-primary {
   background-color: #EDCFC4;
   border: 1px solid #EDCFC4;
   height: 50px;
   font-weight: bold;
 }
 
-.btn-primary:hover {
+.serv-list .btn-primary:hover {
   background-color: #be3455;
   border: 1px solid #be3455;
 }
 
-.btn-primary:active {
+.serv-list .btn-primary:active {
   background-color: #be3455;
   border: 1px solid #be3455;
 }

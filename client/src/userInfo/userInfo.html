@@ -23,15 +23,15 @@
 		<nav>
 			<div class="nav-wrap">
 				<ul class="categories-wrap">
-					<a href="../itemList/itemList.html"> <li>Necklace</li> </a
-					><a href=""> <li>Earrings</li> </a
-					><a href=""> <li>Bracelet</li> </a
-					><a href=""> <li>Ring</li> </a
-					><a href="">
-						<li>Sunglasses</li>
-					</a>
+					<a href="/client/src/itemList/itemList.html?necklace"> <li>Necklace</li> </a
+				><a href="/client/src/itemList/itemList.html?earring"> <li>Earrings</li> </a
+				><a href="/client/src/itemList/itemList.html?bracelet"> <li>Bracelet</li> </a
+				><a href="/client/src/itemList/itemList.html?ring"> <li>Ring</li> </a
+				><a href="/client/src/itemList/itemList.html?sunglasses">
+					<li>Sunglasses</li>
+				</a>
 				</ul>
-				<a class="logo-wrap" href="../main//main.html">
+				<a class="logo-wrap" href="../main/main.html">
 					<img src="../assets/imgs/logo/ADORN9_LOGO.png" alt="" />
 				</a>
 				<ul class="utils">
@@ -181,12 +181,12 @@
 				};
 
 				document.querySelector('.cart').onclick = function () {
-					localStorage.clear();
 					window.location.href = '../cart/cart.html';
 				};
 			}
 		};
 		loginCheck();
+		
 		function userInfo() {
       const token = localStorage.getItem('TOKEN');
 

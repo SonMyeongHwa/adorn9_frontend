@@ -1,8 +1,8 @@
 const categoryTitle = document.querySelector(".categoryTitle");
 const itemList = document.querySelector(".item-list");
+const receivedData = location.href.split('?')[1]; //카테고리명 받아오기
 
-//fetch("http://localhost:3000/api/v1/products/categories/카테고리") 임시
-fetch("http://localhost:3000/api/v1/products/categories/necklace")
+fetch(`http://localhost:3000/api/v1/products/categories/${receivedData}`)
   .then((response) => response.json())
   .then((data) => {
     //장바구니 상품 Map에 담아서 불러오기
@@ -12,6 +12,8 @@ fetch("http://localhost:3000/api/v1/products/categories/necklace")
     data.categoryProducts.forEach(ele => {
       const price = ele.price.toLocaleString('ko-KR'); //상품 금액 콤마 삽입
       
+      categoryTitle.innerText = receivedData;
+
       itemList.insertAdjacentHTML("beforeend", `
         <div class="item-content">
           <div class="image">
@@ -99,3 +101,33 @@ function saveStorage(itemKey, itemMap) {
   localStorage.removeItem(itemKey);
   localStorage.setItem(itemKey, JSON.stringify(Object.fromEntries(itemMap)));
 }
+
+const token = localStorage.getItem('TOKEN');
+const loginCheck = () => {
+	if (token) {
+		console.log('사용자는 로그인 상태입니다.');
+
+		document.querySelector(
+			'.signup',
+		).innerHTML = `<li class='logout'>로그아웃</li>`;
+		document.querySelector('.logout').onclick = function () {
+			localStorage.clear();
+			alert('로그아웃 되었습니다.');
+			window.location.href = '../main/main.html';
+		};
+
+		document.querySelector(
+			'.login',
+		).innerHTML = `<li class='mypage'>마이페이지</li>`;
+		document.querySelector('.login').onclick = function () 
+		{
+			window.location.href = '../mypage/mypage.html';
+			console.log('마이페이지로 이동');
+		};
+
+		document.querySelector('.cart').onclick = function () {
+			window.location.href = '../cart/cart.html';
+		};
+	}
+};
+loginCheck();

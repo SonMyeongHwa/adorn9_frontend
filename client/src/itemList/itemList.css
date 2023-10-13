@@ -1,38 +1,38 @@
 @import "../common/reset.css";
+@import '../common/nav.css';
 
-h1 {
+.serv-list h1 {
   font-size: 24px;
   margin-top: 30px;
   margin-bottom: 30px;
   font-weight: 400;
 }
 
-a {
+.serv-list a {
   text-decoration: none;
   color: black;
 }
 
-a:hover {
+.serv-list a:hover {
   color: black;
 }
 
 .serv-list {
-  padding-top: 70px;
   padding-bottom: 70px;
 }
 
-.item-wrap {
+.serv-list .item-wrap {
   max-width: 1200px;
   margin: auto;
 }
 
-.item-list {
+.serv-list .item-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.item-content {
+.serv-list .item-content {
   height: 330px;
   width: 260px;
   padding: 5px;
@@ -40,16 +40,16 @@ a:hover {
   position: relative;
 }
 
-.item-content img {
+.serv-list .item-content img {
   height: 250px;
   width: 250px;
 }
 
-.item-content img:hover {
+.serv-list .item-content img:hover {
   cursor: pointer;
 }
 
-.btn, .btn-primary {
+.serv-list .btn, .serv-list .btn-primary {
   display: none;
   background-color: #EDCFC4;
   border: 1px solid #EDCFC4;
@@ -60,27 +60,27 @@ a:hover {
   border-radius: 0;
 }
 
-.btn-primary:hover {
+.serv-list .btn-primary:hover {
   background-color: #EDCFC4;
   border: 1px solid #EDCFC4;
 }
 
-.btn-primary:active {
+.serv-list .btn-primary:active {
   background-color: #EDCFC4;
   border: 1px solid #EDCFC4;
 }
 
-.image:hover .btn{
+.serv-list .image:hover .btn{
   display: block;
   background-color: #EDCFC4;
   border: 1px solid #EDCFC4;
 }
 
-.description {
+.serv-list .description {
   padding: 10px 0px;
   text-align: center;
 }
 
-.name {
+.serv-list .name {
   color: #555555
 }
