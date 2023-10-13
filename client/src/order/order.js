@@ -13,22 +13,25 @@ const address2 = document.getElementById("address2");
 //장바구니 상품 Map에 담아서 불러오기
 const cartItems = loadCartItems();
 let total = 0;
-
+const token = localStorage.getItem('TOKEN');
 //주문자 정보 API 연동
 //fetch(http://localhost:3000/api/v1/users/profile/?email=이메일) 임시
-fetch("http://localhost:3000/api/v1/users/profile?email=test11@test.com")
+fetch("http://localhost:3000/api/v1/users/profile?email=test@test.com", {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+})
   .then((response) => response.json())
   .then((data) => {
     const { email, name } = data;
-    // let { phone_number } = data; //나중에 이걸로 바꾸기
-    let phone_number = "01012345678"; //임시!!!!!!!!!!
+    let { phone_number } = data;
     
     ordererInfo.insertAdjacentHTML("beforeend", `
       <div>
         <div class="title"><h3>1. 주문자 정보</h3></div>
         <div class="form-group">
           <label for="name" class="form-label">이름 <span class="required">*</span></label>
-          <input type="text" class="form-control" id="name" placeholder="이름" value=${name}/>
+          <input type="text" class="form-control" id="name" placeholder="이름" value=${name} />
         </div>
         <div class="form-group">
           <label for="phoneNumber" class="form-label">전화번호 <span class="required">*</span></label>
@@ -36,7 +39,7 @@ fetch("http://localhost:3000/api/v1/users/profile?email=test11@test.com")
         </div>
         <div class="form-group">
           <label for="email" class="form-label">이메일 <span class="required">*</span></label>
-          <input type="email" class="form-control" id="email" placeholder="이메일" value=${email}/>
+          <input type="email" class="form-control" id="email" placeholder="이메일" value=${email} />
         </div>
       </div>`);
   })
@@ -105,8 +108,8 @@ function loadStorage(itemKey) {
   if(storage) {
     return new Map(Object.entries(JSON.parse(storage))); //localStorage값으로 Map 생성
   } else {
-    // alert("장바구니가 비어있습니다.\n상품을 담은 후 다시 시도해주세요");
-    // return window.location.href = "../main/main.html"
+    alert("장바구니가 비어있습니다.\n상품을 담은 후 다시 시도해주세요");
+    return window.location.href = "../main/main.html"
   }
 }
 
