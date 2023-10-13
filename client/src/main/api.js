@@ -73,9 +73,3 @@ function updateProductData() {
 }
 // 페이지 로드 시 상품 데이터를 업데이트
 window.onload = updateProductData;
-
-// 카테고리 상품 api
-// fetch('http://localhost:3000/api/v1/categories').then((response) =>
-// 	response.json(),
-// );
-// .then((date) => console.log(date.categories));

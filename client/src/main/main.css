@@ -156,18 +156,22 @@ a:hover {
 	/* position: relative; */
 	margin-bottom: 50px;
 }
-.recommend-slide-section .slide-control {
+.recommend-slide-section .recommend-slide-control {
 	display: flex;
 	/* flex-direction: column; */
 	justify-content: center;
 	align-items: center;
 }
 
+.recommend-silde-item-container {
+	overflow: hidden;
+}
+
 .recommend-silde-items-wrapper {
-	width: 1200px;
+	width: 100%;
 	display: flex;
 	align-items: flex-start;
-	overflow: hidden;
+	transition: 0.5s ease-out;
 }
 .recommend-silde-items-wrapper img {
 	width: 350px;
@@ -176,7 +180,7 @@ a:hover {
 	margin: 20px;
 }
 
-.recommend-slide-section .slide-control button {
+.recommend-slide-section .recommend-slide-control button {
 	border: none;
 	background-color: transparent;
 	cursor: pointer;
