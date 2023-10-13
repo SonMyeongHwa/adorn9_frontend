@@ -26,7 +26,7 @@ const loginCheck = () => {
 
 		document.querySelector(
 			'.login',
-		).innerHTML = `<li class='mypage'>마이페이지</li>`;
+		).innerHTML = `<li class='myPage'>마이페이지</li>`;
 		document.querySelector('.login').onclick = function () {
 			window.location.href = '/myPage/myPage.html';
 			console.log('마이페이지로 이동');

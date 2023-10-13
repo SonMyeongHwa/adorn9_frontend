@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="mypage.css" />
+		<link rel="stylesheet" href="myPage.css" />
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
@@ -101,9 +101,9 @@
 
 				document.querySelector(
 					'.login',
-				).innerHTML = `<li class='mypage'>마이페이지</li>`;
+				).innerHTML = `<li class='myPage'>마이페이지</li>`;
 				document.querySelector('.login').onclick = function () {
-					window.location.href = '../mypage/mypage.html';
+					window.location.href = '../myPage/myPage.html';
 					console.log('마이페이지로 이동');
 				};
 
@@ -300,7 +300,7 @@
 					console.log(data);
 					if (data.msg === '주문이 취소되었습니다.') {
 						alert('주문이 삭제되었습니다');
-						window.location.href = '../mypage/mypage.html';
+						window.location.href = '../myPage/myPage.html';
 						item.remove();
 					}
 				});
