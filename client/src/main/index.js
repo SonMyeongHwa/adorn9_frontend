@@ -2,10 +2,12 @@ import apiModule from './api.js';
 import advertising from './advertise.js';
 import mainSlideModule from './main-slide.js';
 import createTheModal from '../modal/modal.js';
+import mentionSlide from './mention-slide.js';
 
 apiModule.fetch;
 advertising.advertise();
 mainSlideModule.makeClone();
+mentionSlide.initializeSlider();
 createTheModal.createModal();
 
 const token = localStorage.getItem('TOKEN');
@@ -25,8 +27,7 @@ const loginCheck = () => {
 		document.querySelector(
 			'.login',
 		).innerHTML = `<li class='mypage'>마이페이지</li>`;
-		document.querySelector('.login').onclick = function () 
-		{
+		document.querySelector('.login').onclick = function () {
 			window.location.href = '../mypage/mypage.html';
 			console.log('마이페이지로 이동');
 		};
