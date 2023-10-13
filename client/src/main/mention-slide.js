@@ -1,5 +1,5 @@
 let slideWrapper = document.querySelector('.recommend-silde-items-wrapper'),
-	slides = slideWrapper.querySelectorAll('li'),
+	slides = slideWrapper.querySelectorAll('.recommend-silde-items-wrapper > li'),
 	btnPrev = document.querySelector('.recommend.btnPrev'),
 	btnNext = document.querySelector('.recommend.btnNext'),
 	currentSlideIndex = 0,
@@ -20,8 +20,6 @@ function loadImages() {
 		})
 		.then((response) => response.json())
 		.then((productsData) => {
-			console.log(productsData);
-
 			slideWrapper.innerHTML = ''; // 기존 이미지 제거
 
 			productsData.categoryProducts.forEach((categoryProducts) => {
@@ -34,11 +32,10 @@ function loadImages() {
 					slideWrapper.appendChild(liElement);
 				}
 			});
+
 			return Promise.resolve();
 		});
 }
-
-console.log(loadImages());
 
 // 슬라이드 이동 함수
 function makeClone() {
@@ -61,6 +58,7 @@ function makeClone() {
 function setInitialPosition() {
 	const offset = -(slideWidth + slideMargin) * slides.length;
 	slideWrapper.style.transform = `translateX(${offset}px)`;
+	slideWrapper.style.opacity = '1';
 }
 
 function moveSlide(direction) {

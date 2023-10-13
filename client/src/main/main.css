@@ -168,14 +168,15 @@ a:hover {
 }
 
 .recommend-silde-items-wrapper {
+	opacity: 0;
 	width: 100%;
 	display: flex;
 	align-items: flex-start;
 	transition: 0.5s ease-out;
 }
 .recommend-silde-items-wrapper img {
-	width: 350px;
-	height: 350px;
+	width: 250px;
+	height: 250px;
 
 	margin: 20px;
 }
