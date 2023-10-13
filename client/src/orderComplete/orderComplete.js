@@ -1,14 +1,21 @@
 const title = document.querySelector(".message>.title")
 const info = document.querySelector(".info");
+const detailButton = document.getElementById("detail");
+const shopButton = document.getElementById("shop");
 
-//fetch("http://localhost:3000/api/v1/orders/주문번호") 일단 임시로 넣음
-fetch("http://localhost:3000/api/v1/orders/651d99775661a2cbc3442614")
+const orderId = localStorage.getItem("orderId");
+
+if(orderId) {
+  fetch(`http://localhost:3000/api/v1/orders/${orderId}`)
   .then((response) => response.json())
   .then((data) => {
-    let { _id, total_price, user_name, address, phone_number, createdAt } = data.order;
+    let { _id, name, phone_number, email, receiver_name, address, receiver_phone_number, payment, total_price, createdAt } = data.order;
 
+    phone_number = phoneNumberHyphen(phone_number);
+    receiver_phone_number = phoneNumberHyphen(receiver_phone_number);
+    address = address.split("||");
+    payment = payment === "card" ? "카드결제" : "무통장입금";
     total_price = total_price.toLocaleString('ko-KR');
-    phone_number = phone_number.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
     createdAt = createdAt.substring(0, createdAt.indexOf(".")).replace("T", " ");
 
     title.insertAdjacentHTML("beforeend", `
@@ -25,11 +32,11 @@ fetch("http://localhost:3000/api/v1/orders/651d99775661a2cbc3442614")
           <tbody>
             <tr>
               <td class="col-md-2">받는사람</td>
-              <td>${user_name} / ${phone_number}</td>
+              <td>${receiver_name} / ${receiver_phone_number}</td>
             </tr>
             <tr>
               <td class="col-md-2">배송지</td>
-              <td>${address}</td>
+              <td>(${address[0]}) ${address[1]} ${address[2]}</td>
             </tr>
           </tbody>
         </table>
@@ -41,11 +48,11 @@ fetch("http://localhost:3000/api/v1/orders/651d99775661a2cbc3442614")
           <tbody>
             <tr>
               <td class="col-md-2">주문자</td>
-              <td>${user_name} / ${phone_number}</td>
+              <td>${name} / ${phone_number}</td>
             </tr>
             <tr>
               <td class="col-md-2">이메일</td>
-              <td>hong123@gmail.com</td>
+              <td>${email}</td>
             </tr>
             <tr>
                 <td class="col-md-2">결제일</td>
@@ -53,7 +60,7 @@ fetch("http://localhost:3000/api/v1/orders/651d99775661a2cbc3442614")
               </tr>
             <tr>
               <td class="col-md-2">결제수단</td>
-              <td>무통장입금</td>
+              <td>${payment}</td>
             </tr>
             <tr>
               <td class="col-md-2">결제금액</td>
@@ -63,6 +70,22 @@ fetch("http://localhost:3000/api/v1/orders/651d99775661a2cbc3442614")
         </table>
       </div>
     `);
-    
+    localStorage.removeItem("orderId");
   })
   .then((error) => console.log(error));
+} else {
+  alert("비정상 접근입니다.\n메인페이지로 이동합니다.");
+  window.location.href = "../main/main.html"
+}
+
+function phoneNumberHyphen(phoneNumber) {
+  return phoneNumber.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+}
+
+detailButton.addEventListener("click", function() {
+  window.location.href = "../myPage/myPage.html";
+});
+
+shopButton.addEventListener("click", function() {
+  window.location.href = "../main/main.html";
+});
