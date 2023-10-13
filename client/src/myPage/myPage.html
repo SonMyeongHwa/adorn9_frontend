@@ -69,7 +69,7 @@
 							<li>내 정보</li>
 						</a>
 						<a href="">
-							<li onclick="">로그아웃</li>
+							<li id="logoutBtn">로그아웃</li>
 						</a>
 					</ul>
 				</aside>
@@ -123,6 +123,12 @@
 				).innerHTML = `<li class='logout'>로그아웃</li>`;
 				document.querySelector('.logout').onclick = function () {
 					localStorage.clear();
+					alert('로그아웃 되었습니다.');
+				};
+
+				document.querySelector('#logoutBtn').onclick = function () {
+					localStorage.clear();
+					window.location.href = '../main/main.html';
 					alert('로그아웃 되었습니다.');
 				};
 			}
