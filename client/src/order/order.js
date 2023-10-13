@@ -17,7 +17,7 @@ const email = localStorage.getItem('EMAIL');
 
 const token = localStorage.getItem('TOKEN');
 //주문자 정보 API 연동
-fetch(`http://localhost:3000/api/v1/users/profile?email=${email}`, {
+fetch(`http://kdt-sw-6-team09.elicecoding.com/api/v1/users/profile?email=${email}`, {
 	headers: {
 		Authorization: `Bearer ${token}`,
 	},
@@ -59,7 +59,7 @@ for (const [key, value] of cartItems) {
 }
 
 //상품 데이터 API 연동
-fetch('http://localhost:3000/api/v1/products/array', {
+fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/products/array', {
 	method: 'POST',
 	headers: {
 		'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ function loadStorage(itemKey) {
 		return new Map(Object.entries(JSON.parse(storage))); //localStorage값으로 Map 생성
 	} else {
 		alert('장바구니가 비어있습니다.\n상품을 담은 후 다시 시도해주세요');
-		return (window.location.href = '../main/main.html');
+		return (window.location.href = '../main.html');
 	}
 }
 
@@ -166,7 +166,7 @@ orderButton.addEventListener('click', function (e) {
 	const payment = document.querySelector("input[name='payment']:checked").value;
 	let address = `${zipcode.value}||${address1.value}||${address2.value}`;
 
-	fetch('http://localhost:3000/api/v1/orders', {
+	fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/orders', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8',
@@ -224,7 +224,7 @@ const loginCheck = () => {
 		document.querySelector('.logout').onclick = function () {
 			localStorage.clear();
 			alert('로그아웃 되었습니다.');
-			window.location.href = '../main/main.html';
+			window.location.href = '../main.html';
 		};
 
 		document.querySelector(

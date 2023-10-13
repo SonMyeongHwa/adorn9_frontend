@@ -31,7 +31,7 @@
 						<li>Sunglasses</li>
 					</a>
 				</ul>
-				<a class="logo-wrap" href="../main/main.html">
+				<a class="logo-wrap" href="../main.html">
 					<img src="../assets/imgs/logo/ADORN9_LOGO.png" alt="" />
 				</a>
 				<ul class="utils">
@@ -96,7 +96,7 @@
 				document.querySelector('.logout').onclick = function () {
 					localStorage.clear();
 					alert('로그아웃 되었습니다.');
-					window.location.href = '../main/main.html';
+					window.location.href = '../main.html';
 				};
 
 				document.querySelector(
@@ -125,7 +125,7 @@
 				return;
 			}
 
-			fetch(`http://localhost:3000/api/v1/users/profile?email=${email}`, {
+			fetch(`http://kdt-sw-6-team09.elicecoding.com/api/v1/users/profile?email=${email}`, {
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},
@@ -162,7 +162,7 @@
 		}
 
 		function orderList() {
-			fetch('http://localhost:3000/api/v1/orders/', {
+			fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/orders/', {
 				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${token}`,
@@ -265,7 +265,7 @@
 				return;
 			}
 
-			fetch('http://localhost:3000/api/v1/users/logout', {
+			fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/users/logout', {
 				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${token}`,
@@ -289,7 +289,7 @@
 				return;
 			}
 
-			fetch(`http://localhost:3000/api/v1/orders/${orderId}`, {
+			fetch(`http://kdt-sw-6-team09.elicecoding.com/api/v1/orders/${orderId}`, {
 				method: 'DELETE',
 				headers: {
 					Authorization: `Bearer ${token}`,

@@ -30,7 +30,7 @@
 					<li>Sunglasses</li>
 				</a>
 				</ul>
-				<a class="logo-wrap" href="../main/main.html">
+				<a class="logo-wrap" href="../main.html">
 					<img src="../assets/imgs/logo/ADORN9_LOGO.png" alt="" />
 				</a>
 				<ul class="utils">
@@ -167,7 +167,7 @@
 				document.querySelector('.logout').onclick = function () {
 					localStorage.clear();
 					alert('로그아웃 되었습니다.');
-					window.location.href = '../main/main.html';
+					window.location.href = '../main.html';
 				};
 
 				document.querySelector(
@@ -195,11 +195,11 @@
       if (!token) {
         console.error('토큰이 없습니다');
 		alert('로그인 후 이용해주세요')
-		window.location.href = '../main/main.html';
+		window.location.href = '../main.html';
         return;
       }
 
-      fetch(`http://localhost:3000/api/v1/users/profile?email=${email}`, {
+      fetch(`http://kdt-sw-6-team09.elicecoding.com/api/v1/users/profile?email=${email}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -231,7 +231,7 @@
       const newEmail = document.getElementById('exampleInputEmail').value;
       const newPassword = document.getElementById('exampleInputPassword').value;
 
-      fetch('http://localhost:3000/api/v1/users/modify', {
+      fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/users/modify', {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -262,7 +262,7 @@
         console.error('토큰이 없습니다');
         return;
       }
-			fetch('http://localhost:3000/api/v1/users/withdraw', {
+			fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/users/withdraw', {
 				method: "DELETE",
 				headers: {
           Authorization: `Bearer ${token}`,
