@@ -1,7 +1,3 @@
-export default {
-	fetch,
-};
-
 fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/products/main/feeds')
 	.then((response) => response.json())
 	.then((data) => {
@@ -43,6 +39,7 @@ function fetchProductData() {
 // 상품 데이터를 사용하여 HTML을 수정하는 함수
 function updateProductData() {
 	fetchProductData().then((products) => {
+		// console.log(products);
 		const itemContents = document.querySelectorAll('.item-content');
 
 		products.forEach((product, index) => {
@@ -73,3 +70,7 @@ function updateProductData() {
 }
 // 페이지 로드 시 상품 데이터를 업데이트
 window.onload = updateProductData;
+
+export default {
+	fetch,
+};

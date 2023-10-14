@@ -17,24 +17,25 @@ fetch(`http://kdt-sw-6-team09.elicecoding.com/api/v1/products/categories/${recei
 			itemList.insertAdjacentHTML(
 				'beforeend',
 				`
-        <div class="item-content">
-          <div class="image">
-            <a href=""><img src="${ele.images}" alt=""></a>
-            <button id="cart_${ele._id}" class="cart-button btn btn-primary btn-lg">장바구니</button>
+      <div class="item-content">
+        <div class="image">
+          <img src="${ele.images}" alt="">
+          <button id="cart_${ele._id}" class="cart-button btn btn-primary btn-lg">장바구니</button>
+        </div>
+        <a href="">
+          <div class="description">
+            <div class="name">${ele.name}</div>
+            <div class="price">${price}원</div>
           </div>
-          <a href="">
-            <div class="description">
-              <div class="name">${ele.name}</div>
-              <div class="price">${price}원</div>
-            </div>
-          </a>
-        </div>`,
+        </a>
+      </div>`,
 			);
 
 			//장바구니 담기
 			document
 				.getElementById(`cart_${ele._id}`)
 				.addEventListener('click', function () {
+					cartItems = loadCartItems();
 					pushCart(`${ele._id}`, cartItems);
 				});
 		});
@@ -123,12 +124,12 @@ const loginCheck = () => {
 		document.querySelector('.logout').onclick = function () {
 			localStorage.clear();
 			alert('로그아웃 되었습니다.');
-			window.location.href = '../main.html';
+			window.location.href = '/main.html';
 		};
 
 		document.querySelector(
 			'.login',
-		).innerHTML = `<li class='myPage'>마이페이지</li>`;
+		).innerHTML = `<li class='mypage'>마이페이지</li>`;
 		document.querySelector('.login').onclick = function () {
 			window.location.href = '/myPage/myPage.html';
 			console.log('마이페이지로 이동');

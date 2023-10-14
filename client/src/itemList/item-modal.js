@@ -9,15 +9,33 @@ function setModalContent({ image, title, price }) {
 	topPrice.textContent = price;
 	priceEl.textContent = price;
 }
-
+let currentProductId;
 function showModalOnClick(event) {
-	const clickedButton = event.currentTarget;
+	const clickedButton = event.target;
+	// const parentDiv = clickedButton.parentElement;
+	// console.log(clickedButton);
+	// console.log(parentDiv);
+	// 이미지가 속한 .item-content 요소 찾기
+	const itemContentDiv = clickedButton.closest('.item-content');
 
+	// .description 안의 .name과 .price 정보 찾기
+	const title = itemContentDiv.querySelector('.description .name').textContent;
+	const price = itemContentDiv.querySelector('.description .price').textContent;
+	const fullId = itemContentDiv.querySelector('.cart-button').id;
+	const productId = fullId.replace('cart_', '');
+	// console.log(productId);
+	currentProductId = productId;
 	const data = {
-		image: clickedButton.getAttribute('data-image'),
-		title: clickedButton.getAttribute('data-title'),
-		price: clickedButton.getAttribute('data-price'),
+		image: clickedButton.getAttribute('src'),
+		title: title,
+		price: price,
 	};
+
+	// const data = {
+	// 	image: clickedButton.getAttribute('src'),
+	// 	title: parentDiv.getAttribute('data-title'),
+	// 	price: parentDiv.getAttribute('data-price'),
+	// };
 
 	//수량 초기화 함수
 	function resetQuantity() {
@@ -174,11 +192,11 @@ const createModal = () => {
 								</button>
 								<button
 									class="btn-wide btnImmediateOrd btn-mazenta2"
-									onclick="location.href='../order/order.html'"
+									onclick=""
 									style="display: block"
 									data-cart_divi_cd="20"
 								>
-								바로 구매
+									바로 구매
 								</button>
 							</div>
 						</div>
@@ -238,6 +256,24 @@ const createModal = () => {
 	// 수량 감소 버튼 이벤트 리스너 추가
 	const decreaseButton = document.querySelector('.form-amount--btn--minus');
 	decreaseButton.addEventListener('click', () => updateQuantity(false));
+
+	// const addToCart = (product) => {
+
+	// 	if (item['item ' + product.id]) {
+	// 		// 이미 있는 상품의 수량을 증가
+	// 		item['item ' + product.id].item_quantity += product.quantity;
+	// 	} else {
+	// 		// 새 상품을 장바구니에 추가
+	// 		item['item ' + product.id] = {
+	// 			item_id: product.id,
+	// 			item_quantity: product.quantity,
+	// 			item_checked: true,
+	// 		};
+	// 	}
+
+	// 	// 장바구니 데이터를 다시 로컬스토리지에 저장
+	// 	localStorage.setItem('item', JSON.stringify(item));
+	// };
 
 	let cartItems = loadCartItems();
 
@@ -321,20 +357,38 @@ const createModal = () => {
 			console.log(error);
 		}
 	}
+	// 	cartBtn.addEventListener('click', () => {
+	//     //장바구니 상품 Map에 담아서 불러오기
+	// 		console.log('장바구니 버튼 클릭');
+	// 		const product = {
+	// 			id: currentProductId, // 여기를 실제 상품ID로 변경해야 합니다.
+	// 			title: document.querySelector('.detail-top-title a').textContent,
+	// 			price: parseInt(
+	// 				document
+	// 					.querySelector('.detail-top-price p b')
+	// 					.textContent.replace(/,/g, ''),
+	// 				10,
+	// 			),
+	// 			quantity: parseInt(
+	// 				document.querySelector('.form-amount--input.orderQty').value,
+	// 				10,
+	// 			),
+	// 		};
+
+	// 		addToCart(product);
+	// 		console.log('장바구니에 상품이 추가되었습니다.');
+	// 	});
 };
 
 document.addEventListener('DOMContentLoaded', function () {
 	createModal();
 
-	// 이미지 요소 선택
-	const images = document.querySelectorAll('.item-content .image img');
+	const itemList = document.querySelector('.item-list');
 
-	// 각 이미지 요소에 클릭 이벤트 리스너 추가
-	images.forEach((image) => {
-		image.addEventListener('click', showModalOnClick);
+	// item-list에 이벤트 위임을 통한 이벤트 리스너 바인딩
+	itemList.addEventListener('click', function (event) {
+		const target = event.target;
+
+		showModalOnClick(event);
 	});
 });
-
-export default {
-	createModal,
-};
