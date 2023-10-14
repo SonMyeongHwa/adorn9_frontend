@@ -15,23 +15,23 @@
 		<nav>
 			<div class="nav-wrap">
 				<ul class="categories-wrap">
-					<a href="/itemList/itemList.html?necklace">
+					<a href="/client/src/itemList/itemList.html?necklace">
 						<li>Necklace</li>
 					</a>
-					<a href="/itemList/itemList.html?earring">
+					<a href="/client/src/itemList/itemList.html?earring">
 						<li>Earrings</li>
 					</a>
-					<a href="/itemList/itemList.html?bracelet">
+					<a href="/client/src/itemList/itemList.html?bracelet">
 						<li>Bracelet</li>
 					</a>
-					<a href="/itemList/itemList.html?ring">
+					<a href="/client/src/itemList/itemList.html?ring">
 						<li>Ring</li>
 					</a>
-					<a href="/itemList/itemList.html?sunglasses">
+					<a href="/client/src/itemList/itemList.html?sunglasses">
 						<li>Sunglasses</li>
 					</a>
 				</ul>
-				<a class="logo-wrap" href="../main.html">
+				<a class="logo-wrap" href="../main/main.html">
 					<img src="../assets/imgs/logo/ADORN9_LOGO.png" alt="" />
 				</a>
 				<ul class="utils">
@@ -75,7 +75,7 @@
 				<section class="payment-details">
 					<h3>구매내역</h3>
 					<div id="orderList"></div>
-					<!-- 주문 내역을 여기에 표시할 것입니다 -->
+					<!-- 주문 내역 표시 -->
 				</section>
 			</div>
 		</div>
@@ -96,14 +96,14 @@
 				document.querySelector('.logout').onclick = function () {
 					localStorage.clear();
 					alert('로그아웃 되었습니다.');
-					window.location.href = '../main.html';
+					window.location.href = '../main/main.html';
 				};
 
 				document.querySelector(
 					'.login',
-				).innerHTML = `<li class='myPage'>마이페이지</li>`;
+				).innerHTML = `<li class='mypage'>마이페이지</li>`;
 				document.querySelector('.login').onclick = function () {
-					window.location.href = '../myPage/myPage.html';
+					window.location.href = '../mypage/mypage.html';
 					console.log('마이페이지로 이동');
 				};
 
@@ -125,7 +125,7 @@
 				return;
 			}
 
-			fetch(`http://kdt-sw-6-team09.elicecoding.com/api/v1/users/profile?email=${email}`, {
+			fetch(`http://localhost:3000/api/v1/users/profile?email=${email}`, {
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},
@@ -162,7 +162,7 @@
 		}
 
 		function orderList() {
-			fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/orders/', {
+			fetch('http://localhost:3000/api/v1/orders/', {
 				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${token}`,
@@ -259,13 +259,14 @@
 
 		orderList();
 
+		// 로그아웃
 		function logout() {
 			if (!token) {
 				console.error('토큰이 없습니다');
 				return;
 			}
 
-			fetch('http://kdt-sw-6-team09.elicecoding.com/api/v1/users/logout', {
+			fetch('http://localhost:3000/api/v1/users/logout', {
 				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${token}`,
@@ -289,7 +290,7 @@
 				return;
 			}
 
-			fetch(`http://kdt-sw-6-team09.elicecoding.com/api/v1/orders/${orderId}`, {
+			fetch(`http://localhost:3000/api/v1/orders/${orderId}`, {
 				method: 'DELETE',
 				headers: {
 					Authorization: `Bearer ${token}`,
