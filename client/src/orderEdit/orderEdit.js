@@ -208,7 +208,7 @@ const loginCheck = () => {
 		).innerHTML = `<li class='mypage'>마이페이지</li>`;
 		document.querySelector('.login').onclick = function () 
 		{
-			window.location.href = '../mypage/mypage.html';
+			window.location.href = '/mypage/mypage.html';
 			console.log('마이페이지로 이동');
 		};
 
