@@ -246,7 +246,7 @@
 							paymentDetails.appendChild(paymentItem);
 
 							editOrderButton.addEventListener('click', function () {
-								window.location.href = `../orderEdit/orderEdit.html?orderId=${order._id}`;
+								window.location.href = `/orderEdit/orderEdit.html?orderId=${order._id}`;
 							});
 
 							deleteOrderButton.addEventListener('click', function () {
@@ -301,7 +301,7 @@
 					console.log(data);
 					if (data.msg === '주문이 취소되었습니다.') {
 						alert('주문이 삭제되었습니다');
-						window.location.href = '../myPage/myPage.html';
+						window.location.href = '/myPage/myPage.html';
 						item.remove();
 					}
 				});

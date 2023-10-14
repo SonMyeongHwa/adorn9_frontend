@@ -199,7 +199,7 @@ orderButton.addEventListener("click", function(e) {
 const loginCheck = () => {
 	if (!token) {
 		console.log('사용자는 로그아웃 상태입니다.');
-		window.location.href = '../login/login.html';
+		window.location.href = '/login/login.html';
 	}
 	if (token) {
 		console.log('사용자는 로그인 상태입니다.');
@@ -218,12 +218,12 @@ const loginCheck = () => {
 		).innerHTML = `<li class='mypage'>마이페이지</li>`;
 		document.querySelector('.login').onclick = function () 
 		{
-			window.location.href = '../mypage/mypage.html';
+			window.location.href = '/mypage/mypage.html';
 			console.log('마이페이지로 이동');
 		};
 
 		document.querySelector('.cart').onclick = function () {
-			window.location.href = '../cart/cart.html';
+			window.location.href = '/cart/cart.html';
 		};
 	}
 };
