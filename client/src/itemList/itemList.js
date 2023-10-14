@@ -1,6 +1,6 @@
 const categoryTitle = document.querySelector(".categoryTitle");
 const itemList = document.querySelector(".item-list");
-const receivedData = location.href.split('?')[1]; //카테고리명 받아오기
+const receivedData = location.href.split('?category=')[1]; //카테고리명 받아오기
 
 fetch(`http://kdt-sw-6-team09.elicecoding.com/api/v1/products/categories/${receivedData}`)
   .then((response) => response.json())
