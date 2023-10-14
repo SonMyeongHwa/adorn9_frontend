@@ -69,7 +69,7 @@ const createModal = () => {
 							<div class="detail-image">
 								<!-- width : 558px -->
 								<img
-									src="/shopping_project_9team/assets/imgs/반지/_2e219d3b-f254-495a-961a-6d4c827dc493.jpeg"
+									src=""
 									alt="silver ring"
 								/>
 							</div>
@@ -174,11 +174,11 @@ const createModal = () => {
 								</button>
 								<button
 									class="btn-wide btnImmediateOrd btn-mazenta2"
-									onclick=""
+									onclick="location.href='/order/order.html'"
 									style="display: block"
 									data-cart_divi_cd="20"
 								>
-									바로 구매
+								바로 구매
 								</button>
 							</div>
 						</div>
@@ -239,30 +239,100 @@ const createModal = () => {
 	const decreaseButton = document.querySelector('.form-amount--btn--minus');
 	decreaseButton.addEventListener('click', () => updateQuantity(false));
 
+	let cartItems = loadCartItems();
+
+	//localStorage 가져오기
+	function loadCartItems() {
+		return loadStorage('item'); //localStorage의 key값
+	}
+
+	//localStorage 로드하기
+	function loadStorage(itemKey) {
+		const storage = localStorage.getItem(itemKey);
+
+		//localStorage에 값 여부 확인
+		if (storage) {
+			return new Map(Object.entries(JSON.parse(storage))); //localStorage값으로 Map 생성
+		} else {
+			return new Map(); //빈 Map 생성
+		}
+	}
+
+	//장바구니에 상품 담기(정보)
+	function addCartItemById(cartItemMap, id, quantity) {
+		addCartItem(cartItemMap, id, quantity, true);
+	}
+
+	//장바구니에 상품 담기(localStorag 값)
+	function addCartItem(cartItemMap, id, quantity, checked) {
+		addCartItemByObject(cartItemMap, {
+			item_id: id,
+			item_quantity: quantity,
+			item_checked: checked,
+		});
+	}
+
+	//장바구니에 상품 담기(Map, localStorage)
+	function addCartItemByObject(cartItemMap, cartItem) {
+		cartItemMap.set(cartItem.item_id, cartItem);
+
+		saveCartItems(cartItemMap);
+	}
+
+	//장바구니 상품 넣기 (localStorage)
+	function saveCartItems(cartItemMap) {
+		saveStorage('item', cartItemMap);
+	}
+
+	//장바구니 상품 localStorage에 삭제 후 넣기
+	function saveStorage(itemKey, itemMap) {
+		localStorage.removeItem(itemKey);
+		localStorage.setItem(itemKey, JSON.stringify(Object.fromEntries(itemMap)));
+	}
+
 	const cartBtn = document.querySelector('.btnCart');
-	cartBtn.addEventListener('click', () => {
-		console.log('장바구니 버튼 클릭');
+	cartBtn.addEventListener('click', function () {
+		cartItems = loadCartItems();
+		pushCart(currentProductId, cartItems);
 	});
+
+	//장바구니 담기(localStorage)
+	function pushCart(id, cartItemMap) {
+		try {
+			let quantity = parseInt(
+				document.querySelector('.form-amount--input.orderQty').value,
+				10,
+			);
+
+			let pushText = '';
+
+			//장바구니에 지금 담은 상품이 있는지
+			if (cartItemMap.has(id)) {
+				quantity += cartItemMap.get(id).item_quantity; //수량 저장
+				pushText = '\n이미 담은 상품의 수량을 추가했습니다.';
+			}
+
+			//해당 상품의 수량을 변경하여 저장
+			addCartItemById(cartItemMap, id, quantity);
+
+			alert('장바구니에 상품을 담았습니다!' + pushText);
+		} catch (error) {
+			alert('장바구니 담기에 실패했습니다.');
+			console.log(error);
+		}
+	}
 };
 
-createModal();
+document.addEventListener('DOMContentLoaded', function () {
+	createModal();
 
-// 클릭 이벤트 리스너 추가
-// 예시: `.show-modal-btn` 클래스를 가진 버튼에 이벤트 리스너를 추가합니다.
-// 실제 클릭하고자 하는 버튼의 클래스를 적절하게 바꿔주세요.
-// const showModalButtons = document.querySelectorAll(
-// 	'.btn.btn-primary.show-modal-btn',
-// );
-// showModalButtons.forEach((button) => {
-// 	button.addEventListener('click', showModalOnClick);
-// });
+	// 이미지 요소 선택
+	const images = document.querySelectorAll('.item-content .image img');
 
-// 이미지 요소 선택
-const images = document.querySelectorAll('.item-content .image img');
-
-// 각 이미지 요소에 클릭 이벤트 리스너 추가
-images.forEach((image) => {
-	image.addEventListener('click', showModalOnClick);
+	// 각 이미지 요소에 클릭 이벤트 리스너 추가
+	images.forEach((image) => {
+		image.addEventListener('click', showModalOnClick);
+	});
 });
 
 export default {

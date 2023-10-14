@@ -15,19 +15,19 @@
 		<nav>
 			<div class="nav-wrap">
 				<ul class="categories-wrap">
-					<a href="/client/src/itemList/itemList.html?necklace">
+					<a href="/itemList/itemList.html?necklace">
 						<li>Necklace</li>
 					</a>
-					<a href="/client/src/itemList/itemList.html?earring">
+					<a href="/itemList/itemList.html?earring">
 						<li>Earrings</li>
 					</a>
-					<a href="/client/src/itemList/itemList.html?bracelet">
+					<a href="/itemList/itemList.html?bracelet">
 						<li>Bracelet</li>
 					</a>
-					<a href="/client/src/itemList/itemList.html?ring">
+					<a href="/itemList/itemList.html?ring">
 						<li>Ring</li>
 					</a>
-					<a href="/client/src/itemList/itemList.html?sunglasses">
+					<a href="/itemList/itemList.html?sunglasses">
 						<li>Sunglasses</li>
 					</a>
 				</ul>
@@ -61,10 +61,10 @@
 						<a href="">
 							<li>구매내역</li>
 						</a>
-						<a href="../cart/cart.html">
+						<a href="/cart/cart.html">
 							<li>장바구니</li>
 						</a>
-						<a href="../userInfo/userInfo.html">
+						<a href="/userInfo/userInfo.html">
 							<li>내 정보</li>
 						</a>
 						<a href="">
@@ -85,7 +85,7 @@
 		const loginCheck = () => {
 			if (!token) {
 				console.log('사용자는 로그아웃 상태입니다.');
-				window.location.href = '../login/login.html';
+				window.location.href = '/login/login.html';
 			}
 			if (token) {
 				console.log('사용자는 로그인 상태입니다.');
@@ -96,19 +96,19 @@
 				document.querySelector('.logout').onclick = function () {
 					localStorage.clear();
 					alert('로그아웃 되었습니다.');
-					window.location.href = '../main/main.html';
+					window.location.href = '/main.html';
 				};
 
 				document.querySelector(
 					'.login',
-				).innerHTML = `<li class='myPage'>마이페이지</li>`;
+				).innerHTML = `<li class='mypage'>마이페이지</li>`;
 				document.querySelector('.login').onclick = function () {
-					window.location.href = '../myPage/myPage.html';
+					window.location.href = '/mypage/mypage.html';
 					console.log('마이페이지로 이동');
 				};
 
 				document.querySelector('.cart').onclick = function () {
-					window.location.href = '../cart/cart.html';
+					window.location.href = '/cart/cart.html';
 				};
 			}
 		};
